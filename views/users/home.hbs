@@ -1,37 +1,31 @@
 <section>
-    <div class="container mt-2">
-        <h6>This is Users Interface</h6>
-        <div class="row mt-5">
-            {{#each products}}
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5">
-                <div class="card mx-auto" style="width: 16rem;">
-                    <img src="/images/product-images/{{this._id}}.png" class="card-img-top" alt="phone-image"
-                        style="height: 17rem;">
-                    <hr class="text-secondary">
-                    <div class="card-body pb-1">
-                        <div class="" style="display: flex; justify-content: end;">
-                            <div class="" style="margin-right: auto;">
-                                <h5 class="card-title">{{this.Name}}</h5>
-                            </div>
-                            <div class="">
-                                <p class="card-text"><small>₹{{this.Price}}</small></p>
-                            </div>
-                        </div>
-                        <p class="card-text">{{this.Description}}</p>
-                        <div class="row">
-                            <button onclick="addToCart('{{this._id}}')" class="btn btn-primary">Add to Cart</button>
-                        </div>
+    <div class="container mt-5">
+        
+             <h1>All Shop Offers</h1>
+      
+        <div class="row">
+             {{#each offerShops}}
+             <div class="col-md-2">
+                <a href="/shopOffersDetalis/{{this._id}}" class="no-underline">
+                <div class="card" id="{{this.id}}" >
+                    <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
                     </div>
                 </div>
+                </a>
             </div>
             {{/each}}
+            
         </div>
     </div>
 </section>
 
 <script>
-    function addToCart(productId) {
-        $.ajax({
+    function cardClick(shopId) {
+        console.log(shopId)
+
+         $.ajax({
             url: "/add-to-cart/" + productId,
             method: "get",
             success: (response) => {
@@ -44,3 +38,9 @@
         });
     }
 </script>
+<style>
+     .no-underline {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Set the desired text color */
+  }
+</style>

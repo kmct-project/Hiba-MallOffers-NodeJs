@@ -16,17 +16,35 @@ const verifySignedIn = (req, res, next) => {
 /* GET shops listing. */
 router.get("/", verifySignedIn, function (req, res, next) {
   let shopkeeper = req.session.shop;
-  shopHelper.getAllProducts().then((products) => {
-    res.render("shop/home", { shop: true, products, shopkeeper });
+  let shopName=req.session.shop.name;
+  console.log(shopkeeper._id)
+  shopHelper.getShopDetails(shopName).then((shopDetails) => {
+    res.render("shop/home", { shop: true, shopDetails, shopkeeper });
   });
 });
 
-router.get("/all-products", verifySignedIn, function (req, res) {
-  let shopkeeper = req.session.shop;
-  shopHelper.getAllProducts().then((products) => {
-    res.render("shop/all-products", { shop: true, products, shopkeeper });
+router.get("/all-shops", function (req, res) {
+  // let shopkeeper = req.session.shop;
+  shopHelper.getAllShops().then((shops) => {
+    res.render("shop/all-shops", { shop: false, shops });
   });
 });
+
+router.get("/details/:name",function(req,res){
+  let shopName = req.params.name;
+
+  shopHelper.getShopDetails(shopName).then((shopDetails)=>{
+    res.render("shop/shopDetalis",{shopDetails})
+  })
+})
+
+// router.get("/details/:name",function(req,res){
+//   let shopName = req.params.name;
+
+//   shopHelper.getShopDetails(shopName).then((shopDetails)=>{
+//     res.render("shop/shopDetalis",{shopDetails})
+//   })
+// })
 
 router.get("/signup", function (req, res) {
   if (req.session.signedInShop) {
@@ -66,6 +84,7 @@ router.get("/signin", function (req, res) {
 });
 
 router.post("/signin", function (req, res) {
+  console.log(req.body)
   shopHelper.doSignin(req.body).then((response) => {
     if (response.status) {
       req.session.signedInShop = true;
@@ -84,17 +103,21 @@ router.get("/signout", function (req, res) {
   res.redirect("/shop");
 });
 
-router.get("/add-product", verifySignedIn, function (req, res) {
+// router.get("/offerbookings")
+router.get("/add-offers", verifySignedIn, function (req, res) {
   let shopkeeper = req.session.shop;
-  res.render("shop/add-product", { shop: true, shopkeeper });
+  res.render("shop/add-offers", { shop: true, shopkeeper });
 });
 
-router.post("/add-product", function (req, res) {
-  shopHelper.addProduct(req.body, (id) => {
+router.post("/add-offer", function (req, res) {
+  console.log("shoppp",req.session.shop)
+  let shopId = req.session.shop._id;
+  let offerLength = req.session.shop.offers.length;
+  shopHelper.addOffer(req.body,shopId,offerLength,function callback (id){
     let image = req.files.Image;
-    image.mv("./public/images/product-images/" + id + ".png", (err, done) => {
+    image.mv("./public/images/offer-images/" + id + ".png", (err, done) => {
       if (!err) {
-        res.redirect("/shop/add-product");
+        res.redirect("/shop/add-offers");
       } else {
         console.log(err);
       }
@@ -102,40 +125,25 @@ router.post("/add-product", function (req, res) {
   });
 });
 
-router.get("/edit-product/:id", verifySignedIn, async function (req, res) {
-  let shopkeeper = req.session.shop;
-  let productId = req.params.id;
-  let product = await shopHelper.getProductDetails(productId);
-  console.log(product);
-  res.render("shop/edit-product", { shop: true, product, shopkeeper });
-});
 
-router.post("/edit-product/:id", verifySignedIn, function (req, res) {
-  let productId = req.params.id;
-  shopHelper.updateProduct(productId, req.body).then(() => {
-    if (req.files) {
-      let image = req.files.Image;
-      if (image) {
-        image.mv("./public/images/product-images/" + productId + ".png");
-      }
-    }
-    res.redirect("/shop/all-products");
+router.get("/delete-offer/:id", verifySignedIn, function (req, res) {
+  let offerId = req.session.shop._id;
+  let imgId =req.params.id;
+  console.log(offerId,"lklk")
+  shopHelper.deleteOffer(offerId, imgId).then((response) => {
+    fs.unlinkSync("./public/images/offer-images/" + imgId + ".png");
+    res.redirect("/shop");
   });
 });
 
-router.get("/delete-product/:id", verifySignedIn, function (req, res) {
-  let productId = req.params.id;
-  shopHelper.deleteProduct(productId).then((response) => {
-    fs.unlinkSync("./public/images/product-images/" + productId + ".png");
-    res.redirect("/shop/all-products");
+router.get("/delete-all-offers",  function (req, res) {
+  let shopId = req.session.shop._id;
+  shopHelper.deleteAllOffers(shopId).then(() => {
+    res.redirect("/shop");
   });
 });
 
-router.get("/delete-all-products", verifySignedIn, function (req, res) {
-  shopHelper.deleteAllProducts().then(() => {
-    res.redirect("/shop/all-products");
-  });
-});
+
 
 router.get("/all-users", verifySignedIn, function (req, res) {
   let shopkeeper = req.session.shop;

@@ -1,0 +1,25 @@
+<section>
+    <div class="container mt-5">
+        
+             <h1>All Offers</h1>
+      
+        <div class="row">
+             {{#each shops}}
+             <div class="col-md-2">
+                <div class="card">
+                    <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{!-- <div class="col-2">
+                <a href="/admin/add-shops" class="btn btn-success mb-2">Add a Product</a>
+                <a href="/admin/delete-all-products" onclick="return confirm('Are You Sure to Delete All Products ?')"
+                    class="btn btn-danger">Delete All Products</a>
+            </div> --}}
+            
+        </div>
+    </div>
+</section>

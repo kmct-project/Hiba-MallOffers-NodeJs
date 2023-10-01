@@ -1,0 +1,33 @@
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Add Offer</h2>
+                <form action="/shop/add-offer" enctype="multipart/form-data" method="POST">
+                    <label for="">Offer Name</label>
+                    <input type="text" placeholder="Weekend Offer / Festival offers" name="offername" class="form-control">
+
+                    <label for="">Name (Product/Service)</label>
+                    <input type="text" name="name" class="form-control" required>
+
+                    <label for="">Category</label>
+                    <input type="text" name="category" class="form-control" required>
+
+                    <label for="">MRP</label>
+                    <input type="text" name="mrp" class="form-control" required>
+
+                    <label for="">Offer Price</label>
+                    <input type="text" name="price" class="form-control" required>
+
+                    <label for="">Description</label>
+                    <textarea name="description" class="form-control" rows="4" required></textarea>
+
+                    <label for="">Image</label>
+                    <input type="file" name="Image" class="form-control" required>
+
+                    <button type="submit" class="btn btn-success mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

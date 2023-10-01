@@ -1,5 +1,6 @@
 var express = require("express");
 var userHelper = require("../helper/userHelper");
+var shopHelper = require("../helper/shopHelper")
 var router = express.Router();
 
 const verifySignedIn = (req, res, next) => {
@@ -18,8 +19,9 @@ router.get("/", async function (req, res, next) {
     let userId = req.session.user._id;
     cartCount = await userHelper.getCartCount(userId);
   }
-  userHelper.getAllProducts().then((products) => {
-    res.render("users/home", { admin: false, products, user, cartCount });
+  shopHelper.getAllShopOffers().then((offerShops) => {
+    // console.log("okk",offerShops,"lll")
+    res.render("users/home", { admin: false, offerShops, user, cartCount });
   });
 });
 
@@ -38,6 +40,48 @@ router.post("/signup", function (req, res) {
     res.redirect("/");
   });
 });
+
+router.get("/shopOffersDetalis/:id", verifySignedIn,function (req,res){
+  let shopId = req.params.id;
+
+  shopHelper.getShopOffersDetails(shopId).then((offerDetails)=>{
+    res.render("users/shopOffersDetalis",{offerDetails})
+  })
+})
+
+router.get("/booknow/:id", verifySignedIn, async (req, res) => {
+  let user = req.session.user;
+  let userId = req.session.user._id;
+  let imgId = req.params.id;
+  var parts = imgId.split('_'); // Split the string by underscore
+  var offerId = parts[0]; 
+  var price = req.query.price;
+  var mobile = req.query.mobile;
+  console.log(user,imgId,offerId)
+  // let cartCount = await userHelper.getCartCount(userId);
+  // let total = await userHelper.getTotalAmount(userId);
+  res.render("users/booknow", { admin: false, user,price, mobile });
+});
+
+router.post("/booknow", async (req, res) => {
+  let user = req.session.user;
+  console.log(req.body,"booooooody")
+  // let products = await userHelper.getCartProductList(req.body.userId);
+  // let totalPrice = await userHelper.getTotalAmount(req.body.userId);
+  // userHelper
+  //   .placeBooking(req.body, price, user)
+  //   .then((orderId) => {
+  //     if (req.body["payment-method"] === "COD") {
+  //       res.json({ codSuccess: true });
+  //     } else {
+  //       userHelper.generateRazorpay(orderId, totalPrice).then((response) => {
+  //         res.json(response);
+  //       });
+  //     }
+  //   });
+});
+
+
 
 router.get("/signin", function (req, res) {
   if (req.session.signedIn) {

@@ -18,11 +18,13 @@
 </head>
 
 <body>
-  {{#if admin}}
-  {{>admin-header}}
-  {{else}}
-  {{>user-header}}
-  {{/if}}
+ {{#if admin}}
+  {{> admin-header}}
+{{else if shop}}
+  {{> shop-header}}
+{{else}}
+  {{> user-header}}
+{{/if}}
 
   {{{body}}}
 

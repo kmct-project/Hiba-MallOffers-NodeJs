@@ -1,30 +1,28 @@
-<section>
-    <div class="container mt-2">
-        <center>
-            {{#if shopkeeper}}
-            <h4>Hi {{shopDetails.name}}, Welcome</h4>
-            {{/if}}
-        </center>
 
-        <div class="row mt-5">
-            <div class="row">
+<section>
+    <div class="container mt-5">
+        
+             <h1>{{offerDetails.name}}</h1>
+             <hr>
+      
+        <div class="row">
               <div class="col-md-6">
                 <div class="card">
-                    <img src="{{shopDetails.logo}}" class="card-img-top" alt="Image 1">
+                    <img src="{{offerDetails.logo}}" class="card-img-top" alt="Image 1">
                     {{!-- <div class="card-body">
-                        <h5 class="card-title">{{shopDetails.name}}</h5>
+                        <h5 class="card-title">{{offerDetails.name}}</h5>
                     </div> --}}
                 </div>
             </div>
              <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{shopDetails.name}}</h5>
-                        <h5 class="card-title" style="color: red;">{{shopDetails.floor}}</h5>
+                        <h5 class="card-title">{{offerDetails.name}}</h5>
+                        <h5 class="card-title" style="color: red;">{{offerDetails.floor}}</h5>
                         <hr>
-                        <h5 class="card-title">Category : {{shopDetails.category}}</h5>
-                        <h5 class="card-title">Phone : {{shopDetails.phone}}</h5>
-                        <h5 class="card-title">Email Id : {{shopDetails.emailId}}</h5>
+                        <h5 class="card-title">Category : {{offerDetails.category}}</h5>
+                        <h5 class="card-title">Phone : {{offerDetails.phone}}</h5>
+                        <h5 class="card-title">Email Id : {{offerDetails.emailId}}</h5>
                     </div>
                 </div>
             </div>
@@ -35,13 +33,9 @@
             </div> --}}
             
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-    <h1 class="m-0">offers</h1>
-    <a href="/shop/delete-all-offers" onclick="return confirm('Are You Sure to Delete All Offers ?')" class="btn btn-danger">Delete All Offers</a>
-    </div>
-
-    
-            {{#each shopDetails.offers}}
+        <hr>
+        <h2>Recent Offers</h2>
+          {{#each offerDetails.offers}}
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5">
                 <div class="card mx-auto" style="width: 16rem; ">
                     <img src="/images/offer-images/{{this.img_id}}.png" class="card-img-top" alt="phone-image"
@@ -60,12 +54,11 @@
                         </div>
                         <p class="card-text">{{this.description}}</p>
                         <div class="row">
-                            <a href="/shop/delete-offer/{{this.img_id}}" onclick="return confirm('Are You Sure to Delete  Offer ?')" class="btn btn-danger mt-3">delete</a>
+                            <a href="/booknow/{{this.img_id}}/?price={{this.price}}&mobile={{...offerDetails.phone}}" onclick="return confirm('Are You Sure to book this ?')" class="btn btn-danger mt-3">Book Now</a>
                         </div>
                     </div>
                 </div>
             </div>
             {{/each}}
-        </div>
     </div>
 </section>

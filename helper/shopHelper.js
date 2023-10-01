@@ -1,29 +1,41 @@
 var db = require("../config/connection");
 var collections = require("../config/collections");
 var bcrypt = require("bcrypt");
+const { ObjectId } = require("mongodb");
 const objectId = require("mongodb").ObjectID;
 
 module.exports = {
-  addProduct: (product, callback) => {
-    console.log(product);
-    product.Price = parseInt(product.Price);
+  addShop: (shop, callback) => {
+    // console.log(product);
+    //product.Price = parseInt(product.Price);
     db.get()
-      .collection(collections.PRODUCTS_COLLECTION)
-      .insertOne(product)
+      .collection(collections.SHOP_COLLECTION)
+      .insertOne(shop)
       .then((data) => {
         console.log(data);
         callback(data.ops[0]._id);
       });
   },
 
-  getAllProducts: () => {
+  getAllShops: () => {
+    //console.log("i am in all shop")
     return new Promise(async (resolve, reject) => {
-      let products = await db
+      let shops = await db
         .get()
-        .collection(collections.PRODUCTS_COLLECTION)
+        .collection(collections.SHOP_COLLECTION)
         .find()
         .toArray();
-      resolve(products);
+      resolve(shops);
+    });
+  },
+  getAllShopOffers:()=>{
+    return new Promise(async (resolve, reject) => {
+      let shops = await db
+        .get()
+        .collection(collections.SHOP_COLLECTION)
+        .find({ isOffer: true })
+        .toArray();
+      resolve(shops);
     });
   },
 
@@ -49,9 +61,9 @@ module.exports = {
       let shop = await db
         .get()
         .collection(collections.SHOP_COLLECTION)
-        .findOne({ Email: shopData.Email });
+        .findOne({ emailId: shopData.Email });
       if (shop) {
-        bcrypt.compare(shopData.Password, shop.Password).then((status) => {
+        bcrypt.compare(shopData.Password, shop.password).then((status) => {
           if (status) {
             console.log("Login Success");
             response.shop = shop;
@@ -68,6 +80,48 @@ module.exports = {
       }
     });
   },
+  getShopDetails: (shopName) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.SHOP_COLLECTION)
+        .findOne({ name: shopName })
+        .then((response) => {
+          resolve(response);
+        });
+    });
+  },
+  getShopOffersDetails:(shopId) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.SHOP_COLLECTION)
+        .findOne({ _id: ObjectId(shopId)})
+        .then((response) => {
+          resolve(response);
+        });
+    });
+  },
+  addOffer: (offer, shopId,offerLength,callback) => {
+    offer.price = parseInt(offer.price);
+    offer.mrp= parseInt(offer.mrp);
+    offer.img_id=shopId+"_"+ offerLength;
+    db.get()
+      .collection(collections.SHOP_COLLECTION)
+      .updateOne(
+        { _id: ObjectId(shopId) },
+        {
+          $set: {
+            isOffer:true,
+          },
+          $push: {
+            offers: offer
+          }
+        }
+      )
+      .then((data) => {
+        console.log(data);
+        callback( shopId+"_"+ offerLength )
+      });
+  },
 
   getProductDetails: (productId) => {
     return new Promise((resolve, reject) => {
@@ -80,19 +134,41 @@ module.exports = {
     });
   },
 
-  deleteProduct: (productId) => {
+  deleteOffer: (shopId,Id) => {
     return new Promise((resolve, reject) => {
       db.get()
-        .collection(collections.PRODUCTS_COLLECTION)
-        .removeOne({ _id: objectId(productId) })
+        .collection(collections.SHOP_COLLECTION)
+        .updateOne( { _id: ObjectId(shopId) },
+        {
+          
+            $pull: { offers: { img_id: Id } }, // Delete the offer with the specified ID
+          
+        })
         .then((response) => {
           console.log(response);
           resolve(response);
         });
     });
   },
+  deleteAllOffers: (shopId) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.SHOP_COLLECTION)
+        .updateOne(
+          { _id: ObjectId(shopId) },
+          {
+            $set: { 
+              isOffer:false,
+              offers: [] }, // Set the 'offers' array to an empty array to delete all offers
+          }
+        )
+        .then(() => {
+          resolve();
+        });
+    });
+  },
 
-  updateProduct: (productId, productDetails) => {
+  updateOffer: (productId, productDetails) => {
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collections.PRODUCTS_COLLECTION)
@@ -113,10 +189,10 @@ module.exports = {
     });
   },
 
-  deleteAllProducts: () => {
+  deleteAllShops: () => {
     return new Promise((resolve, reject) => {
       db.get()
-        .collection(collections.PRODUCTS_COLLECTION)
+        .collection(collections.SHOP_COLLECTION)
         .remove({})
         .then(() => {
           resolve();

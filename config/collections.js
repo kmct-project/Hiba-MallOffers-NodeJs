@@ -3,6 +3,6 @@ module.exports = {
   USERS_COLLECTION: "users",
   ADMIN_COLLECTION: "admin",
   CART_COLLECTION: "cart",
-  ORDER_COLLECTION: "order",
+  ORDER_COLLECTION: "booking",
   SHOP_COLLECTION: "shop",
 };

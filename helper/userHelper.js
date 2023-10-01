@@ -281,6 +281,35 @@ module.exports = {
     });
   },
 
+  placeBooking: (order, products, total, user) => {
+    return new Promise(async (resolve, reject) => {
+      console.log(order, products, total);
+      let status = order["payment-method"] === "ONLINE" ? "placed" : "pending";
+      let orderObject = {
+        deliveryDetails: {
+          mobile: order.mobile,
+          address: order.address,
+          pincode: order.pincode,
+        },
+        userId: objectId(order.userId),
+        user: user,
+        paymentMethod: order["payment-method"],
+        products: products,
+        totalAmount: total,
+        status: status,
+        date: new Date(),
+      };
+      db.get()
+        .collection(collections.ORDER_COLLECTION)
+        .insertOne({ orderObject })
+        .then((response) => {
+          db.get()
+            .collection(collections.CART_COLLECTION)
+            .removeOne({ user: objectId(order.userId) });
+          resolve(response.ops[0]._id);
+        });
+    });
+  },
   placeOrder: (order, products, total, user) => {
     return new Promise(async (resolve, reject) => {
       console.log(order, products, total);
