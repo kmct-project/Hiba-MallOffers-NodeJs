@@ -1,0 +1,26 @@
+[
+  {
+    "name": "12D Cinema",
+    "logo": "https://hilitemall.com/upload/store_logos/Y7yj3gJznASVkAqsezU8TR7KYjJon5m9jS60W5tE.jpeg",
+    "floor": "Floor : Third Floor",
+    "category": "entertainment",
+    "phone": "+91 96057 54523",
+    "emailId": "noblestanly123@gmail.com",
+    "website": "",
+    "password": "$2b$10$is.H4erIdgPEalaJTxQcJ.CTlh9/741nxWvXJBSyAnczOSOR94tVG",
+    "isOffer": false,
+    "offers": []
+  },
+  {
+    "name": "ASUS",
+    "logo": "https://hilitemall.com/upload/store_logos/MLxkrfCdMN8zMN19MnijQ6oLgkyx5FNloZSThanR.jpeg",
+    "floor": "Floor : First Floor",
+    "category": "electronics home appliances",
+    "phone": "9072214401,9072214402",
+    "emailId": "calicutasus@gmail.com",
+    "website": "https://www.asus.com/",
+    "password": "$2b$10$pLDADqB7o4S7Vcc6nBhJiuzgn0iJCrriX6xXhjOEAfDlSfSUzK02e",
+    "isOffer": false,
+    "offers": []
+  }
+]
