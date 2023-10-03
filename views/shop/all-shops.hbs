@@ -1,30 +1,32 @@
 <section>
     <div class="container mt-5">
-        
-             <h1>All Stores</h1>
-      
+
+        <h1>All Stores</h1>
+
         <div class="row">
-             {{#each shops}}
-             <div class="col-md-2">
+            {{#each shops}}
+            <div class="col-md-2">
                 <a href="/shop/details/{{this.name}}" class="no-underline">
-                <div class="card">
-                    <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.name}}</h5>
-                 
-                    </div>
+                    <div class="card">
+                        <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.name}}</h5>
+
+                        </div>
                 </a>
-                </div>
             </div>
-            {{/each}}
-            
         </div>
+        {{/each}}
+
+    </div>
     </div>
 </section>
 
 <style>
-     .no-underline {
-    text-decoration: none; /* Remove underline */
-    color: #333; /* Set the desired text color */
-  }
+    .no-underline {
+        text-decoration: none;
+        /* Remove underline */
+        color: #333;
+        /* Set the desired text color */
+    }
 </style>
