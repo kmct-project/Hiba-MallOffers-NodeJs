@@ -281,9 +281,10 @@ module.exports = {
     });
   },
 
-  placeBooking: (order, products, total, user) => {
+  placeBooking: (order,total, user) => {
+    //req.body, price, user
     return new Promise(async (resolve, reject) => {
-      console.log(order, products, total);
+      // console.log(order, product,"from bokkinggggg");
       let status = order["payment-method"] === "ONLINE" ? "placed" : "pending";
       let orderObject = {
         deliveryDetails: {
@@ -294,7 +295,7 @@ module.exports = {
         userId: objectId(order.userId),
         user: user,
         paymentMethod: order["payment-method"],
-        products: products,
+        products: order.product,
         totalAmount: total,
         status: status,
         date: new Date(),
@@ -303,9 +304,9 @@ module.exports = {
         .collection(collections.ORDER_COLLECTION)
         .insertOne({ orderObject })
         .then((response) => {
-          db.get()
-            .collection(collections.CART_COLLECTION)
-            .removeOne({ user: objectId(order.userId) });
+          // db.get()
+          //   .collection(collections.CART_COLLECTION)
+          //   .removeOne({ user: objectId(order.userId) });
           resolve(response.ops[0]._id);
         });
     });

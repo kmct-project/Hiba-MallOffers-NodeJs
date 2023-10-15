@@ -29,8 +29,21 @@ app.engine(
         index++;
         return index;
       },
-    },
-  })
+      calculatePercentage: function(mrp, price) {
+        // Ensure the inputs are numeric values
+        mrp = parseFloat(mrp);
+        price = parseFloat(price);
+      
+        if (mrp > 0 && price > 0) {
+          const percentage = ((mrp - price) / mrp) * 100;
+          return percentage.toFixed(0) + '%';
+        }
+      
+        // Return an empty string or other value if either mrp or price is not valid
+        return '';
+    }
+  },
+})
 );
 app.use(logger("dev"));
 app.use(express.json());

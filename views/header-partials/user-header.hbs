@@ -30,7 +30,7 @@
                     </li> --}}
                 </ul>
                 {{#if user}}
-                     <a class="nav-link" aria-current="page" href="/cart">Offer Cart</a>
+                     <a class="nav-link" aria-current="page" href="/cart"> <span id="cart-count"> </span> Offer Cart</a> 
                     <a href="#" class="btn btn-secondary ms-3">{{user.Name}}</a>
                     <a href="/signout" class="btn btn-outline-secondary ms-3">Sign Out</a>
                 {{else}}

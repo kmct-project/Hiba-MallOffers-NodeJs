@@ -15,6 +15,19 @@ module.exports = {
         callback(data.ops[0]._id);
       });
   },
+  addCategory: (category) => {
+    return new Promise(async (resolve, reject) => {
+    db.get()
+      .collection(collections.CATEGORY_COLLECTION)
+      .insertOne(category)
+      .then((data) => {
+        console.log("done ")
+        resolve()
+        //console.log(data);
+        //callback(data.ops[0]._id);
+      });
+    })
+  },
 
   getAllProducts: () => {
     return new Promise(async (resolve, reject) => {

@@ -20,7 +20,8 @@ router.get("/", async function (req, res, next) {
     cartCount = await userHelper.getCartCount(userId);
   }
   shopHelper.getAllShopOffers().then((offerShops) => {
-    // console.log("okk",offerShops,"lll")
+   //console.log("okk",offerShops,"lll")
+
     res.render("users/home", { admin: false, offerShops, user, cartCount });
   });
 });
@@ -52,33 +53,32 @@ router.get("/shopOffersDetalis/:id", verifySignedIn,function (req,res){
 router.get("/booknow/:id", verifySignedIn, async (req, res) => {
   let user = req.session.user;
   let userId = req.session.user._id;
-  let imgId = req.params.id;
+  let offerId = req.params.id;
   var parts = imgId.split('_'); // Split the string by underscore
-  var offerId = parts[0]; 
+  // var offerId = parts[0]; 
   var price = req.query.price;
+  var product = req.query.product;
   var mobile = req.query.mobile;
   console.log(user,imgId,offerId)
   // let cartCount = await userHelper.getCartCount(userId);
   // let total = await userHelper.getTotalAmount(userId);
-  res.render("users/booknow", { admin: false, user,price, mobile });
+  res.render("users/booknow", { admin: false, user,price, mobile,product,offerId});
 });
 
 router.post("/booknow", async (req, res) => {
   let user = req.session.user;
-  console.log(req.body,"booooooody")
-  // let products = await userHelper.getCartProductList(req.body.userId);
-  // let totalPrice = await userHelper.getTotalAmount(req.body.userId);
-  // userHelper
-  //   .placeBooking(req.body, price, user)
-  //   .then((orderId) => {
-  //     if (req.body["payment-method"] === "COD") {
-  //       res.json({ codSuccess: true });
-  //     } else {
-  //       userHelper.generateRazorpay(orderId, totalPrice).then((response) => {
-  //         res.json(response);
-  //       });
-  //     }
-  //   });
+  let price =100;
+  userHelper
+  .placeBooking(req.body, price, user)
+  .then((orderId) => {
+    if (req.body["payment-method"] === "COD") {
+      res.json({ codSuccess: true });
+    } else {
+      userHelper.generateRazorpay(orderId, price).then((response) => {
+        res.json(response);
+      });
+    }
+  });
 });
 
 

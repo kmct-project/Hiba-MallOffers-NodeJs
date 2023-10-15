@@ -13,7 +13,9 @@
                         <label for="">Mobile number</label>
                         <input type="text" name="mobile" id="mobile" class="form-control" required>
                         <input type="text" name="userId" value="{{user._id}}" hidden>
-                         <input type="text" name="name" value="{{user.Name}}" hidden>
+                         <input type="text" name="userName" value="{{user.Name}}" hidden>
+                         <input type="hidden" name="product" value="{{product}}" hidden>
+                          <input type="hidden" name="productId" value="{{offerId}}">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -32,7 +34,7 @@
                              <div class="alert alert-warning" role="alert">
                              Please contact to our team and confirm the advance payment and complete the payment.
                             </div>
-                            <button class="btn btn-primary float-right mt-4" type="submit">Checkout</button>
+                           <button class="btn btn-primary float-right mt-4" type="submit" id="checkout-button">Checkout</button>
                            
                         </div>
                     </div>
@@ -59,25 +61,34 @@
 </style>
 
 <script>
+
     $("#checkout-form").submit((e) => {
-        console.log("nbbjhbjhbjh")
-        alert("DDDDDDDD")
-        e.preventDefault();
-        $.ajax({
+         e.preventDefault();
+         // Prepare the form data
+         var formData = {
+            name: document.querySelector('input[name="name"]').value,
+            address: document.querySelector('input[name="address"]').value,
+            mobile: document.querySelector('input[name="mobile"]').value,
+            userId: document.querySelector('input[name="userId"]').value,
+            userName: document.querySelector('input[name="userName"]').value,
+            product: document.querySelector('input[name="product"]').value,
+            productId:document.querySelector('input[name="productId"]').value,
+        };
+    
+       $.ajax({
              url: '/booknow',
             method: 'post',
-            data: $("#checkout-form").serialize(),
+            data: formData ,
             success: (response) => {
-                alert(2222)
-/*if (response.codSuccess) {
-                    location.href = '/order-placed'
-                } else {
-                    razorpayPayment(response)
-                }
+                console.log(response, "dd")
+                alert(response)
+                razorpayPayment(response)
+                // (response.codSuccess) {
+                //location.href = '/order-placed'
             }
-            */
+        
           
-        })
+        }) 
     })
 
  /* url: '/place-order',
@@ -92,14 +103,15 @@
             }*/
             
     function razorpayPayment(order) {
+        console.log(order, "oooo")
         var options = {
             "key": "rzp_test_8NokNgt8cA3Hdv", // Enter the Key ID generated from the Dashboard
-            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "amount": 10000, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Shopping Cart",
             "description": "Test Transaction",
             "image": "https://example.com/your_logo",
-            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "order_id": order.id,
             "handler": function (response) {
                 verifyPayment(response, order)
             },
@@ -129,11 +141,31 @@
             method: 'post',
             success: (response) => {
                 if (response.status) {
+                    addTocart(formData.productId)
+                   setTimeout(()=>{
                     location.href = '/order-placed'
+                   },5000)
+                   // 
                 } else{
                     alert("Payment failed")
                 }
             }
         })
+    }
+
+     function addTocart(productId) {
+        console.log(productId)
+
+         $.ajax({
+            url: "/add-to-cart/" + productId,
+            method: "get",
+            success: (response) => {
+                if (response.status) {
+                    let count = $("#cart-count").html();
+                    count = parseInt(count) + 1;
+                    $("#cart-count").html(count);
+                }
+            },
+        });
     }
 </script>

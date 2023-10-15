@@ -1,21 +1,33 @@
 <section>
     <div class="container mt-5">
         
-             <h1>All Shop Offers</h1>
+             <h1>All  Offers</h1>
       
         <div class="row">
              {{#each offerShops}}
-             <div class="col-md-2">
-                <a href="/shopOffersDetalis/{{this._id}}" class="no-underline">
-                <div class="card" id="{{this.id}}" >
-                    <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
+                {{#each offers}}
+             <div class="col-md-3">
+                <a href="/shopOffersDetalis/{{...this._id}}" class="no-underline">
+                <div class="card" id="{{this.img_id}}" >
+                    <div class="image-container">
+                        <img src="/images/offer-images/{{this.img_id}}.png" class="card-img-top" alt="Image 1">
+                        <span class="offer-badge">{{calculatePercentage this.mrp this.price}}</span>
+                    </div>
+                    
                     <div class="card-body">
-                        <h5 class="card-title">{{this.name}}</h5>
+                        <h5 class="card-title">{{this.name}}  <span class="offer-badge"> <small>offer:{{calculatePercentage this.mrp this.price}}</small></span> </h5>
+                        <div class="price-container">
+                            <p class="mrp"><small><s>₹{{this.mrp}}</s></small></p>
+                            <p class="price"><small>₹{{this.price}}</small></p>
+                        </div>
+                        <H6>By : {{...this.name}}</h6>
                     </div>
                 </div>
                 </a>
             </div>
+             {{/each}}
             {{/each}}
+
             
         </div>
     </div>
@@ -43,4 +55,31 @@
     text-decoration: none; /* Remove underline */
     color: #333; /* Set the desired text color */
   }
+  .price-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mrp {
+  color: red;
+  float: left; /* Align MRP to the left */
+}
+
+.price {
+  color: green;
+  float: right; /* Align Price to the right */
+}
+.image-container {
+  position: relative; /* Make the container a positioning context */
+  display: inline-block; /* Ensure the container only takes up the space of the image */
+}
+.offer-badge {
+  position: absolute; /* Position the badge absolutely within the container */
+  top: 0; /* Position at the top */
+  right: 0; /* Position at the right */
+  background-color: #ff9900; /* Background color for the badge */
+  color: white; /* Text color for the badge */
+  padding: 4px 8px; /* Add padding for better appearance */
+  border-radius: 0 0 0 10px; /* Rounded corner for the top-right corner */
+}
 </style>

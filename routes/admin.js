@@ -88,6 +88,17 @@ router.get("/add-product", verifySignedIn, function (req, res) {
   res.render("admin/add-product", { admin: true, administator });
 });
 
+router.get("/add-category", verifySignedIn, function (req, res) {
+  let administator = req.session.admin;
+  res.render("admin/add-category", { admin: true, administator });
+});
+
+router.post("/add-category",function(req,res){
+  let administator = req.session.admin;
+  adminHelper.addCategory(req.body).then(()=>{
+    res.render("admin/add-category", { admin: true, administator})
+  })
+})
 router.post("/add-product", function (req, res) {
   adminHelper.addProduct(req.body, (id) => {
     let image = req.files.Image;
