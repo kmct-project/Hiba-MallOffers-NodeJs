@@ -25,18 +25,3 @@
   }
 ]
 
-
-New Order :  {
-  id: 'order_MngmmolNT9kFqh',
-  entity: 'order',
-  amount: 10000,
-  amount_paid: 0,
-  amount_due: 10000,
-  currency: 'INR',
-  receipt: '652936200ad65b1cb4fd9c9d',
-  offer_id: null,
-  status: 'created',
-  attempts: 0,
-  notes: [],
-  created_at: 1697199648
-}
