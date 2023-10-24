@@ -122,6 +122,28 @@ module.exports = {
         callback( shopId+"_"+ offerLength )
       });
   },
+  getAllBookings: () => {
+    return new Promise(async (resolve, reject) => {
+      let orders = await db
+        .get()
+        .collection(collections.ORDER_COLLECTION)
+        .find()
+        .toArray();
+      resolve(orders);
+    });
+  },
+  getAllOfferBookings: (shopId) => {
+    return new Promise(async (resolve, reject) => {
+      
+      let orders = await db
+        .get()
+        .collection(collections.ORDER_COLLECTION)
+        .find({  "orderObject.shopId":shopId})
+        .toArray();
+        console.log(orders,"offerbooking")
+      resolve(orders);
+    });
+  },
 
   getProductDetails: (productId) => {
     return new Promise((resolve, reject) => {

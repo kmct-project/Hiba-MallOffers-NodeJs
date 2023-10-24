@@ -102,8 +102,16 @@ router.get("/signout", function (req, res) {
   req.session.shop = null;
   res.redirect("/shop");
 });
+router.get("/offerbookings",async function(req,res){
+  let shopkeeper = req.session.shop;
+  let orders = await shopHelper.getAllOfferBookings(shopkeeper._id);
+  res.render("shop/all-orders", {
+    shop: true,
+    shopkeeper,
+    orders,
+  });
 
-// router.get("/offerbookings")
+})
 router.get("/add-offers", verifySignedIn, function (req, res) {
   let shopkeeper = req.session.shop;
   res.render("shop/add-offers", { shop: true, shopkeeper });

@@ -170,7 +170,7 @@ router.get("/remove-all-users", verifySignedIn, function (req, res) {
 router.get("/all-orders", verifySignedIn, async function (req, res) {
   let administator = req.session.admin;
   let orders = await adminHelper.getAllOrders();
-  res.render("admin/all-orders", {
+  res.render("shop/all-orders", {
     admin: true,
     administator,
     orders,

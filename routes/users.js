@@ -20,7 +20,7 @@ router.get("/", async function (req, res, next) {
     cartCount = await userHelper.getCartCount(userId);
   }
   shopHelper.getAllShopOffers().then((offerShops) => {
-   //console.log("okk",offerShops,"lll")
+   console.log("okk",offerShops,"lll")
 
     res.render("users/home", { admin: false, offerShops, user, cartCount });
   });
@@ -54,12 +54,12 @@ router.get("/booknow/:id", verifySignedIn, async (req, res) => {
   let user = req.session.user;
   let userId = req.session.user._id;
   let offerId = req.params.id;
-  var parts = imgId.split('_'); // Split the string by underscore
+  var parts = offerId.split('_'); // Split the string by underscore
   // var offerId = parts[0]; 
   var price = req.query.price;
   var product = req.query.product;
   var mobile = req.query.mobile;
-  console.log(user, imgId, offerId);
+  console.log(user, offerId);
   // let cartCount = await userHelper.getCartCount(userId);
   // let total = await userHelper.getTotalAmount(userId);
   res.render("users/booknow", { admin: false, user,price, mobile,product,offerId});

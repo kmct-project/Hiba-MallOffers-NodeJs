@@ -296,6 +296,8 @@ module.exports = {
         user: user,
         paymentMethod: order["payment-method"],
         products: order.product,
+        offerId:order.productId,
+        shopId:order.productId.split('_')[0],
         totalAmount: total,
         status: status,
         date: new Date(),
