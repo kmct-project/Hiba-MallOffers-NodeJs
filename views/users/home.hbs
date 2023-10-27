@@ -1,4 +1,5 @@
 <!-- ======= Hero Section ======= -->
+  
 <style>
     .navbar .getstarted1,
     .navbar .getstarted1:focus {
@@ -9,6 +10,123 @@
         border-radius: 50px;
         color: #fff;
     }
+    /* Add some basic styling for the filters and items */
+    .filters {
+      margin-bottom: 10px;
+    }
+    .search-bar {
+    margin-top: 20px;
+}
+
+.search-input {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-button, .lucky-button {
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+/* Style for the fullscreen modal */
+.modal.fullscreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 90%;
+    height: 90%;
+    max-width: 800px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Additional styles to maintain scrollability within the modal content */
+.modal-content {
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+/* Style for the search results */
+#searchResults {
+    /* Add your custom styles for search results here */
+}
+
+
+
+    /* Custom styles for the FAB */
+    .custom-fab {
+      position: relative;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .custom-fab-button {
+      margin: 10px 0;
+      padding: 10px 15px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .custom-fab-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Custom styles for the expandable buttons */
+    .expandable-buttons {
+      display: none;
+      flex-direction: column;
+    }
+
+    .expandable-button {
+      margin: 5px 0;
+      padding: 5px 10px;
+      border: none;
+      background-color: #ccc;
+      color: #333;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .expandable-button:hover {
+      background-color: #999;
+    }
+
 </style>
 
 
@@ -106,27 +224,102 @@
                 <p>Magnam dolores commodi suscipit.</p>
             </div>
 
-            {{#each shops}}
-            <button class="btn btn-primary btn-sm">{{this.category}}</button>
-            {{/each}}
+            {{!-- {{#each shops}}
+            <button class="btn btn-primary btn-sm">{{this.category}} KKKKKKKKKKKK</button>
+            {{/each}} --}}
 
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="search-bar">
+                    <input type="text" id="searchtext" class="search-input" name="search" placeholder="Search....">
+                    <input type="button" value="Search" id="search" class="search-button">
+                </div>
+                <div id="searchResultsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="searchResults"></div>
+                    </div>
+                </div>
+
                 <div class="col-lg-12 d-flex justify-content-center">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".filter-fashion">fashion and accessories</li>
-                        <li data-filter=".filter-hypermarkets">hypermarkets</li>
-                        <li data-filter=".filter-electronics">electronics</li>
+                        {{#each offerShops}}
+                        <li data-filter=".filter-{{replaceSpacesWithUnderscores this.category}}">{{this.category}}</li>
+                         {{/each}}
                     </ul>
                 </div>
             </div>
+
+
+  {{!-- <div class="custom-fab">
+    <button class="custom-fab-button" id="toggleExpandable"><i class="fa fa-filter" aria-hidden="true"></i>Filter</button>
+    <div class="expandable-buttons" id="expandableButtons">
+      <button class="expandable-button filter-btn" data-filter="target_audience">gender</button>
+      <button class="expandable-button filter-btn" data-filter="size" >Size</button>
+      <button class="expandable-button filter-btn" data-filter="color">Color</button>
+      <button class="expandable-button filter-btn" data-filter="brand">Brand</button>
+      <button class="expandable-button filter-btn" data-filter="type">Type</button>
+      <button class="expandable-button filter-btn" data-filter="foodCategories">Food Categories</button>
+      <button class="expandable-button filter-btn" data-filter="quantity">Quantity</button>
+    </div>
+  </div> --}}
+  <div class="custom-fab">
+    <button class="custom-fab-button" id="toggleExpandable"><i class="fa fa-filter" aria-hidden="true"></i>Filter</button>
+    <div class="expandable-buttons" id="expandableButtons">
+        <div class="expandable-button filter-btn" data-filter="target_audience">
+            <span>Gender</span>
+            <div class="filter-options">
+                <label><input type="radio" name="gender" value="Men"> Men</label>
+                <label><input type="radio" name="gender" value="Women"> Women</label>
+                <label><input type="radio" name="gender" value="Kids"> Kids</label>
+            </div>
+        </div>
+        <div class="expandable-button filter-btn" data-filter="size">
+            <span>Size</span>
+            <div class="filter-options">
+                <label><input type="radio" name="gender" value="Small">Small</label>
+                <label><input type="radio" name="gender" value="Medium"> Medium</label>
+                <label><input type="radio" name="gender" value="Large"> Large</label>
+                <label><input type="radio" name="gender" value="Extra Large">Extra Large</label>
+
+                <!-- Add size options here -->
+            </div>
+        </div>
+        <div class="expandable-button filter-btn" data-filter="color">
+            <span>Color</span>
+             <div class="filter-options">
+                <label><input type="checkbox" name="color" value="Red"> Red</label>
+                <label><input type="checkbox" name="color" value="Blue"> Blue</label>
+                <label><input type="checkbox" name="color" value="Green"> Green</label>
+                <label><input type="checkbox" name="color" value="Yellow"> Yellow</label>
+                <label><input type="checkbox" name="color" value="Black"> Black</label>
+                <label><input type="checkbox" name="color" value="White"> White</label>
+                <label><input type="checkbox" name="color" value="Orange"> Orange</label>
+                <label><input type="checkbox" name="color" value="Purple"> Purple</label>
+                <label><input type="checkbox" name="color" value="Gray"> Gray</label>
+                <label><input type="checkbox" name="color" value="Pink"> Pink</label>
+                <label><input type="checkbox" name="color" value="Brown"> Brown</label>
+            </div>
+        </div>
+        <button id="clearFilters" class="clear-button expandable-button">Clear All Filters</button>
+        <!-- Add more filter options as needed -->
+    </div>
+</div>
+
 
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 {{!-- ////// --}}
                  {{#each offerShops}}
                  {{#each offers}}
-                <div class="col-lg-4 col-md-6 portfolio-item filter-{{this.category}}">
+  <div class="col-lg-4 col-md-6 portfolio-item item filter-{{replaceSpacesWithUnderscores ...this.category}}"
+       {{#if this.target_audience}}data-target_audience="{{this.target_audience}}"{{/if}}
+       {{#if this.size}}data-size="{{this.size}}"{{/if}}
+       {{#if this.color}}data-color="{{this.color}}"{{/if}}
+       {{#if this.brand}}data-brand="{{this.brand}}"{{/if}}
+       {{#if this.type}}data-type="{{this.type}}"{{/if}}
+       {{#if this.foodCategories}}data-foodCategories="{{this.foodCategories}}"{{/if}}
+       {{#if this.quantity}}data-quantity="{{this.quantity}}"{{/if}}>
                     <div class="portfolio-wrap">
                         <span class="offer-badge">{{calculatePercentage this.mrp this.price}}</span>
                         <img src="/images/offer-images/{{this.img_id}}.png" class="img-fluid" alt="">
@@ -511,6 +704,135 @@
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
+
+<script>
+    $(document).ready(function() {
+    // Function to handle the search
+    $("#search").on("click", function() {
+    var searchText = $("#searchtext").val().toLowerCase();
+    var matchedItems = [];
+
+    // Iterate through each portfolio item
+    $(".portfolio-item").each(function() {
+        var item = $(this);
+        var itemData = item.data();
+
+        // Check if the search text is found in any data attribute or in the portfolio item's content
+        var foundInData = Object.values(itemData).some(function(value) {
+            return value && value.toString().toLowerCase().includes(searchText);
+        });
+        var foundInContent = item.find(".portfolio-wrap").text().toLowerCase().includes(searchText);
+
+        if (foundInData || foundInContent) {
+            matchedItems.push(item);
+        }
+    });
+
+    // Clear the search results modal content
+    $("#searchResults").empty();
+
+    if (matchedItems.length > 0) {
+        // Add matched items to the search results modal
+        matchedItems.forEach(function(item) {
+            $("#searchResults").append(item.clone());
+        });
+
+        // Show the modal with search results
+        $("#searchResultsModal").css("display", "block");
+    } else {
+        // If no results are found, you can display a message
+        $("#searchResults").text("No matching items found.");
+        $("#searchResultsModal").css("display", "block");
+    }
+});
+
+// Close the modal when clicking the close button (×)
+$(".close").on("click", function() {
+    $("#searchResultsModal").css("display", "none");
+});
+
+
+/////
+    // Handle filter button clicks
+    $(".expandable-button.filter-btn").on("click", function() {
+        var filterType = $(this).data("filter");
+
+        // Close other filter options
+        $(".expandable-button.filter-btn").not(this).removeClass("active");
+        $(".filter-options").not($(this).find(".filter-options")).hide();
+
+        // Toggle the active state and show/hide filter options
+        $(this).toggleClass("active");
+        $(this).find(".filter-options").toggle();
+
+        // Handle radio button selection within the filter option
+        $(this).find('input[type="radio"]').on("change", function() {
+            var selectedValue = $(this).val();
+
+            // Apply the selected filter to your items (e.g., data-target_audience)
+            applyFilter(filterType, selectedValue);
+        });
+    });
+
+    // Function to apply the filter based on the selected values
+    function applyFilter(filterType, selectedValue) {
+        // Implement your filtering logic here
+        // You can show/hide portfolio items based on the selected filter
+        // For example, you can use the code provided in previous responses for filtering items.
+    }
+
+////
+// Function to apply the filter based on the selected values
+function applyFilter(filterType, selectedValue) {
+    // Iterate through each portfolio item
+    $(".portfolio-item").each(function() {
+        var item = $(this);
+        var itemData = item.data();
+
+        // Check if the item matches the selected filter and value
+        if (filterType === "target_audience" && itemData.target_audience === selectedValue) {
+            // Show items that match the filter criteria
+            item.show();
+        } else if (filterType === "size" && itemData.size === selectedValue) {
+            // Show items that match the filter criteria
+            item.show();
+        } else {
+            // Hide items that don't match the filter criteria
+            item.hide();
+        }
+    });
+}
+// Handle the "Clear All Filters" button click event
+    $("#clearFilters").on("click", function() {
+        // Clear all active states and hide filter options
+        $(".expandable-button.filter-btn").removeClass("active");
+        $(".filter-options").hide();
+
+        // Clear any applied filters
+        clearAllFilters();
+    });
+
+    // Function to clear all applied filters and show all portfolio items
+    function clearAllFilters() {
+        // Show all portfolio items
+        $(".portfolio-item").show();
+    }
+
+});
+
+
+  </script>
+    <!-- Include Materialize JavaScript (you can download it or link to a hosted version) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // JavaScript to toggle the expandable buttons
+    const toggleButton = document.getElementById('toggleExpandable');
+    const expandableButtons = document.getElementById('expandableButtons');
+
+    toggleButton.addEventListener('click', () => {
+      expandableButtons.style.display = expandableButtons.style.display === 'none' ? 'flex' : 'none';
+    });
+  </script>
 
 
 

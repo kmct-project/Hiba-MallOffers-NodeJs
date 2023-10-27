@@ -457,24 +457,35 @@ module.exports = {
     });
   },
 
-  searchProduct: (details) => {
+   searchProduct : (details) => {
     console.log(details);
     return new Promise(async (resolve, reject) => {
-      db.get()
-        .collection(collections.PRODUCTS_COLLECTION)
-        .createIndex({ Name : "text" }).then(async()=>{
-          let result = await db
-            .get()
-            .collection(collections.PRODUCTS_COLLECTION)
-            .find({
-              $text: {
-                $search: details.search,
-              },
-            })
-            .toArray();
-          resolve(result);
+      const collection = db.get().collection(collections.SHOP_COLLECTION);
+      const indexName = "offers.name_text"; // You can specify the desired index name
+  
+      // Check if the index already exists
+      // const indexExists = await collection.indexExists(indexName);
+  
+      // if (!indexExists) {
+      //   // Create the index if it doesn't exist
+      //   await collection.createIndex({ "offers.name": "text" }, { name: indexName });
+      // }
+  
+      let result = await collection
+        .find({
+          "isOffer": true,
+          "offers.name": details.search,
         })
-
+        .toArray();
+  
+      if (result.length > 0) {
+        resolve(result[0].offers.find(offer => offer.name === details.search));
+      } else {
+        resolve(null);
+      }
     });
-  },
+  }
+  
+  
+  
 };
