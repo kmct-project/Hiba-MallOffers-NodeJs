@@ -1,15 +1,16 @@
 <section>
+    <br><br>
     <div class="container mt-5">
 
-        <h1>All Stores</h1>
+        <h3 class="mt-5">All Stores</h3>
 
         <div class="row">
             {{#each shops}}
-            <div class="col-md-2">
+            <div class="col-md-3 mb-4">
                 <a href="/shop/details/{{this.name}}" class="no-underline">
                     <div class="card">
                         <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #eaeaea;">
                             <h5 class="card-title">{{this.name}}</h5>
 
                         </div>
@@ -23,6 +24,16 @@
 </section>
 
 <style>
+    #header .logo {
+    overflow: hidden;
+    padding: 16px 30px 12px 30px;
+    background: #009970;
+    border-radius: 50px;
+}
+    #header .header-container {
+    background: #ebebeb;
+    border-radius: 50px;
+}
     .no-underline {
         text-decoration: none;
         /* Remove underline */

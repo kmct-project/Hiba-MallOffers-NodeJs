@@ -16,14 +16,14 @@ const verifySignedIn = (req, res, next) => {
 router.get("/", verifySignedIn, function (req, res, next) {
   let administator = req.session.admin;
   adminHelper.getAllProducts().then((products) => {
-    res.render("admin/home", { admin: true, products, administator });
+    res.render("admin/home", { admin: true,layout:"adminlayout" , products, administator });
   });
 });
 
 router.get("/all-products", verifySignedIn, function (req, res) {
   let administator = req.session.admin;
   adminHelper.getAllProducts().then((products) => {
-    res.render("admin/all-products", { admin: true, products, administator });
+    res.render("admin/all-products", { admin: true,layout:"adminlayout" , products, administator });
   });
 });
 
@@ -32,7 +32,7 @@ router.get("/signup", function (req, res) {
     res.redirect("/admin");
   } else {
     res.render("admin/signup", {
-      admin: true,
+      admin: true,layout:"emptylayout" ,
       signUpErr: req.session.signUpErr,
     });
   }
@@ -57,7 +57,7 @@ router.get("/signin", function (req, res) {
     res.redirect("/admin");
   } else {
     res.render("admin/signin", {
-      admin: true,
+      admin: true,layout:"emptylayout" ,
       signInErr: req.session.signInErr,
     });
     req.session.signInErr = null;
@@ -85,18 +85,18 @@ router.get("/signout", function (req, res) {
 
 router.get("/add-product", verifySignedIn, function (req, res) {
   let administator = req.session.admin;
-  res.render("admin/add-product", { admin: true, administator });
+  res.render("admin/add-product", { admin: true,layout:"adminlayout" , administator });
 });
 
 router.get("/add-category", verifySignedIn, function (req, res) {
   let administator = req.session.admin;
-  res.render("admin/add-category", { admin: true, administator });
+  res.render("admin/add-category", { admin: true,layout:"adminlayout" , administator });
 });
 
 router.post("/add-category",function(req,res){
   let administator = req.session.admin;
   adminHelper.addCategory(req.body).then(()=>{
-    res.render("admin/add-category", { admin: true, administator})
+    res.render("admin/add-category", { admin: true,layout:"adminlayout" , administator})
   })
 })
 router.post("/add-product", function (req, res) {
@@ -117,7 +117,7 @@ router.get("/edit-product/:id", verifySignedIn, async function (req, res) {
   let productId = req.params.id;
   let product = await adminHelper.getProductDetails(productId);
   console.log(product);
-  res.render("admin/edit-product", { admin: true, product, administator });
+  res.render("admin/edit-product", { admin: true,layout:"adminlayout" , product, administator });
 });
 
 router.post("/edit-product/:id", verifySignedIn, function (req, res) {
@@ -150,7 +150,7 @@ router.get("/delete-all-products", verifySignedIn, function (req, res) {
 router.get("/all-users", verifySignedIn, function (req, res) {
   let administator = req.session.admin;
   adminHelper.getAllUsers().then((users) => {
-    res.render("admin/all-users", { admin: true, administator, users });
+    res.render("admin/all-users", { admin: true,layout:"adminlayout" , administator, users });
   });
 });
 
@@ -171,7 +171,7 @@ router.get("/all-orders", verifySignedIn, async function (req, res) {
   let administator = req.session.admin;
   let orders = await adminHelper.getAllOrders();
   res.render("shop/all-orders", {
-    admin: true,
+    admin: true,layout:"adminlayout" ,
     administator,
     orders,
   });
@@ -185,7 +185,7 @@ router.get(
     let orderId = req.params.id;
     let products = await userHelper.getOrderProducts(orderId);
     res.render("admin/order-products", {
-      admin: true,
+      admin: true,layout:"adminlayout" ,
       administator,
       products,
     });
@@ -216,7 +216,7 @@ router.get("/cancel-all-orders", verifySignedIn, function (req, res) {
 router.post("/search", verifySignedIn, function (req, res) {
   let administator = req.session.admin;
   adminHelper.searchProduct(req.body).then((response) => {
-    res.render("admin/search-result", { admin: true, administator, response });
+    res.render("admin/search-result", { admin: true,layout:"adminlayout" , administator, response });
   });
 });
 

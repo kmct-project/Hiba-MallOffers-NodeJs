@@ -1,3 +1,125 @@
+<style>
+
+
+.hedding {
+    font-size: 20px;
+    color: #ab8181`;
+}
+
+.main-section {
+    position: absolute;
+    left: 50%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    right: 50%;
+    transform: translate(-50%, 5%);
+}
+
+.left-side-product-box img {
+    width: 100%;
+}
+
+.left-side-product-box .sub-img img {
+    margin-top: 5px;
+    width: 83px;
+    height: 100px;
+}
+
+.right-side-pro-detail span {
+    font-size: 15px;
+}
+
+.right-side-pro-detail p {
+    font-size: 25px;
+    color: #a1a1a1;
+}
+
+.right-side-pro-detail .price-pro {
+    color: #E45641;
+}
+
+.right-side-pro-detail .tag-section {
+    font-size: 18px;
+    color: #5D4C46;
+}
+
+.pro-box-section .pro-box img {
+    width: 100%;
+    height: 200px;
+}
+
+@media (min-width:360px) and (max-width:640px) {
+    .pro-box-section .pro-box img {
+        height: auto;
+    }
+}
+
+.team .member .pic {
+    overflow: hidden;
+    width: 211px;
+    border-radius: 247px;
+    margin: 0 auto 30px auto;
+}
+</style>
+<br><br>
+<div class="container mt-5">
+    {{#each offerDetails.offers}}
+    
+    <div class="col-lg-10 border p-3 main-section shadow ">
+        <div class="row hedding m-0 pl-3 pt-0 pb-3">
+        <h2 class="card-title" style="color:orange;">{{this.offername}}</h2>
+        </div>
+        <div class="row m-0">
+            <div class="col-lg-4 left-side-product-box pb-3">
+                <img src="/images/offer-images/{{this.img_id}}.png" class="border p-3">
+                
+            </div>
+            <div class="col-lg-8">
+                <div class="right-side-pro-detail border p-3 m-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="text-warning"><b>{{calculatePercentage this.mrp this.price}} Offer </b></span>
+                            <p class="m-0 p-0 text-dark">{{this.name}}</p>
+                        </div>
+
+                   <div class="row">
+                        <div class="col-lg-1" style="margin-right: 10px;">
+                            <p class="m-0 p-0 price-pro" >₹{{this.price}}</p>
+                            </div>
+                              <div class="col-lg-6">
+                        
+                            <small><p class="m-0 p-0 "><s>₹{{this.mrp}}</s></p></small>
+                            </div>
+                            <hr class="p-0 m-0">  
+                        </div>
+                        <div class="col-lg-12 pt-2">
+                            <h5>Product Detail</h5>
+                            <span>{{this.description}}</span>
+                            <hr class="m-0 pt-2 mt-2">
+                        </div>
+                        <div class="col-lg-12">
+                            <p class="tag-section"><strong>Tag : </strong><a href="">Woman</a><a href="">,Man</a></p>
+                        </div>
+                        
+                        <div class="col-lg-12 mt-3">
+                            <div class="row">
+                                <div class="col-lg-6 pb-2">
+                                    <a href="/booknow/{{this.img_id}}/?price={{this.price}}&mobile={{...offerDetails.phone}}&product={{this.name}}&offerId={{this.img_id}}" onclick="return confirm('Are You Sure to book this ?')" class="btn btn-success w-100">Book Now</a>
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {{/each}}
+        
+        </div>
+
+        <br><br><br>
+          <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br> <br>
 
 <section>
     <div class="container mt-5">
@@ -6,7 +128,7 @@
              <hr>
       
         <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="card">
                     <img src="{{offerDetails.logo}}" class="card-img-top" alt="Image 1">
                     {{!-- <div class="card-body">
@@ -14,7 +136,7 @@
                     </div> --}}
                 </div>
             </div>
-             <div class="col-md-6">
+             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{offerDetails.name}}</h5>
@@ -34,8 +156,8 @@
             
         </div>
         <hr>
-        <h2>Recent Offers</h2>
-            <div class="row">
+        {{!-- <h2>Recent Offers</h2> --}}
+            {{!-- <div class="row">
             {{#each offerDetails.offers}}
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5">
              
@@ -47,7 +169,7 @@
                         <div class="" style="display: flex; justify-content: end;">
                             <div class="" style="margin-right: auto;">
                                 <h6 class="card-title" style="color:orange;">{{this.offername}}</h6>
-                                <b><h5 class="card-title">{{this.name}}</h5></b>
+                                <b><h5 class="card-title text-dark">{{this.name}}</h5></b>
                             </div>
                             <div class="">
                                  <p class="card-text" style="color: red;"><small><s>₹{{this.mrp}}</s></small></p>
@@ -62,7 +184,7 @@
                 </div>
             </div>
           {{/each}}
-        </div>
+        </div> --}}
          
     </div>
 </section>

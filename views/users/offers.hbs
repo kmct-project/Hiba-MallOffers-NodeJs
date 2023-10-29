@@ -1,0 +1,798 @@
+<!-- ======= Hero Section ======= -->
+  
+<style>
+    .navbar .getstarted1,
+    .navbar .getstarted1:focus {
+        background: #009970;
+        padding: 5px 25px;
+        margin-left: 30px;
+        margin-right: 15px;
+        border-radius: 50px;
+        color: #fff;
+    }
+    /* Add some basic styling for the filters and items */
+    .filters {
+      margin-bottom: 10px;
+    }
+    .search-bar {
+    margin-top: -5px;
+}
+
+      #header .logo {
+    overflow: hidden;
+    padding: 16px 30px 12px 30px;
+    background: #009970;
+    border-radius: 50px;
+}
+    #header .header-container {
+    background: #ebebeb;
+    border-radius: 50px;
+}
+
+.search-input {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-button, .lucky-button {
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+/* Style for the fullscreen modal */
+.modal.fullscreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 90%;
+    height: 90%;
+    max-width: 800px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Additional styles to maintain scrollability within the modal content */
+.modal-content {
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+/* Style for the search results */
+#searchResults {
+    /* Add your custom styles for search results here */
+}
+.expandable-button {
+    margin: 5px 0;
+    padding: 5px 10px;
+    border: none;
+    background-color: #ffffff;
+    color: #000;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+
+    /* Custom styles for the FAB */
+    .custom-fab {
+      position: relative;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .custom-fab-button {
+      margin: 10px 0;
+      padding: 10px 15px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .custom-fab-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Custom styles for the expandable buttons */
+    .expandable-buttons {
+      display: none;
+      flex-direction: column;
+    }
+
+   
+
+    .expandable-button:hover {
+      background-color: #999;
+    }
+
+
+#sidebar{
+    width: 20%;
+    padding: 10px;
+    margin: 0;
+    float: left;
+}
+ul{
+    list-style: none;
+    padding: 5px;
+}
+li a{
+    color: darkgray;
+    text-decoration: none;
+}
+li a:hover{
+    text-decoration: none;
+    color: darksalmon;
+}
+.fa-circle{
+    font-size: 20px;
+}
+#red{
+    color: #e94545d7;
+}
+#teal{
+    color: rgb(69, 129, 129);
+}
+#blue{
+    color: #0000ff;
+}
+
+.filter{
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media(min-width:991px){
+    .navbar-nav{
+        margin-left: 35%;
+    }
+    .nav-item{
+        padding-left: 20px;
+    }
+
+   
+    #mobile-filter{
+        display: none;
+    }
+}
+@media(min-width:768px) and (max-width:991px){
+    .navbar-nav{
+        margin-left: 20%;
+    }
+    .nav-item{
+        padding-left: 10px;
+    }
+    .card{
+        width: 230px;
+        display: inline-block;
+        height: 300px;
+        margin-bottom: 10px;
+    }
+    .card-img-top{
+        width: 230px;
+        height: 210px;
+    }
+    #mobile-filter{
+        display: none;
+    }
+}
+.portfolio #portfolio-flters li {
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    font-weight: 500;
+        text-transform: none;
+    margin-bottom: 20px;
+    line-height: 1;
+    color: #444444;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50px;
+    font-family: "Poppins", sans-serif;
+}
+
+.search {
+    background-color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 108px;
+    margin-top: -77px;
+    margin-bottom: -3px;
+}
+
+.search-1 {
+    position: relative;
+    width: 100%
+}
+
+.search-1 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 34px;
+    padding-right: 10px;
+    border-right: 2px solid #eee
+}
+
+.search-1 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-1 i {
+    position: absolute;
+    left: 5px;
+    font-size: 24px;
+    color: #eee
+}
+
+::placeholder {
+    color: #eee;
+    opacity: 1
+}
+
+.search-2 {
+    position: relative;
+    width: 100%
+}
+
+.search-2 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 100px
+}
+
+.search-2 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-2 i {
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    font-size: 24px;
+    color: #eee
+}
+
+.search-2 button {
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    border: none;
+    height: 45px;
+    background-color: red;
+    color: #fff;
+    width: 90px;
+    border-radius: 4px
+}
+
+@media (max-width:800px) {
+    .search-1 input {
+        border-right: none;
+        border-bottom: 1px solid #eee
+    }
+
+    .search-2 i {
+        left: 4px
+    }
+
+    .search-2 input {
+        padding-left: 34px
+    }
+
+    .search-2 button {
+        height: 37px;
+        top: 5px
+    }
+}
+#hero {
+    width: 100%;
+    height: 114vh;
+    background: url(/images/bg3.jpg) center center;
+    background-size: cover;
+    position: relative;
+}
+</style>
+
+
+<section id="hero" class="d-flex align-items-center">
+    <div class="container text-center position-relative" >
+        <h1>Today's Offers</h1>
+        <h2>Welcome to Hilite Mall Offers</h2>
+
+      {{!-- <div class="container"> <div class="search"> <div class="row"><div class="col-md-12"> <div> <div class="search-2"> <i class='bx bxs-map' ></i> <input type="text" placeholder="San Francisco,USA"> <button>Search</button> </div> </div> </div> </div> </div>
+</div> --}}
+
+
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="filter">
+    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#mobile-filter" aria-expanded="false" aria-controls="mobile-filter"><span class="fa fa-filter pl-1"></span></button>
+</div>
+<section style="background-color: #e8e8e8; border-radius:15px; padding:10px;"  id="sidebar">
+   
+    <div>
+        <h6 class="p-1 border-bottom">Filter By</h6>
+        <div style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <p class="mb-2">Category</p>
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        {{#each offerShops}}
+                        <li data-filter=".filter-{{replaceSpacesWithUnderscores this.category}}">{{this.category}}</li>
+                         {{/each}}
+                    </ul>
+                    </div>
+                
+    </div>
+    <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <h6>Gender</h6>
+        <div class="expandable-button filter-btn" data-filter="target_audience">
+            <div class="filter-options">
+                <label><input type="radio" name="gender" value="Men"> Men</label><br>
+                <label><input type="radio" name="gender" value="Women"> Women</label><br>
+                <label><input type="radio" name="gender" value="Kids"> Kids</label>
+            </div>
+        </div>
+    </div>
+
+     <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <h6>Size</h6>
+        <div class="expandable-button filter-btn" data-filter="size">
+            <div class="filter-options">
+             <label><input type="radio" name="size" value="Small"> Small</label><br>
+                <label><input type="radio" name="size" value="Medium"> Medium</label><br>
+                <label><input type="radio" name="size" value="Large"> Large</label><br>
+                <label><input type="radio" name="size" value="Extra Large"> Extra Large</label>
+            </div>
+        </div>
+    </div>
+
+     <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <h6>Color</h6>
+        <div class="expandable-button filter-btn" data-filter="color">
+            <div class="filter-options">
+              <label><input type="checkbox" name="color" value="Red"> Red</label>
+                <label><input type="checkbox" name="color" value="Blue"> Blue</label>
+                <label><input type="checkbox" name="color" value="Green"> Green</label>
+                <label><input type="checkbox" name="color" value="Yellow"> Yellow</label>
+                <label><input type="checkbox" name="color" value="Black"> Black</label>
+                <label><input type="checkbox" name="color" value="White"> White</label>
+                <label><input type="checkbox" name="color" value="Orange"> Orange</label>
+                <label><input type="checkbox" name="color" value="Purple"> Purple</label>
+                <label><input type="checkbox" name="color" value="Gray"> Gray</label>
+                <label><input type="checkbox" name="color" value="Pink"> Pink</label>
+                <label><input type="checkbox" name="color" value="Brown"> Brown</label>
+            </div>
+        </div>
+    </div>
+            {{!-- <button id="clearFilters" class="btn btn-primary clear-button expandable-button mt-3">Clear All Filters</button> --}}
+
+             <button id="refreshButton" class="btn btn-primary text-white mt-3">Clear All Filters</button>
+
+</section>
+
+
+            <div class="row mb-3">
+                <div class="search-bar">
+                    <input type="text" id="searchtext" class="search-input" name="search" placeholder="Search....">
+                    <input type="button" value="Search" id="search" class="search-button">
+                </div>
+                <div id="searchResultsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="searchResults"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row portfolio-container">
+                     {{#each offerShops}}
+        {{#each offers}}
+      <div class="col-md-3 col-lg-4 mb-4 portfolio-item item filter-{{replaceSpacesWithUnderscores ...this.category}}"
+       {{#if this.target_audience}}data-target_audience="{{this.target_audience}}"{{/if}}
+       {{#if this.size}}data-size="{{this.size}}"{{/if}}
+       {{#if this.color}}data-color="{{this.color}}"{{/if}}
+       {{#if this.brand}}data-brand="{{this.brand}}"{{/if}}
+       {{#if this.type}}data-type="{{this.type}}"{{/if}}
+       {{#if this.foodCategories}}data-foodCategories="{{this.foodCategories}}"{{/if}}
+       {{#if this.quantity}}data-quantity="{{this.quantity}}"{{/if}}>
+
+        <div class="card" style="border-radius: 15px;">
+          <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+            data-mdb-ripple-color="light">
+            <img src="/images/offer-images/{{this.img_id}}.png"
+              style="border-top-left-radius: 15px; border-top-right-radius: 15px;" class="img-fluid"
+              alt="Laptop" />
+            <a href="#!">
+              <div class="mask"></div>
+            </a>
+          </div>
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h5><a href="#!" class="text-dark"><b>{{this.name}}</b></a></h5>
+                <p class="small text-muted">{{replaceSpacesWithUnderscores ...this.category}}</p>
+              </div>
+              <div>
+                <div class="d-flex flex-row justify-content-end mt-1 mb-1 text-danger">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p class="small text-warning">Rated 4.0/5</p>
+              </div>
+            </div>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <p><a href="#!" class="text-dark"><s>₹{{this.mrp}}</s></a></p>
+              <p class="text-warning"><b>{{calculatePercentage this.mrp this.price}} Offer</b></p>
+            </div>
+            <p style="font-size: 24px; margin-top:-20px;" class="small text-dark"><b>₹{{this.price}}</b></p>
+            <p>By : {{...this.name}}</p>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
+                              <a href="/shopOffersDetalis/{{...this._id}}" type="button" class="btn btn-dark w-100">View Offer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{/each}}
+
+{{!-- ////// --}}
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+
+
+    <!-- ======= Contact Section ======= -->
+
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{{!-- <footer id="footer">
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h3>Bethany</h3>
+                    <p>
+                        A108 Adam Street <br>
+                        New York, NY 535022<br>
+                        United States <br><br>
+                        <strong>Phone:</strong> +1 5589 55488 55<br>
+                        <strong>Email:</strong> info@example.com<br>
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <h4>Join Our Newsletter</h4>
+                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                    <form action="" method="post">
+                        <input type="email" name="email"><input type="submit" value="Subscribe">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+        <div class="me-md-auto text-center text-md-start">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Bethany</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+        <div class="social-links text-center text-md-right pt-3 pt-md-0">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+    </div>
+</footer><!-- End Footer --> --}}
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<script>
+    $(document).ready(function() {
+    // Function to handle the search
+    $("#search").on("click", function() {
+    var searchText = $("#searchtext").val().toLowerCase();
+    var matchedItems = [];
+
+    // Iterate through each portfolio item
+    $(".portfolio-item").each(function() {
+        var item = $(this);
+        var itemData = item.data();
+
+        // Check if the search text is found in any data attribute or in the portfolio item's content
+        var foundInData = Object.values(itemData).some(function(value) {
+            return value && value.toString().toLowerCase().includes(searchText);
+        });
+        var foundInContent = item.find(".portfolio-wrap").text().toLowerCase().includes(searchText);
+
+        if (foundInData || foundInContent) {
+            matchedItems.push(item);
+        }
+    });
+
+    // Clear the search results modal content
+    $("#searchResults").empty();
+
+    if (matchedItems.length > 0) {
+        // Add matched items to the search results modal
+        matchedItems.forEach(function(item) {
+            $("#searchResults").append(item.clone());
+        });
+
+        // Show the modal with search results
+        $("#searchResultsModal").css("display", "block");
+    } else {
+        // If no results are found, you can display a message
+        $("#searchResults").text("No matching items found.");
+        $("#searchResultsModal").css("display", "block");
+    }
+});
+
+// Close the modal when clicking the close button (×)
+$(".close").on("click", function() {
+    $("#searchResultsModal").css("display", "none");
+});
+
+
+/////
+    // Handle filter button clicks
+    $(".expandable-button.filter-btn").on("click", function() {
+        var filterType = $(this).data("filter");
+
+        // Close other filter options
+  
+        // Toggle the active state and show/hide filter options
+        $(this).toggleClass("active");
+        $(this).find(".filter-options").toggle();
+
+        // Handle radio button selection within the filter option
+        $(this).find('input[type="radio"]').on("change", function() {
+            var selectedValue = $(this).val();
+
+            // Apply the selected filter to your items (e.g., data-target_audience)
+            applyFilter(filterType, selectedValue);
+        });
+    });
+
+    // Function to apply the filter based on the selected values
+    function applyFilter(filterType, selectedValue) {
+        // Implement your filtering logic here
+        // You can show/hide portfolio items based on the selected filter
+        // For example, you can use the code provided in previous responses for filtering items.
+    }
+
+////
+// Function to apply the filter based on the selected values
+function applyFilter(filterType, selectedValue) {
+    // Iterate through each portfolio item
+    $(".portfolio-item").each(function() {
+        var item = $(this);
+        var itemData = item.data();
+
+        // Check if the item matches the selected filter and value
+        if (filterType === "target_audience" && itemData.target_audience === selectedValue) {
+            // Show items that match the filter criteria
+            item.show();
+        } else if (filterType === "size" && itemData.size === selectedValue) {
+            // Show items that match the filter criteria
+            item.show();
+        } else {
+            // Hide items that don't match the filter criteria
+            item.hide();
+        }
+    });
+}
+// Handle the "Clear All Filters" button click event
+    $("#clearFilters").on("click", function() {
+        // Clear all active states and hide filter options
+        $(".expandable-button.filter-btn").removeClass("active");
+        $(".filter-options").hide();
+
+        // Clear any applied filters
+        clearAllFilters();
+    });
+
+    // Function to clear all applied filters and show all portfolio items
+    function clearAllFilters() {
+        // Show all portfolio items
+        $(".portfolio-item").show();
+    }
+
+});
+
+
+  </script>
+    <!-- Include Materialize JavaScript (you can download it or link to a hosted version) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // JavaScript to toggle the expandable buttons
+    const toggleButton = document.getElementById('toggleExpandable');
+    const expandableButtons = document.getElementById('expandableButtons');
+
+    toggleButton.addEventListener('click', () => {
+      expandableButtons.style.display = expandableButtons.style.display === 'none' ? 'flex' : 'none';
+    });
+  </script>
+
+
+ <script>
+        // Get a reference to the button element
+        var refreshButton = document.getElementById("refreshButton");
+
+        // Add a click event listener to the button
+        refreshButton.addEventListener("click", function() {
+            // Refresh the page when the button is clicked
+            location.reload();
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function cardClick(shopId) {
+        console.log(shopId)
+
+        $.ajax({
+            url: "/add-to-cart/" + productId,
+            method: "get",
+            success: (response) => {
+                if (response.status) {
+                    let count = $("#cart-count").html();
+                    count = parseInt(count) + 1;
+                    $("#cart-count").html(count);
+                }
+            },
+        });
+    }
+</script>
+<style>
+     .no-underline {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Set the desired text color */
+  }
+  .price-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mrp {
+  color: red;
+  float: left; /* Align MRP to the left */
+}
+
+.price {
+  color: green;
+  float: right; /* Align Price to the right */
+}
+.image-container {
+  position: relative; /* Make the container a positioning context */
+  display: inline-block; /* Ensure the container only takes up the space of the image */
+}
+.offer-badge {
+  position: absolute; /* Position the badge absolutely within the container */
+  top: 0; /* Position at the top */
+  right: 0; /* Position at the right */
+  background-color: #ff9900; /* Background color for the badge */
+  color: white; /* Text color for the badge */
+  padding: 4px 8px; /* Add padding for better appearance */
+  border-radius: 0 0 0 10px; /* Rounded corner for the top-right corner */
+}
+    .no-underline {
+        text-decoration: none;
+        /* Remove underline */
+        color: #333;
+        /* Set the desired text color */
+    }
+</style>

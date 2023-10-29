@@ -26,6 +26,22 @@ router.get("/", async function (req, res, next) {
   });
 });
 
+
+
+router.get("/offers", verifySignedIn, async (req, res) => {
+  let user = req.session.user;
+  let cartCount = null;
+  if (user) {
+    let userId = req.session.user._id;
+    cartCount = await userHelper.getCartCount(userId);
+  }
+  shopHelper.getAllShopOffers().then((offerShops) => {
+    console.log("okk",offerShops,"lll")
+     res.render("users/offers", { admin: false, offerShops, user, cartCount });
+   });});
+
+
+
 router.get("/signup", function (req, res) {
   if (req.session.signedIn) {
     res.redirect("/");

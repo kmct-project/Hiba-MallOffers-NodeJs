@@ -15,7 +15,18 @@
       margin-bottom: 10px;
     }
     .search-bar {
-    margin-top: 20px;
+    margin-top: -5px;
+}
+
+      #header .logo {
+    overflow: hidden;
+    padding: 16px 30px 12px 30px;
+    background: #009970;
+    border-radius: 50px;
+}
+    #header .header-container {
+    background: #ebebeb;
+    border-radius: 50px;
 }
 
 .search-input {
@@ -80,6 +91,15 @@
 #searchResults {
     /* Add your custom styles for search results here */
 }
+.expandable-button {
+    margin: 5px 0;
+    padding: 5px 10px;
+    border: none;
+    background-color: #ffffff;
+    color: #000;
+    cursor: pointer;
+    border-radius: 10px;
+}
 
 
 
@@ -113,28 +133,212 @@
       flex-direction: column;
     }
 
-    .expandable-button {
-      margin: 5px 0;
-      padding: 5px 10px;
-      border: none;
-      background-color: #ccc;
-      color: #333;
-      cursor: pointer;
-      border-radius: 10px;
-    }
+   
 
     .expandable-button:hover {
       background-color: #999;
     }
 
+
+#sidebar{
+    width: 20%;
+    padding: 10px;
+    margin: 0;
+    float: left;
+}
+ul{
+    list-style: none;
+    padding: 5px;
+}
+li a{
+    color: darkgray;
+    text-decoration: none;
+}
+li a:hover{
+    text-decoration: none;
+    color: darksalmon;
+}
+.fa-circle{
+    font-size: 20px;
+}
+#red{
+    color: #e94545d7;
+}
+#teal{
+    color: rgb(69, 129, 129);
+}
+#blue{
+    color: #0000ff;
+}
+
+.filter{
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media(min-width:991px){
+    .navbar-nav{
+        margin-left: 35%;
+    }
+    .nav-item{
+        padding-left: 20px;
+    }
+
+   
+    #mobile-filter{
+        display: none;
+    }
+}
+@media(min-width:768px) and (max-width:991px){
+    .navbar-nav{
+        margin-left: 20%;
+    }
+    .nav-item{
+        padding-left: 10px;
+    }
+    .card{
+        width: 230px;
+        display: inline-block;
+        height: 300px;
+        margin-bottom: 10px;
+    }
+    .card-img-top{
+        width: 230px;
+        height: 210px;
+    }
+    #mobile-filter{
+        display: none;
+    }
+}
+.portfolio #portfolio-flters li {
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    font-weight: 500;
+        text-transform: none;
+    margin-bottom: 20px;
+    line-height: 1;
+    color: #444444;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50px;
+    font-family: "Poppins", sans-serif;
+}
+
+.search {
+    background-color: #fff;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 108px;
+    margin-top: -77px;
+    margin-bottom: -3px;
+}
+
+.search-1 {
+    position: relative;
+    width: 100%
+}
+
+.search-1 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 34px;
+    padding-right: 10px;
+    border-right: 2px solid #eee
+}
+
+.search-1 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-1 i {
+    position: absolute;
+    left: 5px;
+    font-size: 24px;
+    color: #eee
+}
+
+::placeholder {
+    color: #eee;
+    opacity: 1
+}
+
+.search-2 {
+    position: relative;
+    width: 100%
+}
+
+.search-2 input {
+    height: 45px;
+    border: none;
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 100px
+}
+
+.search-2 input:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: none
+}
+
+.search-2 i {
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    font-size: 24px;
+    color: #eee
+}
+
+.search-2 button {
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    border: none;
+    height: 45px;
+    background-color: red;
+    color: #fff;
+    width: 90px;
+    border-radius: 4px
+}
+
+@media (max-width:800px) {
+    .search-1 input {
+        border-right: none;
+        border-bottom: 1px solid #eee
+    }
+
+    .search-2 i {
+        left: 4px
+    }
+
+    .search-2 input {
+        padding-left: 34px
+    }
+
+    .search-2 button {
+        height: 37px;
+        top: 5px
+    }
+}
+
 </style>
 
 
 <section id="hero" class="d-flex align-items-center">
-    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-        <h1>Your New Online Presence with Bethany</h1>
+    <div class="container text-center position-relative" >
+        <h1>Welcome to Hilite Mall Offers</h1>
         <h2>We are team of talented designers making websites with Bootstrap</h2>
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+
+      <div class="container"> <div class="search"> <div class="row"><div class="col-md-12"> <div> <div class="search-2"> <i class='bx bxs-map' ></i> <input type="text" placeholder="San Francisco,USA"> <button>Search</button> </div> </div> </div> </div> </div>
+</div>
+
+
     </div>
 </section><!-- End Hero -->
 
@@ -176,41 +380,55 @@
         </div>
     </section><!-- End Clients Section -->
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-        <div class="container">
+     <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
 
-            <div class="row content">
-                <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                    <h2>SHOPPING MALL OFFER EXPLORER
-                    </h2>
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave
-                    </h3>
+        <div class="row gy-4">
+
+          <div class="col-lg-6">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
-                    <p>
-                        In today's fast-paced world, consumers seek convenience and value when
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+    
+            <div class="portfolio-description">
+              <h2>SHOPPING MALL OFFER EXPLORER</h2>
+              <p>
+               In today's fast-paced world, consumers seek convenience and value when
                         entering shopping malls. This abstract introduces an innovative approach to
                         enhance the shopping experience by leveraging the power of the internet to
                         compare affordable prices and access exclusive offers. Our proposed system
                         provides shoppers with a user-friendly web application that connects seamlessly
                         with the mall's retail network. Through this website, shoppers can effortlessly
                         browse and compare prices across different stores within the mall, ensuring they
-                        get the best deals. Furthermore, the website provides real-time access to a
-                        comprehensive list of ongoing promotions and exclusive offers, allowing
-                        shoppers to make informed purchasing decisions. By bridging the physical and
-                        digital shopping realms, our system aims to empower consumers with the
-                        information they need to optimize their shopping trips and make the most of their
-                        time and budget when entering a shopping mall. Local shopping has always been
-                        an essential part of daily life, but finding the best quality products at affordable
-                        prices can be a daunting task.
-                    </p>
-
-                </div>
+                        get the best deals.
+              </p>
             </div>
+          </div>
 
         </div>
-    </section><!-- End About Section -->
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
 
 
 
@@ -219,77 +437,52 @@
     <section id="portfolio" class="portfolio">
         <div class="container">
 
-            <div class="section-title" data-aos="fade-left">
-                <h2>Portfolio</h2>
-                <p>Magnam dolores commodi suscipit.</p>
-            </div>
-
-            {{!-- {{#each shops}}
-            <button class="btn btn-primary btn-sm">{{this.category}} KKKKKKKKKKKK</button>
-            {{/each}} --}}
-
-
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-                <div class="search-bar">
-                    <input type="text" id="searchtext" class="search-input" name="search" placeholder="Search....">
-                    <input type="button" value="Search" id="search" class="search-button">
-                </div>
-                <div id="searchResultsModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div id="searchResults"></div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 d-flex justify-content-center">
+            <div class="filter">
+    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#mobile-filter" aria-expanded="false" aria-controls="mobile-filter"><span class="fa fa-filter pl-1"></span></button>
+</div>
+<section style="background-color: #e8e8e8; border-radius:15px; padding:10px;"  id="sidebar">
+   
+    <div>
+        <h6 class="p-1 border-bottom">Filter By</h6>
+        <div style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <p class="mb-2">Category</p>
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">All</li>
                         {{#each offerShops}}
                         <li data-filter=".filter-{{replaceSpacesWithUnderscores this.category}}">{{this.category}}</li>
                          {{/each}}
                     </ul>
-                </div>
-            </div>
-
-
-  {{!-- <div class="custom-fab">
-    <button class="custom-fab-button" id="toggleExpandable"><i class="fa fa-filter" aria-hidden="true"></i>Filter</button>
-    <div class="expandable-buttons" id="expandableButtons">
-      <button class="expandable-button filter-btn" data-filter="target_audience">gender</button>
-      <button class="expandable-button filter-btn" data-filter="size" >Size</button>
-      <button class="expandable-button filter-btn" data-filter="color">Color</button>
-      <button class="expandable-button filter-btn" data-filter="brand">Brand</button>
-      <button class="expandable-button filter-btn" data-filter="type">Type</button>
-      <button class="expandable-button filter-btn" data-filter="foodCategories">Food Categories</button>
-      <button class="expandable-button filter-btn" data-filter="quantity">Quantity</button>
+                    </div>
+                
     </div>
-  </div> --}}
-  <div class="custom-fab">
-    <button class="custom-fab-button" id="toggleExpandable"><i class="fa fa-filter" aria-hidden="true"></i>Filter</button>
-    <div class="expandable-buttons" id="expandableButtons">
+    <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <h6>Gender</h6>
         <div class="expandable-button filter-btn" data-filter="target_audience">
-            <span>Gender</span>
             <div class="filter-options">
-                <label><input type="radio" name="gender" value="Men"> Men</label>
-                <label><input type="radio" name="gender" value="Women"> Women</label>
+                <label><input type="radio" name="gender" value="Men"> Men</label><br>
+                <label><input type="radio" name="gender" value="Women"> Women</label><br>
                 <label><input type="radio" name="gender" value="Kids"> Kids</label>
             </div>
         </div>
-        <div class="expandable-button filter-btn" data-filter="size">
-            <span>Size</span>
-            <div class="filter-options">
-                <label><input type="radio" name="gender" value="Small">Small</label>
-                <label><input type="radio" name="gender" value="Medium"> Medium</label>
-                <label><input type="radio" name="gender" value="Large"> Large</label>
-                <label><input type="radio" name="gender" value="Extra Large">Extra Large</label>
+    </div>
 
-                <!-- Add size options here -->
+     <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <h6>Size</h6>
+        <div class="expandable-button filter-btn" data-filter="size">
+            <div class="filter-options">
+             <label><input type="radio" name="size" value="Small"> Small</label><br>
+                <label><input type="radio" name="size" value="Medium"> Medium</label><br>
+                <label><input type="radio" name="size" value="Large"> Large</label><br>
+                <label><input type="radio" name="size" value="Extra Large"> Extra Large</label>
             </div>
         </div>
+    </div>
+
+     <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
+        <h6>Color</h6>
         <div class="expandable-button filter-btn" data-filter="color">
-            <span>Color</span>
-             <div class="filter-options">
-                <label><input type="checkbox" name="color" value="Red"> Red</label>
+            <div class="filter-options">
+              <label><input type="checkbox" name="color" value="Red"> Red</label>
                 <label><input type="checkbox" name="color" value="Blue"> Blue</label>
                 <label><input type="checkbox" name="color" value="Green"> Green</label>
                 <label><input type="checkbox" name="color" value="Yellow"> Yellow</label>
@@ -302,17 +495,30 @@
                 <label><input type="checkbox" name="color" value="Brown"> Brown</label>
             </div>
         </div>
-        <button id="clearFilters" class="clear-button expandable-button">Clear All Filters</button>
-        <!-- Add more filter options as needed -->
     </div>
-</div>
+            {{!-- <button id="clearFilters" class="btn btn-primary clear-button expandable-button mt-3">Clear All Filters</button> --}}
+
+             <button id="refreshButton" class="btn btn-primary text-white mt-3">Clear All Filters</button>
+
+</section>
 
 
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-{{!-- ////// --}}
-                 {{#each offerShops}}
-                 {{#each offers}}
-  <div class="col-lg-4 col-md-6 portfolio-item item filter-{{replaceSpacesWithUnderscores ...this.category}}"
+            <div class="row mb-3">
+                <div class="search-bar">
+                    <input type="text" id="searchtext" class="search-input" name="search" placeholder="Search....">
+                    <input type="button" value="Search" id="search" class="search-button">
+                </div>
+                <div id="searchResultsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="searchResults"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row portfolio-container">
+                     {{#each offerShops}}
+        {{#each offers}}
+      <div class="col-md-3 col-lg-4 mb-4 portfolio-item item filter-{{replaceSpacesWithUnderscores ...this.category}}"
        {{#if this.target_audience}}data-target_audience="{{this.target_audience}}"{{/if}}
        {{#if this.size}}data-size="{{this.size}}"{{/if}}
        {{#if this.color}}data-color="{{this.color}}"{{/if}}
@@ -320,28 +526,54 @@
        {{#if this.type}}data-type="{{this.type}}"{{/if}}
        {{#if this.foodCategories}}data-foodCategories="{{this.foodCategories}}"{{/if}}
        {{#if this.quantity}}data-quantity="{{this.quantity}}"{{/if}}>
-                    <div class="portfolio-wrap">
-                        <span class="offer-badge">{{calculatePercentage this.mrp this.price}}</span>
-                        <img src="/images/offer-images/{{this.img_id}}.png" class="img-fluid" alt="">
-                        <div class="price-container">
-                                        <p class="mrp"><small><s>₹{{this.mrp}}</s></small></p>
-                                        <p class="price"><small>₹{{this.price}}</small></p>
-                            </div>
-                         <H6 style="color: #fff;">By : {{...this.name}}</h6>
-                        <div class="portfolio-info">
-                            <h4>{{this.name}}</h4>
-                            <p>App</p>
-                             <H6 style="color: #fff;">By : {{...this.name}}</h6>
-                            <div class="portfolio-links">
-                                <a href="/images/offer-images/{{this.img_id}}.png" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                                <a href="/shopOffersDetalis/{{...this._id}}" title="More Details"><i class="bx bx-link"></i></a>
-                            </div>
-                        </div>
-                    </div>
+
+        <div class="card" style="border-radius: 15px;">
+          <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+            data-mdb-ripple-color="light">
+            <img src="/images/offer-images/{{this.img_id}}.png"
+              style="border-top-left-radius: 15px; border-top-right-radius: 15px;" class="img-fluid"
+              alt="Laptop" />
+            <a href="#!">
+              <div class="mask"></div>
+            </a>
+          </div>
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h5><a href="#!" class="text-dark"><b>{{this.name}}</b></a></h5>
+                <p class="small text-muted">{{replaceSpacesWithUnderscores ...this.category}}</p>
+              </div>
+              <div>
+                <div class="d-flex flex-row justify-content-end mt-1 mb-1 text-danger">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
                 </div>
-                {{/each}}
-                {{/each}}
+                <p class="small text-warning">Rated 4.0/5</p>
+              </div>
+            </div>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <p><a href="#!" class="text-dark"><s>₹{{this.mrp}}</s></a></p>
+              <p class="text-warning"><b>{{calculatePercentage this.mrp this.price}} Offer</b></p>
+            </div>
+            <p style="font-size: 24px; margin-top:-20px;" class="small text-dark"><b>₹{{this.price}}</b></p>
+            <p>By : {{...this.name}}</p>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
+                              <a href="/shopOffersDetalis/{{...this._id}}" type="button" class="btn btn-dark w-100">View Offer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{/each}}
+
 {{!-- ////// --}}
 
             </div>
@@ -350,206 +582,7 @@
     </section><!-- End Portfolio Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
-        <div class="container">
 
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="section-title" data-aos="fade-right">
-                        <h2>Testimonials</h2>
-                        <p>Magnam dolores commodi suscipit uisquam quos quisquam cupiditate. Et nemo qui impedit
-                            suscipit alias
-                            ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                    </div>
-                </div>
-                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-
-                    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                        <div class="swiper-wrapper">
-
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum
-                                        suscipit rhoncus.
-                                        Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus
-                                        at semper.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                    <img src="/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                                        alt="">
-                                    <h3>Saul Goodman</h3>
-                                    <h4>Ceo &amp; Founder</h4>
-                                </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum
-                                        quid cillum eram
-                                        malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam
-                                        anim culpa.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                    <img src="/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                        alt="">
-                                    <h3>Sara Wilsson</h3>
-                                    <h4>Designer</h4>
-                                </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                        veniam duis minim
-                                        tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                    <img src="/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                                        alt="">
-                                    <h3>Jena Karlis</h3>
-                                    <h4>Store Owner</h4>
-                                </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                        fugiat minim velit
-                                        minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore
-                                        illum veniam.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                    <img src="/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                                        alt="">
-                                    <h3>Matt Brandon</h3>
-                                    <h4>Freelancer</h4>
-                                </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor
-                                        noster veniam enim
-                                        culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa
-                                        fore nisi cillum
-                                        quid.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                    <img src="/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                        alt="">
-                                    <h3>John Larson</h3>
-                                    <h4>Entrepreneur</h4>
-                                </div>
-                            </div><!-- End testimonial item -->
-
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End Testimonials Section -->
-
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="section-title" data-aos="fade-right">
-                        <h2>Team</h2>
-                        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem.</p>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="row">
-
-                        <div class="col-lg-6">
-                            <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                                <div class="pic"><img src="/assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-                                <div class="member-info">
-                                    <h4>Walter White</h4>
-                                    <span>Chief Executive Officer</span>
-                                    <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                                    <div class="social">
-                                        <a href=""><i class="ri-twitter-fill"></i></a>
-                                        <a href=""><i class="ri-facebook-fill"></i></a>
-                                        <a href=""><i class="ri-instagram-fill"></i></a>
-                                        <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 mt-4 mt-lg-0">
-                            <div class="member" data-aos="zoom-in" data-aos-delay="200">
-                                <div class="pic"><img src="/assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-                                <div class="member-info">
-                                    <h4>Sarah Jhonson</h4>
-                                    <span>Product Manager</span>
-                                    <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                                    <div class="social">
-                                        <a href=""><i class="ri-twitter-fill"></i></a>
-                                        <a href=""><i class="ri-facebook-fill"></i></a>
-                                        <a href=""><i class="ri-instagram-fill"></i></a>
-                                        <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 mt-4">
-                            <div class="member" data-aos="zoom-in" data-aos-delay="300">
-                                <div class="pic"><img src="/assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-                                <div class="member-info">
-                                    <h4>William Anderson</h4>
-                                    <span>CTO</span>
-                                    <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                                    <div class="social">
-                                        <a href=""><i class="ri-twitter-fill"></i></a>
-                                        <a href=""><i class="ri-facebook-fill"></i></a>
-                                        <a href=""><i class="ri-instagram-fill"></i></a>
-                                        <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 mt-4">
-                            <div class="member" data-aos="zoom-in" data-aos-delay="400">
-                                <div class="pic"><img src="/assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
-                                <div class="member-info">
-                                    <h4>Amanda Jepson</h4>
-                                    <span>Accountant</span>
-                                    <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                                    <div class="social">
-                                        <a href=""><i class="ri-twitter-fill"></i></a>
-                                        <a href=""><i class="ri-facebook-fill"></i></a>
-                                        <a href=""><i class="ri-instagram-fill"></i></a>
-                                        <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End Team Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -627,7 +660,7 @@
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<footer id="footer">
+{{!-- <footer id="footer">
 
     <div class="footer-top">
         <div class="container">
@@ -700,7 +733,7 @@
             <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
         </div>
     </div>
-</footer><!-- End Footer -->
+</footer><!-- End Footer --> --}}
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
@@ -758,9 +791,7 @@ $(".close").on("click", function() {
         var filterType = $(this).data("filter");
 
         // Close other filter options
-        $(".expandable-button.filter-btn").not(this).removeClass("active");
-        $(".filter-options").not($(this).find(".filter-options")).hide();
-
+  
         // Toggle the active state and show/hide filter options
         $(this).toggleClass("active");
         $(this).find(".filter-options").toggle();
@@ -835,7 +866,16 @@ function applyFilter(filterType, selectedValue) {
   </script>
 
 
+ <script>
+        // Get a reference to the button element
+        var refreshButton = document.getElementById("refreshButton");
 
+        // Add a click event listener to the button
+        refreshButton.addEventListener("click", function() {
+            // Refresh the page when the button is clicked
+            location.reload();
+        });
+    </script>
 
 
 

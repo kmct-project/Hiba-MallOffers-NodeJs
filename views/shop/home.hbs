@@ -1,14 +1,18 @@
+<div class="page-wrapper">
+
 <section>
-    <div class="container mt-2">
-        <center>
+    <br><br>
+     <center>
             {{#if shopkeeper}}
             <h4>Hi {{shopDetails.name}}, Welcome</h4>
             {{/if}}
         </center>
 
+    <div class="container mt-4">
+       
         <div class="row mt-5">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="card">
                     <img src="{{shopDetails.logo}}" class="card-img-top" alt="Image 1">
                     {{!-- <div class="card-body">
@@ -16,7 +20,7 @@
                     </div> --}}
                 </div>
             </div>
-             <div class="col-md-6">
+             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{shopDetails.name}}</h5>
@@ -35,10 +39,14 @@
             </div> --}}
             
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-    <h1 class="m-0">offers</h1>
-    <a href="/shop/delete-all-offers" onclick="return confirm('Are You Sure to Delete All Offers ?')" class="btn btn-danger">Delete All Offers</a>
-    </div>
+                <hr>
+
+        <div class=" justify-content-between align-items-center">
+    <h1 class="m-0">My Offers</h1><br>
+    <a href="/shop/add-offers" class="btn btn-danger mb-4">Add Offer</a>
+    </div> <br><br>
+
+    <br><br>
 
     
             {{#each shopDetails.offers}}
@@ -69,3 +77,4 @@
         </div>
     </div>
 </section>
+</div>

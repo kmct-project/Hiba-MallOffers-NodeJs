@@ -1,22 +1,21 @@
+<div class="page-wrapper">
+
 <section>
     <div class="container my-5">
 
-        <a href="/admin/cancel-all-orders" onclick="return confirm('Are You Sure to Cancel All Orders ?')"
-            class="btn btn-danger mb-2">Cancel All Orders</a>
+        {{!-- <a href="/admin/cancel-all-orders" onclick="return confirm('Are You Sure to Cancel All Orders ?')"
+            class="btn btn-danger mb-2">Cancel All Orders</a> --}}
 
         <div class="table-responsive" style="overflow: visible;">
             <table class="table" id="table">
-                <thead class="table-dark">
+                <thead class="table-primary">
                     <tr class="align-middle">
                         <th scope="col">Date</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Pincode</th>
                         <th scope="col">Mobile</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Advance Amount</th>
                         <th scope="col">Cancel</th>
                         <th scope="col">View</th>
                     </tr>
@@ -29,11 +28,11 @@
                         <td>{{this.orderObject.user.Name}}</td>
                         <td>{{this.orderObject.user.Email}}</td>
                         <td>{{this.orderObject.deliveryDetails.address}}</td>
-                        <td>{{this.orderObject.deliveryDetails.pincode}}</td>
+                        {{!-- <td>{{this.orderObject.deliveryDetails.pincode}}</td> --}}
                         <td>{{this.orderObject.deliveryDetails.mobile}}</td>
                         <td>{{this.orderObject.totalAmount}}</td>
-                        <td>{{this.orderObject.paymentMethod}}</td>
-                        <td>
+                        {{!-- <td>{{this.orderObject.paymentMethod}}</td> --}}
+                        {{!-- <td>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +56,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </td>
+                        </td> --}}
                         <td>
                             <a href="/admin/cancel-order/{{this._id}}"
                                 onclick="return confirm('Are You Sure to Cancel This Order ?')"
@@ -73,3 +72,4 @@
         </div>
     </div>
 </section>
+</div>

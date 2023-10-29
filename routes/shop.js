@@ -19,7 +19,7 @@ router.get("/", verifySignedIn, function (req, res, next) {
   let shopName=req.session.shop.name;
   console.log(shopkeeper._id)
   shopHelper.getShopDetails(shopName).then((shopDetails) => {
-    res.render("shop/home", { shop: true, shopDetails, shopkeeper });
+    res.render("shop/home", { shop: true, layout:"adminlayout",  shopDetails, shopkeeper });
   });
 });
 
@@ -51,7 +51,7 @@ router.get("/signup", function (req, res) {
     res.redirect("/shop");
   } else {
     res.render("shop/signup", {
-      shop: true,
+      shop: true, layout:"emptylayout", 
       signUpErr: req.session.signUpErr,
     });
   }
@@ -76,7 +76,7 @@ router.get("/signin", function (req, res) {
     res.redirect("/shop");
   } else {
     res.render("shop/signin", {
-      shop: true,
+      shop: true, layout:"emptylayout", 
       signInErr: req.session.signInErr,
     });
     req.session.signInErr = null;
@@ -106,7 +106,7 @@ router.get("/offerbookings",async function(req,res){
   let shopkeeper = req.session.shop;
   let orders = await shopHelper.getAllOfferBookings(shopkeeper._id);
   res.render("shop/all-orders", {
-    shop: true,
+    shop: true, layout:"adminlayout", 
     shopkeeper,
     orders,
   });
@@ -114,7 +114,7 @@ router.get("/offerbookings",async function(req,res){
 })
 router.get("/add-offers", verifySignedIn, function (req, res) {
   let shopkeeper = req.session.shop;
-  res.render("shop/add-offers", { shop: true, shopkeeper });
+  res.render("shop/add-offers", { shop: true, layout:"adminlayout",  shopkeeper });
 });
 
 router.post("/add-offer", function (req, res) {
@@ -125,7 +125,7 @@ router.post("/add-offer", function (req, res) {
     let image = req.files.Image;
     image.mv("./public/images/offer-images/" + id + ".png", (err, done) => {
       if (!err) {
-        res.redirect("/shop/add-offers");
+        res.redirect("/shop");
       } else {
         console.log(err);
       }
@@ -156,7 +156,7 @@ router.get("/delete-all-offers",  function (req, res) {
 router.get("/all-users", verifySignedIn, function (req, res) {
   let shopkeeper = req.session.shop;
   shopHelper.getAllUsers().then((users) => {
-    res.render("shop/all-users", { shop: true, shopkeeper, users });
+    res.render("shop/all-users", { shop: true, layout:"adminlayout",  shopkeeper, users });
   });
 });
 
@@ -177,7 +177,7 @@ router.get("/all-orders", verifySignedIn, async function (req, res) {
   let shopkeeper = req.session.shop;
   let orders = await shopHelper.getAllOrders();
   res.render("shop/all-orders", {
-    shop: true,
+    shop: true, layout:"adminlayout", 
     shopkeeper,
     orders,
   });
@@ -191,7 +191,7 @@ router.get(
     let orderId = req.params.id;
     let products = await userHelper.getOrderProducts(orderId);
     res.render("shop/order-products", {
-      shop: true,
+      shop: true, layout:"adminlayout", 
       shopkeeper,
       products,
     });
@@ -222,7 +222,7 @@ router.get("/cancel-all-orders", verifySignedIn, function (req, res) {
 router.post("/search", verifySignedIn, function (req, res) {
   let shopkeeper = req.session.shop;
   shopHelper.searchProduct(req.body).then((response) => {
-    res.render("shop/search-result", { shop: true, shopkeeper, response });
+    res.render("shop/search-result", { shop: true, layout:"adminlayout",  shopkeeper, response });
   });
 });
 
