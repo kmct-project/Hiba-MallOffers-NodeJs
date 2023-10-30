@@ -166,6 +166,7 @@
       });
 
       let portfolioFilters = select('#portfolio-flters li', true);
+      let targetFilter =select('#target-filters li',true);
 
       on('click', '#portfolio-flters li', function(e) {
         e.preventDefault();
@@ -181,7 +182,24 @@
           AOS.refresh()
         });
       }, true);
-    }
+      // target
+      
+      on('click', '#target-flters li', function(e) {
+        e.preventDefault();
+        targetFilter.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        portfolioIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
+      }, true);
+
+    }//if close
 
   });
 

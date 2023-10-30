@@ -248,18 +248,37 @@ router.get("/cancel-order/:id", verifySignedIn, function (req, res) {
   });
 });
 
-router.post("/search", verifySignedIn, async function (req, res) {
+router.get("/search", verifySignedIn, async function (req, res) {
   let user = req.session.user;
   let userId = req.session.user._id;
-  let cartCount = await userHelper.getCartCount(userId);
-  userHelper.searchProduct(req.body).then((response) => {
+  const result=JSON.parse(req.query.results);
+
+ // let cartCount = await userHelper.getCartCount(userId);
+  userHelper.searchOffers(JSON.parse(req.query.results)).then((offers) => {
+    const uniqueIds = Array.from(new Set(result.map(obj => obj.byid)));
+    const byName=Array.from(new Set(result.map(obj => obj.by)));
+ 
     res.render("users/search-result", {
       admin: false,
       user,
-      cartCount,
-      response,
+      offers,
+      uniqueIds,
+      byName
     });
-  });
+  }).catch((err)=>console.log("errrr:",err))
 });
+// router.post("/search", verifySignedIn, async function (req, res) {
+//   let user = req.session.user;
+//   let userId = req.session.user._id;
+//   console.log(req.body)
+//  // let cartCount = await userHelper.getCartCount(userId);
+//   userHelper.searchProduct(req.body).then((response) => {
+//     res.render("users/search-result", {
+//       admin: false,
+//       user,
+//       response,
+//     });
+//   });
+// });
 
 module.exports = router;

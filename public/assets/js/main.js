@@ -166,10 +166,58 @@
       });
 
       let portfolioFilters = select('#portfolio-flters li', true);
+      let targetFilers=select('#target-flters li', true)
+      let sizeFilter=select('#size-flters li', true)
+      let colorFilter=select('#color-flters li', true)
 
       on('click', '#portfolio-flters li', function(e) {
         e.preventDefault();
         portfolioFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        portfolioIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
+      }, true);
+
+      on('click', '#target-flters li', function(e) {
+        e.preventDefault();
+        targetFilers.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        portfolioIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
+      }, true);
+
+      on('click', '#size-flters li', function(e) {
+        e.preventDefault();
+        sizeFilter.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        portfolioIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
+      }, true);
+
+      on('click', '#color-flters li', function(e) {
+        e.preventDefault();
+        colorFilter.forEach(function(el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');

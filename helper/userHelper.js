@@ -2,6 +2,7 @@ var db = require("../config/connection");
 var collections = require("../config/collections");
 const bcrypt = require("bcrypt");
 const objectId = require("mongodb").ObjectID;
+const ObjectId = require("mongodb").ObjectId;
 const Razorpay = require("razorpay");
 
 var instance = new Razorpay({
@@ -456,6 +457,55 @@ module.exports = {
         });
     });
   },
+  searchOffers: (results) => {
+    return new Promise(async (resolve, reject) => {
+      // Check if queryResults is empty
+      if (results.length === 0) {
+          resolve([]); // Resolve with an empty array
+      } else {
+          // Extract an array of unique byid values from the queryResults
+          const uniqueByids = Array.from(new Set(results.map(obj => obj.byid)));
+
+          // Extract an array of unique id values from the results
+          const uniqueIds = Array.from(new Set(results.map(obj => obj.id)));
+
+          // Use aggregation to match and retrieve the desired offers
+          db.get().collection(collections.SHOP_COLLECTION).aggregate([
+              {
+                  $match: {
+                      _id: { $in: uniqueByids.map(byid => ObjectId(byid)) } // Match based on _id and byid
+                  },
+              },
+              {
+                  $unwind: "$offers" // Unwind the offers array
+              },
+              {
+                  $match: {
+                      "offers.img_id": { $in: uniqueIds } // Match based on img_id and id
+                  },
+              },
+              {
+                  $project: {
+                      _id: 0, // Exclude _id field
+                      offers: 1, // Include offers field
+                  },
+              },
+              {
+                $replaceRoot: {
+                    newRoot: "$offers"
+                }
+            }
+          ]).toArray((err, result) => {
+              if (err) {
+                  reject(err); // Reject the promise in case of an error
+              } else {
+                  resolve(result); // Resolve the promise with the matching offers
+              }
+          });
+      }
+  });
+}
+,
 
    searchProduct : (details) => {
     console.log(details);

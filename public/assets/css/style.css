@@ -767,8 +767,68 @@ section {
   list-style: none;
   text-align: center;
 }
+.portfolio #target-flters {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  list-style: none;
+  text-align: center;
+}
+.portfolio #size-flters {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  list-style: none;
+  text-align: center;
+}
+.portfolio #color-flters {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  list-style: none;
+  text-align: center;
+}
 
 .portfolio #portfolio-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #444444;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 50px;
+  font-family: "Poppins", sans-serif;
+}
+.portfolio #target-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #444444;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 50px;
+  font-family: "Poppins", sans-serif;
+}
+.portfolio #portfolio-size li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #444444;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 50px;
+  font-family: "Poppins", sans-serif;
+}
+.portfolio #color-flters li {
   cursor: pointer;
   display: inline-block;
   padding: 8px 16px 8px 16px;
@@ -790,6 +850,34 @@ section {
 }
 
 .portfolio #portfolio-flters li:last-child {
+  margin-right: 0;
+}
+.portfolio #target-flters li:hover,
+.portfolio #target-flters li.filter-active {
+  color: #fff;
+  background: #009970;
+}
+
+.portfolio #target-flters li:last-child {
+  margin-right: 0;
+}
+.portfolio #color-flters li:hover,
+.portfolio #color-flters li.filter-active {
+  color: #fff;
+  background: #009970;
+}
+
+.portfolio #color-flters li:last-child {
+  margin-right: 0;
+}
+
+.portfolio #size-flters li:hover,
+.portfolio #size-flters li.filter-active {
+  color: #fff;
+  background: #009970;
+}
+
+.portfolio #size-flters li:last-child {
   margin-right: 0;
 }
 

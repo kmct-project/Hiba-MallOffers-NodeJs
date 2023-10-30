@@ -761,14 +761,14 @@ section {
   margin-bottom: 30px;
 }
 
-.portfolio #portfolio-flters {
+.portfolio #portfolio-flters,#target-flters{
   padding: 0;
   margin: 0 auto 20px auto;
   list-style: none;
   text-align: center;
 }
 
-.portfolio #portfolio-flters li {
+.portfolio #portfolio-flters,#target-flters li {
   cursor: pointer;
   display: inline-block;
   padding: 8px 16px 8px 16px;
@@ -783,13 +783,13 @@ section {
   font-family: "Poppins", sans-serif;
 }
 
-.portfolio #portfolio-flters li:hover,
-.portfolio #portfolio-flters li.filter-active {
+.portfolio #portfolio-flters,#target-flters li:hover,
+.portfolio #portfolio-flters,#target-flters li.filter-active {
   color: #fff;
   background: #009970;
 }
 
-.portfolio #portfolio-flters li:last-child {
+.portfolio #portfolio-flters,#target-flters li:last-child {
   margin-right: 0;
 }
 

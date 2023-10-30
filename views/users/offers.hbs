@@ -227,6 +227,22 @@ li a:hover{
     font-family: "Poppins", sans-serif;
 }
 
+.portfolio #target-flters li {
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    font-weight: 500;
+        text-transform: none;
+    margin-bottom: 20px;
+    line-height: 1;
+    color: #444444;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50px;
+    font-family: "Poppins", sans-serif;
+}
+
 .search {
     background-color: #fff;
     padding: 4px;
@@ -374,44 +390,42 @@ li a:hover{
     </div>
     <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
         <h6>Gender</h6>
-        <div class="expandable-button filter-btn" data-filter="target_audience">
-            <div class="filter-options">
-                <label><input type="radio" name="gender" value="Men"> Men</label><br>
-                <label><input type="radio" name="gender" value="Women"> Women</label><br>
-                <label><input type="radio" name="gender" value="Kids"> Kids</label>
-            </div>
-        </div>
+        <ul id="target-flters">
+             {{!-- <li data-filter="*" class="filter-active">All</li> --}}
+              <li data-filter=".filter-Men">Men</li>
+                <li data-filter=".filter-Women">Women</li>
+                  <li data-filter=".filter-Kids">Kids</li>
+                    </ul>
     </div>
 
      <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
         <h6>Size</h6>
-        <div class="expandable-button filter-btn" data-filter="size">
-            <div class="filter-options">
-             <label><input type="radio" name="size" value="Small"> Small</label><br>
-                <label><input type="radio" name="size" value="Medium"> Medium</label><br>
-                <label><input type="radio" name="size" value="Large"> Large</label><br>
-                <label><input type="radio" name="size" value="Extra Large"> Extra Large</label>
-            </div>
-        </div>
+  <ul id="size-flters">
+    <li  data-filter=".filter-Small"> Small</li>
+    <li  data-filter=".filter-Medium">  Medium</li>
+    <li  data-filter=".filter-Large"> Large</li>
+    <li  data-filter=".filter-Extra_Large"> Extra Large</li>
+  </ul>
     </div>
 
      <div class="mt-3" style="background-color: #ffffff; border-radius:15px; padding:10px;">
         <h6>Color</h6>
-        <div class="expandable-button filter-btn" data-filter="color">
-            <div class="filter-options">
-              <label><input type="checkbox" name="color" value="Red"> Red</label>
-                <label><input type="checkbox" name="color" value="Blue"> Blue</label>
-                <label><input type="checkbox" name="color" value="Green"> Green</label>
-                <label><input type="checkbox" name="color" value="Yellow"> Yellow</label>
-                <label><input type="checkbox" name="color" value="Black"> Black</label>
-                <label><input type="checkbox" name="color" value="White"> White</label>
-                <label><input type="checkbox" name="color" value="Orange"> Orange</label>
-                <label><input type="checkbox" name="color" value="Purple"> Purple</label>
-                <label><input type="checkbox" name="color" value="Gray"> Gray</label>
-                <label><input type="checkbox" name="color" value="Pink"> Pink</label>
-                <label><input type="checkbox" name="color" value="Brown"> Brown</label>
-            </div>
-        </div>
+        <div class="filter-optionss">
+  <ul id="color-flters">
+    <li data-filter=".filter-Red">Red</li>
+    <li data-filter=".filter-Blue">Blue</li>
+    <li data-filter=".filter-Green">Green</li>
+    <li data-filter=".filter-Yellow">Yellow</li>
+    <li data-filter=".filter-Black">Black</li>
+    <li data-filter=".filter-White">White</li>
+    <li data-filter=".filter-Orange">Orange</li>
+    <li data-filter=".filter-Purple">Purple</li>
+    <li data-filter=".filter-Gray">Gray</li>
+    <li data-filter=".filter-Pink">Pink</li>
+    <li data-filter=".filter-Brown">Brown</li>
+  </ul>
+</div>
+
     </div>
             {{!-- <button id="clearFilters" class="btn btn-primary clear-button expandable-button mt-3">Clear All Filters</button> --}}
 
@@ -435,7 +449,9 @@ li a:hover{
             <div class="row portfolio-container">
                      {{#each offerShops}}
         {{#each offers}}
-      <div class="col-md-3 col-lg-4 mb-4 portfolio-item item filter-{{replaceSpacesWithUnderscores ...this.category}}"
+      <div class="col-md-3 col-lg-4 mb-4 portfolio-item item filter-{{replaceSpacesWithUnderscores ...this.category}} 
+      {{#if this.target_audience}}filter-{{this.target_audience}}{{/if}} {{#if this.size}}filter-{{this.size}}{{/if}}
+       {{#if this.color}}filter{{this.color}}{{/if}}"
        {{#if this.target_audience}}data-target_audience="{{this.target_audience}}"{{/if}}
        {{#if this.size}}data-size="{{this.size}}"{{/if}}
        {{#if this.color}}data-color="{{this.color}}"{{/if}}
@@ -585,10 +601,11 @@ li a:hover{
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
+
 <script>
     $(document).ready(function() {
-    // Function to handle the search
-    $("#search").on("click", function() {
+            // Function to handle the search
+ $("#search").on("click", function() {
     var searchText = $("#searchtext").val().toLowerCase();
     var matchedItems = [];
 
@@ -601,85 +618,24 @@ li a:hover{
         var foundInData = Object.values(itemData).some(function(value) {
             return value && value.toString().toLowerCase().includes(searchText);
         });
-        var foundInContent = item.find(".portfolio-wrap").text().toLowerCase().includes(searchText);
-
+        var foundInContent = item.find(".p-wrap").text().toLowerCase().includes(searchText);
         if (foundInData || foundInContent) {
-            matchedItems.push(item);
+            matchedItems.push(itemData);
         }
     });
+
+    console.log(matchedItems, "matchedItems");
+
+     window.location.href = "http://localhost:3000/search?results="+ JSON.stringify(matchedItems);
 
     // Clear the search results modal content
-    $("#searchResults").empty();
-
-    if (matchedItems.length > 0) {
-        // Add matched items to the search results modal
-        matchedItems.forEach(function(item) {
-            $("#searchResults").append(item.clone());
-        });
-
-        // Show the modal with search results
-        $("#searchResultsModal").css("display", "block");
-    } else {
-        // If no results are found, you can display a message
-        $("#searchResults").text("No matching items found.");
-        $("#searchResultsModal").css("display", "block");
-    }
+    // $("#searchResults").empty();
 });
 
-// Close the modal when clicking the close button (×)
-$(".close").on("click", function() {
-    $("#searchResultsModal").css("display", "none");
-});
+   
 
 
-/////
-    // Handle filter button clicks
-    $(".expandable-button.filter-btn").on("click", function() {
-        var filterType = $(this).data("filter");
 
-        // Close other filter options
-  
-        // Toggle the active state and show/hide filter options
-        $(this).toggleClass("active");
-        $(this).find(".filter-options").toggle();
-
-        // Handle radio button selection within the filter option
-        $(this).find('input[type="radio"]').on("change", function() {
-            var selectedValue = $(this).val();
-
-            // Apply the selected filter to your items (e.g., data-target_audience)
-            applyFilter(filterType, selectedValue);
-        });
-    });
-
-    // Function to apply the filter based on the selected values
-    function applyFilter(filterType, selectedValue) {
-        // Implement your filtering logic here
-        // You can show/hide portfolio items based on the selected filter
-        // For example, you can use the code provided in previous responses for filtering items.
-    }
-
-////
-// Function to apply the filter based on the selected values
-function applyFilter(filterType, selectedValue) {
-    // Iterate through each portfolio item
-    $(".portfolio-item").each(function() {
-        var item = $(this);
-        var itemData = item.data();
-
-        // Check if the item matches the selected filter and value
-        if (filterType === "target_audience" && itemData.target_audience === selectedValue) {
-            // Show items that match the filter criteria
-            item.show();
-        } else if (filterType === "size" && itemData.size === selectedValue) {
-            // Show items that match the filter criteria
-            item.show();
-        } else {
-            // Hide items that don't match the filter criteria
-            item.hide();
-        }
-    });
-}
 // Handle the "Clear All Filters" button click event
     $("#clearFilters").on("click", function() {
         // Clear all active states and hide filter options
@@ -691,10 +647,10 @@ function applyFilter(filterType, selectedValue) {
     });
 
     // Function to clear all applied filters and show all portfolio items
-    function clearAllFilters() {
+    /*function clearAllFilters() {
         // Show all portfolio items
         $(".portfolio-item").show();
-    }
+    }*/
 
 });
 
@@ -723,6 +679,33 @@ function applyFilter(filterType, selectedValue) {
             location.reload();
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{!-- <script>
+// Function to apply filter
+var $grid = $('.portfolio-container').isotope({
+  itemSelector: '.portfolio-item',
+  layoutMode: 'fitRows'
+});
+
+function applyFilter(filter) {
+  $grid.isotope({ filter: filter });
+}
+
+// Function to clear all filters
+function clearFilters() {
+  applyFilter('*');
+}
+
+// Attach click event handlers to your filter buttons or checkboxes
+$('.filter-btn').on('click', function() {
+  var filterValue = $(this).data('filter');
+  applyFilter(filterValue);
+});
+
+$('#refreshButton').on('click', function() {
+  clearFilters();
+});
+</script> --}}
 
 
 
