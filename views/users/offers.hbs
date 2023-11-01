@@ -381,9 +381,13 @@ li a:hover{
         <p class="mb-2">Category</p>
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">All</li>
-                        {{#each offerShops}}
-                        <li data-filter=".filter-{{replaceSpacesWithUnderscores this.category}}">{{this.category}}</li>
-                         {{/each}}
+                        <li data-filter=".filter-fashion_and_accessories">Fashion And Accessories</li>
+                        <li data-filter=".filter-electronics_home_appliances"> Electronics & Home Appliances</li>
+                        <li data-filter=".filter-dining">Dining</li>
+                        <li data-filter=".filter-books_gifts">Books & gifts</li>
+                        <li data-filter=".filter-shoes bags">Shoes & Bags</li>
+                        <li data-filter=".filter-entertainment">Entertainment</li>
+                         <li data-filter=".filter-watches_optics">Watches & Optics</li>
                     </ul>
                     </div>
                 
@@ -451,7 +455,7 @@ li a:hover{
         {{#each offers}}
       <div class="col-md-3 col-lg-4 mb-4 portfolio-item item filter-{{replaceSpacesWithUnderscores ...this.category}} 
       {{#if this.target_audience}}filter-{{this.target_audience}}{{/if}} {{#if this.size}}filter-{{this.size}}{{/if}}
-       {{#if this.color}}filter{{this.color}}{{/if}}"
+       {{#if this.color}}filter-{{this.color}}{{/if}}"
        {{#if this.target_audience}}data-target_audience="{{this.target_audience}}"{{/if}}
        {{#if this.size}}data-size="{{this.size}}"{{/if}}
        {{#if this.color}}data-color="{{this.color}}"{{/if}}

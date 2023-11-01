@@ -257,6 +257,7 @@ router.get("/search", verifySignedIn, async function (req, res) {
   userHelper.searchOffers(JSON.parse(req.query.results)).then((offers) => {
     const uniqueIds = Array.from(new Set(result.map(obj => obj.byid)));
     const byName=Array.from(new Set(result.map(obj => obj.by)));
+    const byCat=Array.from(new Set(result.map(obj => obj.by)));
  
     res.render("users/search-result", {
       admin: false,
