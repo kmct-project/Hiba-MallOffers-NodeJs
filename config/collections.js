@@ -5,5 +5,7 @@ module.exports = {
   CART_COLLECTION: "cart",
   ORDER_COLLECTION: "booking",
   SHOP_COLLECTION: "shop",
-  CATEGORY_COLLECTION: "categories"
+  CATEGORY_COLLECTION: "categories",
+  FEEDBACK_COLLECTION: "feedback",
+
 };

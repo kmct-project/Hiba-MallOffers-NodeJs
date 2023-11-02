@@ -22,10 +22,8 @@
                     <tr class="align-middle">
                         <th scope="col">Date</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Pincode</th>
                         <th scope="col">Mobile</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Payment</th>
+                        <th scope="col">Advance Amount</th>
                         <th scope="col">Status</th>
                         <th scope="col">Cancel</th>
                         <th scope="col">View</th>
@@ -37,10 +35,8 @@
                     <tr class="align-middle">
                         <td>{{this.orderObject.date}}</td>
                         <td>{{this.orderObject.deliveryDetails.address}}</td>
-                        <td>{{this.orderObject.deliveryDetails.pincode}}</td>
                         <td>{{this.orderObject.deliveryDetails.mobile}}</td>
                         <td>{{this.orderObject.totalAmount}}</td>
-                        <td>{{this.orderObject.paymentMethod}}</td>
                         <td>{{this.orderObject.status}}</td>
                         <td>
                             <a href="/cancel-order/{{this._id}}"

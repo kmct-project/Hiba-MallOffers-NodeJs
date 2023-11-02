@@ -28,6 +28,40 @@ router.get("/", async function (req, res, next) {
 
 
 
+router.get("/add-feedback", verifySignedIn, function (req, res) {
+  let user = req.session.user;
+  shopHelper.getAllShops().then((shops) => {
+    res.render("users/add-feedback", { shop: false, shops, user });
+  });
+});
+
+router.post("/add-feedback", function (req, res) {
+  let user = req.session.user;
+
+  // Assuming userHelper.addfeedback returns a Promise
+  const addFeedbackPromise = userHelper.addfeedback(req.body);
+
+  if (addFeedbackPromise && typeof addFeedbackPromise.then === 'function') {
+    addFeedbackPromise
+      .then(() => {
+        res.render("admin/add-feedback", { admin: false, user });
+      })
+      .catch((error) => {
+        // Handle any errors that might occur during the promise execution
+        console.error(error);
+        res.status(500).send("An error occurred");
+      });
+  } else {
+    // Handle the case where addFeedbackPromise is not a Promise
+    console.error("addfeedback does not return a Promise.");
+    res.status(500).send("An error occurred");
+  }
+});
+
+
+
+
+
 router.get("/offers", verifySignedIn, async (req, res) => {
   let user = req.session.user;
   let cartCount = null;

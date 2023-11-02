@@ -333,9 +333,9 @@ li a:hover{
 <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative" >
         <h1>Welcome to Hilite Mall Offers</h1>
-        <h2>We are team of talented designers making websites with Bootstrap</h2>
+        {{!-- <h2>We are team of talented designers making websites with Bootstrap</h2> --}}
 
-      <div class="container"> <div class="search"> <div class="row"><div class="col-md-12"> <div> <div class="search-2"> <i class='bx bxs-map' ></i> <input type="text" placeholder="San Francisco,USA"> <button>Search</button> </div> </div> </div> </div> </div>
+      {{!-- <div class="container"> <div class="search"> <div class="row"><div class="col-md-12"> <div> <div class="search-2"> <i class='bx bxs-map' ></i> <input type="text" placeholder="San Francisco,USA"> <button>Search</button> </div> </div> </div> </div> </div> --}}
 </div>
 
 
@@ -346,7 +346,7 @@ li a:hover{
 
 
     <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
+    {{!-- <section id="clients" class="clients">
         <div class="container">
 
             <div class="row">
@@ -378,10 +378,10 @@ li a:hover{
             </div>
 
         </div>
-    </section><!-- End Clients Section -->
+    </section><!-- End Clients Section --> --}}
 
      <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
+    <section id="about" class="portfolio-details">
       <div class="container">
 
         <div class="row gy-4">
@@ -391,15 +391,15 @@ li a:hover{
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
+                  <img src="/images/img1.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                  <img src="/images/img2.jpg" alt="">
                 </div>
 
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
+                  <img src="/images/img3.jpg" alt="">
                 </div>
 
               </div>
@@ -501,10 +501,21 @@ li a:hover{
 
 {{!-- </section>  --}}
 
+<style>
+    .search-input {
+    width: 400px;
+    padding: 10px;
+    border: 2px solid #000000;
+    border-radius: 24px;
+    outline: none;
+    font-size: 16px;
+}
+</style>
 
-            <div class="row mb-3">
-                <div class="search-bar">
-                    <input type="text" id="searchtext" class="search-input" name="search" placeholder="Search....">
+<center>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="search-bar w-100">
+                    <input type="text" id="searchtext" class="search-input w-75" name="search" placeholder="Search....">
                     <input type="button" value="Search" id="search" class="search-button">
                 </div>
                 <div id="searchResultsModal" class="modal">
@@ -514,6 +525,7 @@ li a:hover{
                     </div>
                 </div>
             </div>
+            </center>
             <div class="row portfolio-container">
         {{#each offerShops}}
         {{#each offers}}
@@ -546,7 +558,7 @@ li a:hover{
                 <h5><a href="#!" class="text-dark"><b>{{this.name}}</b></a></h5>
                 <p class="small text-muted">{{replaceSpacesWithUnderscores ...this.category}}</p>
               </div>
-              <div>
+              {{!-- <div>
                 <div class="d-flex flex-row justify-content-end mt-1 mb-1 text-danger">
                   <i class="bi bi-star-fill"></i>
                   <i class="bi bi-star-fill"></i>
@@ -554,7 +566,7 @@ li a:hover{
                   <i class="bi bi-star-fill"></i>
                 </div>
                 <p class="small text-warning">Rated 4.0/5</p>
-              </div>
+              </div> --}}
             </div>
           </div>
           <hr class="my-0" />
@@ -579,8 +591,9 @@ li a:hover{
 {{!-- ////// --}}
 
             </div>
-            <a href="/offers" class="btn btn-success">view more</a>
-
+            <center>
+            <a href="/offers" class="btn btn-success ">View More Offers</a>
+</center>
         </div>
     </section><!-- End Portfolio Section -->
 
@@ -628,7 +641,7 @@ li a:hover{
                         </div>
                     </div>
 
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
+                    {{!-- <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
@@ -653,7 +666,7 @@ li a:hover{
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                         </div>
                         <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
 

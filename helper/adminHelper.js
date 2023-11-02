@@ -29,6 +29,31 @@ module.exports = {
     })
   },
 
+
+  getAllShopOffers:()=>{
+    return new Promise(async (resolve, reject) => {
+      let shops = await db
+        .get()
+        .collection(collections.SHOP_COLLECTION)
+        .find({ isOffer: true })
+        .toArray();
+      resolve(shops);
+    });
+  },
+
+
+  getAllcategories: () => {
+    return new Promise(async (resolve, reject) => {
+      let categories = await db
+        .get()
+        .collection(collections.CATEGORY_COLLECTION)
+        .find()
+        .toArray();
+      resolve(categories);
+    });
+  },
+
+
   getAllProducts: () => {
     return new Promise(async (resolve, reject) => {
       let products = await db

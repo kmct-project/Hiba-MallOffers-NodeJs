@@ -1,16 +1,15 @@
 <div class="page-wrapper">
-
-<section>
-    <div class="container my-5">
-
-        {{!-- <a href="/admin/cancel-all-orders" onclick="return confirm('Are You Sure to Cancel All Orders ?')"
-            class="btn btn-danger mb-2">Cancel All Orders</a> --}}
-
-        <div class="table-responsive" style="overflow: visible;">
-            <table class="table" id="table">
-                <thead class="table-primary">
-                    <tr class="align-middle">
-                        <th scope="col">Date</th>
+    <div class="page-breadcrumb">
+              <div class="container-fluid">
+                <h3>Manage Orders</h3>
+ 
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                             <th scope="col">Date</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
@@ -18,11 +17,10 @@
                         <th scope="col">Advance Amount</th>
                         <th scope="col">Cancel</th>
                         <th scope="col">View</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {{#each orders}}
+                            </tr>
+                        </thead>
+                        <tbody>
+               {{#each orders}}
                     <tr class="align-middle">
                         <td>{{this.orderObject.date}}</td>
                         <td>{{this.orderObject.user.Name}}</td>
@@ -67,9 +65,13 @@
                         </td>
                     </tr>
                     {{/each}}
-                </tbody>
-            </table>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+    </div>
 </div>

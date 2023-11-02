@@ -11,6 +11,102 @@ var instance = new Razorpay({
 });
 
 module.exports = {
+
+
+  ///////ADD FeedBack/////////////////////                                         
+  addfeedback: (feedback, callback) => {
+    console.log(feedback);
+  db.get()
+    .collection(collections.FEEDBACK_COLLECTION)
+    .insertOne(feedback)
+    .then((data) => {
+      console.log(data);
+      callback(data.ops[0]._id);
+    });
+  },
+
+///////GET ALL FeedBack/////////////////////                                            
+   getAllfeedbacks: () => {
+    return new Promise(async (resolve, reject) => {
+      let feedbacks = await db
+      .get()
+      .collection(collections.FEEDBACK_COLLECTION)
+      .find()
+      .toArray();
+  resolve(feedbacks);
+    });
+  },
+
+///////ADD FeedBack DETAILS/////////////////////                                            
+  getfeedbackDetails: (feedbackId) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.FEEDBACK_COLLECTION)
+      .findOne({ _id: objectId(feedbackId)
+  })
+      .then((response) => {
+    resolve(response);
+  });
+  });
+  },
+
+///////DELETE FeedBack/////////////////////                                            
+  deletefeedback: (feedbackId) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.FEEDBACK_COLLECTION)
+      .removeOne({ _id: objectId(feedbackId)
+  })
+        .then((response) => {
+    console.log(response);
+    resolve(response);
+  });
+    });
+  },
+
+///////UPDATE FeedBack/////////////////////                                            
+   updatefeedback: (feedbackId, feedbackDetails) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.FEEDBACK_COLLECTION)
+      .updateOne(
+        { _id: objectId(feedbackId)
+  },
+  {
+    $set: {
+      Name: feedbackDetails.Name,
+        Category: feedbackDetails.Category,
+          Price: feedbackDetails.Price,
+            Description: feedbackDetails.Description,
+            },
+          }
+        )
+        .then((response) => {
+              resolve();
+            });
+    });
+  },
+
+
+///////DELETE ALL FeedBack/////////////////////                                            
+  deleteAllfeedbacks: () => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.FEEDBACK_COLLECTION)
+      .remove({})
+      .then(() => {
+        resolve();
+      });
+  });
+  },
+
+
+
+
+
+
+
+
   getAllProducts: () => {
     return new Promise(async (resolve, reject) => {
       let products = await db

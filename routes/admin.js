@@ -38,6 +38,30 @@ router.get("/signup", function (req, res) {
   }
 });
 
+
+///////ALL feedback/////////////////////                                         
+router.get("/all-feedbacks", verifySignedIn, function (req, res) {
+  let administator = req.session.admin;
+  userHelper.getAllfeedbacks().then((feedbacks) => {
+    res.render("admin/all-feedbacks", { admin: true, layout:"adminlayout", feedbacks, administator });
+  });
+});
+
+///////DELETE FeedBack/////////////////////                                         
+router.get("/delete-feedback/:id", verifySignedIn, function (req, res) {
+  let feedbackId = req.params.id;
+  userHelper.deletefeedback(feedbackId).then((response) => {
+    res.redirect("/admin/all-feedbacks");
+  });
+});
+
+///////DELETE ALL FeedBack/////////////////////                                         
+router.get("/delete-all-feedbacks", verifySignedIn, function (req, res) {
+  userHelper.deleteAllfeedbacks().then(() => {
+    res.redirect("/admin/all-feedbacks");
+  });
+});
+
 router.post("/signup", function (req, res) {
   adminHelper.doSignup(req.body).then((response) => {
     console.log(response);
@@ -88,6 +112,19 @@ router.get("/add-product", verifySignedIn, function (req, res) {
   res.render("admin/add-product", { admin: true,layout:"adminlayout" , administator });
 });
 
+router.get("/all-categories", verifySignedIn, function (req, res) {
+  let administator = req.session.admin;
+  adminHelper.getAllcategories().then((categories) => {
+    res.render("admin/all-categories", { admin: true,layout:"adminlayout" , administator, categories });
+  });
+});
+
+router.get("/all-offers", verifySignedIn, function (req, res) {
+  let administator = req.session.admin;
+    res.render("admin/all-offers", { admin: true,layout:"adminlayout" , administator });
+  });
+
+
 router.get("/add-category", verifySignedIn, function (req, res) {
   let administator = req.session.admin;
   res.render("admin/add-category", { admin: true,layout:"adminlayout" , administator });
@@ -99,6 +136,7 @@ router.post("/add-category",function(req,res){
     res.render("admin/add-category", { admin: true,layout:"adminlayout" , administator})
   })
 })
+
 router.post("/add-product", function (req, res) {
   adminHelper.addProduct(req.body, (id) => {
     let image = req.files.Image;
@@ -153,6 +191,7 @@ router.get("/all-users", verifySignedIn, function (req, res) {
     res.render("admin/all-users", { admin: true,layout:"adminlayout" , administator, users });
   });
 });
+
 
 router.get("/remove-user/:id", verifySignedIn, function (req, res) {
   let userId = req.params.id;

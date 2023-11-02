@@ -1,8 +1,7 @@
 <div class="page-wrapper">
     <div class="page-breadcrumb">
               <div class="container-fluid">
-                <h3>Manage Users</h3>
-   <a href="/admin/remove-all-users" onclick="return confirm('Are You Sure to Remove All Users ?')" class="btn btn-danger mb-4">Remove All Users</a>
+                <h3>Manage Feedbacks</h3>
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -12,18 +11,22 @@
                               <th scope="col">No.</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Shop Name</th>
+                        <th scope="col">Feedback</th>
                         <th scope="col">Remove</th>
 
                                
                             </tr>
                         </thead>
                         <tbody>
-              {{#each users}}
+              {{#each feedbacks}}
                     <tr class="align-middle">
                         <th scope="row">{{incremented @index}}</th>
-                        <td>{{this.Name}}</td>
-                        <td>{{this.Email}}</td>
-                        <td><a href="/admin/remove-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete {{this.Name}} ?')">Remove</a></td>
+                        <td>{{this.name}}</td>
+                     <td>{{this.email}}</td>
+                         <td>{{this.shopname}}</td>
+                        <td>{{this.feedback}}</td>
+                        <td><a href="/admin/remove-feedback/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete {{this.name}} ?')">Remove</a></td>
                     </tr>
                     {{/each}}
                         </tbody>

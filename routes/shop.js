@@ -100,7 +100,7 @@ router.post("/signin", function (req, res) {
 router.get("/signout", function (req, res) {
   req.session.signedInShop = false;
   req.session.shop = null;
-  res.redirect("/shop");
+  res.redirect("/shop/signin");
 });
 router.get("/offerbookings",async function(req,res){
   let shopkeeper = req.session.shop;

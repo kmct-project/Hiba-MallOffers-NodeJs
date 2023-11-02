@@ -1,28 +1,73 @@
-<section>
-    <div class="container mt-2">
-        <div class="row mt-5">
-            {{#each products}}
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5">
-                    <div class="card mx-auto" style="width: 16rem; ">
-                        <img src="/images/product-images/{{this._id}}.png" class="card-img-top" alt="phone-image" style="height: 17rem;">
-                            <hr class="text-secondary">
-                        <div class="card-body pb-1">
-                            <div class="" style="display: flex; justify-content: end;">
-                                <div class="" style="margin-right: auto;">
-                                    <h5 class="card-title">{{this.Name}}</h5>
-                                </div>
-                                <div class="">
-                                    <p class="card-text"><small>₹{{this.Price}}</small></p>
-                                </div>
-                            </div>
-                            <p class="card-text">{{this.Description}}</p>
-                            <div class="row">
-                                <a href="#" class="btn btn-primary mt-3">Add to Cart</a>
-                            </div>
-                        </div>
-                    </div>
+<div class="page-wrapper">
+
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Dashboard</h4>
+                <div class="ms-auto text-end">
+
                 </div>
-            {{/each}}
+            </div>
         </div>
     </div>
-</section>
+
+    <div class="container-fluid">
+          <!-- ============================================================== -->
+          <!-- Sales Cards  -->
+          <!-- ============================================================== -->
+          <div class="row">
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+              <a href="/admin/all-users">
+              <div class="card card-hover">
+                <div class="box bg-cyan text-center">
+                  <h1 class="font-light text-white">
+                    <i class="bi bi-people"></i>
+                  </h1>
+                  <h6 class="text-white">Users</h6>
+                </div>
+              </div>
+              </a>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xlg-3">
+                            <a href="/shop/all-shops">
+              <div class="card card-hover">
+                <div class="box bg-success text-center">
+                  <h1 class="font-light text-white">
+<i class="bi bi-person-vcard-fill"></i>
+                  </h1>
+                  <h6 class="text-white">Shops</h6>
+                </div>
+              </div>
+              </a>
+            </div>
+        
+            <div class="col-md-6 col-lg-2 col-xlg-3">
+              <a href="/admin/all-offers">
+              <div class="card card-donors">
+                <div class="box bg-danger text-center">
+                  <h1 class="font-light text-white">
+<i class="bi bi-handbag"></i>
+                  </h1>
+                  <h6 class="text-white">Offers</h6>
+                </div>
+              </div>
+              </a>
+            </div>
+            {{!-- <div class="col-md-6 col-lg-2 col-xlg-3">
+              <a href="/admin/all-spots">
+              <div class="card card-hover">
+                <div class="box bg-info text-center">
+                  <h1 class="font-light text-white">
+<i class="bi bi-shop-window"></i>
+                  </h1>
+                  <h6 class="text-white">Food Spots</h6>
+                </div>
+              </div>
+              </a>
+            </div> --}}
+            
+          </div>
+        
+          
+          </div>
+</div>

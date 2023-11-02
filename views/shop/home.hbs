@@ -49,32 +49,63 @@
     <br><br>
 
     
+           
+        </div>
+
+
+            <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Discount Prince</th>
+                                <th>Category</th>
+                                <th>Offer name</th>
+                                <th>Size</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
             {{#each shopDetails.offers}}
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5">
-                <div class="card mx-auto" style="width: 16rem; ">
-                    <img src="/images/offer-images/{{this.img_id}}.png" class="card-img-top" alt="phone-image"
-                        style="height: 17rem;">
-                    <hr class="text-secondary">
-                    <div class="card-body pb-1">
-                        <div class="" style="display: flex; justify-content: end;">
-                            <div class="" style="margin-right: auto;">
-                                <h6 class="card-title" style="color:orange;">{{this.offername}}</h6>
-                                <b><h5 class="card-title">{{this.name}}</h5></b>
-                            </div>
-                            <div class="">
-                                 <p class="card-text" style="color: red;"><small><s>₹{{this.mrp}}</s></small></p>
-                                <p class="card-text" style="color: green;"><small>₹{{this.price}}</small></p>
-                            </div>
-                        </div>
-                        <p class="card-text">{{this.description}}</p>
-                        <div class="row">
-                            <a href="/shop/delete-offer/{{this.img_id}}" onclick="return confirm('Are You Sure to Delete  Offer ?')" class="btn btn-danger mt-3">delete</a>
-                        </div>
-                    </div>
+                            <tr>
+                                <td>{{incremented @index}}</td>
+                                <td>{{this.name}}</td>
+                                <td> <img src="/images/offer-images/{{this.img_id}}.png" class="card-img-top"></td>
+                                 <td>₹{{this.mrp}}</td>
+                                <td>₹{{this.price}}</td>
+                                <td></td>
+                                <td>{{this.offername}}</td>
+                                 <td></td>
+                                  <td></td>
+                                <td>{{this.description}}</td>
+                                <td><a href="" class="btn btn-primary mt-3">Edit</a></td>
+
+                                <td><a href="/shop/delete-offer/{{this.img_id}}" onclick="return confirm('Are You Sure to Delete  Offer ?')" class="btn btn-danger mt-3">Delete</a></td>
+
+                            </tr>
+                            {{/each}}
+
+
+
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
-            {{/each}}
         </div>
+    </div>
     </div>
 </section>
 </div>
