@@ -14,15 +14,17 @@ module.exports = {
 
 
   ///////ADD FeedBack/////////////////////                                         
-  addfeedback: (feedback, callback) => {
+  addfeedback: (feedback) => {
+    return new Promise(async (resolve, reject) => {
     console.log(feedback);
-  db.get()
+   await db.get()
     .collection(collections.FEEDBACK_COLLECTION)
     .insertOne(feedback)
     .then((data) => {
-      console.log(data);
-      callback(data.ops[0]._id);
+      //console.log(data);
+      resolve()
     });
+  })
   },
 
 ///////GET ALL FeedBack/////////////////////                                            

@@ -2,6 +2,7 @@ var express = require("express");
 var adminHelper = require("../helper/adminHelper");
 var fs = require("fs");
 const userHelper = require("../helper/userHelper");
+const shopHelper=require("../helper/shopHelper");
 var router = express.Router();
 
 const verifySignedIn = (req, res, next) => {
@@ -119,10 +120,10 @@ router.get("/all-categories", verifySignedIn, function (req, res) {
   });
 });
 
-router.get("/all-offers", verifySignedIn, function (req, res) {
-  let administator = req.session.admin;
-    res.render("admin/all-offers", { admin: true,layout:"adminlayout" , administator });
-  });
+// router.get("/all-offers", verifySignedIn, function (req, res) {
+//   let administator = req.session.admin;
+//     res.render("admin/all-offers", { admin: true,layout:"adminlayout" , administator });
+//   });
 
 
 router.get("/add-category", verifySignedIn, function (req, res) {
@@ -192,11 +193,42 @@ router.get("/all-users", verifySignedIn, function (req, res) {
   });
 });
 
+router.get("/all-shops", function (req, res) {
+  // let shopkeeper = req.session.shop;
+  let administator = req.session.admin;
+  shopHelper.getAllShops().then((shops) => {
+    res.render("admin/all-shops", { admin: true,layout:"adminlayout" ,shops,administator });
+  });
+});
+
+router.get("/all-offers", function (req, res) {
+  // let shopkeeper = req.session.shop;
+  let administator = req.session.admin;
+  shopHelper.getAllShopOffers().then((offerShops)=> {
+    res.render("admin/all-offers", { admin: true,layout:"adminlayout" ,offerShops,administator });
+  });
+});
+router.get("/delete-offer/:id/:img_id", verifySignedIn, function (req, res) {
+  let shopId = req.params.id;
+  let offerId =req.params.img_id;
+  console.log(offerId,"lklk")
+  shopHelper.deleteOffer(offerId, shopId).then((response) => {
+    fs.unlinkSync("./public/images/offer-images/" + offerId + ".png");
+    res.redirect("/shop");
+  });
+});
+
 
 router.get("/remove-user/:id", verifySignedIn, function (req, res) {
   let userId = req.params.id;
   adminHelper.removeUser(userId).then(() => {
     res.redirect("/admin/all-users");
+  });
+});
+router.get("/remove-feedback/:id", verifySignedIn, function (req, res) {
+  let Id = req.params.id;
+  adminHelper.removeFeedback(Id).then(() => {
+    res.redirect("/admin/all-feedbacks");
   });
 });
 

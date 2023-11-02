@@ -183,6 +183,16 @@ module.exports = {
         });
     });
   },
+  removeFeedback:(Id) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.FEEDBACK_COLLECTION)
+        .removeOne({ _id: objectId(Id) })
+        .then(() => {
+          resolve();
+        });
+    });
+  },
 
   removeAllUsers: () => {
     return new Promise((resolve, reject) => {

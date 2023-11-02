@@ -417,26 +417,21 @@ li a:hover{
 
 
             <div class="row mb-3">
-                <div class="search-bar">
+                   <div class="search-bar">
                     <input type="text" id="searchtext" class="search-input" name="search" placeholder="Search....">
                     <input type="button" value="Search" id="search" class="search-button">
                 </div>
-                <div id="searchResultsModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div id="searchResults"></div>
-                    </div>
-                </div>
             </div>
             <div class="row portfolio-container">
+                {{#if offers.length}}
         {{#each offers}}
-      <div class="col-md-3 col-lg-4 mb-4 portfolio-item item filter-{{ ...this.category}}
+      <div class="col-md-3 col-lg-4 mb-4 portfolio-item item filter-{{replaceSpacesWithUnderscores (lookup ../byCat @index) }}
            {{#if this.target_audience}}filter-{{this.target_audience}}{{/if}} {{#if this.size}}filter-{{this.size}}{{/if}}
        {{#if this.color}}filter-{{this.color}}{{/if}}"
         data-id="{{this.img_id}}"
         data-by="{{lookup ../byName @index}}"
         data-byId="{{lookup ../uniqueIds @index}}"
-        data-byCat="{{lookup ../uniqueIds @index}}"
+        data-byCat="{{lookup ../byCat @index}}"
        {{#if this.target_audience}}data-target_audience="{{this.target_audience}}"{{/if}}
        {{#if this.size}}data-size="{{this.size}}"{{/if}}
        {{#if this.color}}data-color="{{this.color}}"{{/if}}
@@ -490,6 +485,11 @@ li a:hover{
         </div>
       </div>
       {{/each}}
+      {{else}}
+       <div class="warning">
+            <p><a href="/offers" style="text-decoration: none; color: black;">No Offers today!!!</a></p>
+        </div>
+      {{/if}}
 
 {{!-- ////// --}}
 
@@ -582,72 +582,35 @@ li a:hover{
 
 <script>
     $(document).ready(function() {
-    
- $("#search").on("click", function() {
-    var searchText = $("#searchtext").val().toLowerCase();
-    var matchedItems = [];
+        const searchtext = document.getElementById("searchtext");
 
-    // Iterate through each portfolio item
-    $(".portfolio-item").each(function() {
-        var item = $(this);
-        var itemData = item.data();
-
-        // Check if the search text is found in any data attribute or in the portfolio item's content
-        var foundInData = Object.values(itemData).some(function(value) {
-            return value && value.toString().toLowerCase().includes(searchText);
+        searchtext.addEventListener("input", function() {
+            const searchText = searchtext.value;
+            const newURL =`http://localhost:3000/offers` ;
+            // Update the browser's URL without actually loading a new page
+            window.history.pushState(null, null, newURL);
+            window.location.reload()
         });
-        var foundInContent = item.find(".p-wrap").text().toLowerCase().includes(searchText);
-        if (foundInData || foundInContent) {
-            matchedItems.push(itemData);
+
+
+        // Handle the "Clear All Filters" button click event
+        $("#clearFilters").on("click", function() {
+            // Clear all active states and hide filter options
+            $(".expandable-button.filter-btn").removeClass("active");
+            $(".filter-options").hide();
+
+            // Clear any applied filters
+            clearAllFilters();
+        });
+
+        // Function to clear all applied filters and show all portfolio items
+        function clearAllFilters() {
+            // Show all portfolio items
+            $(".portfolio-item").show();
         }
     });
+</script>
 
-    console.log(matchedItems, "matchedItems");
-
-     window.location.href = "http://localhost:3000/search?results="+ JSON.stringify(matchedItems);
-
-    // Clear the search results modal content
-    // $("#searchResults").empty();
-});
-
-    // Iterate through each portfolio item
-    $(".portfolio-item").each(function() {
-        var item = $(this);
-        var itemData = item.data();
-
-        // Check if the item matches the selected filter and value
-        if (filterType === "target_audience" && itemData.target_audience === selectedValue) {
-            // Show items that match the filter criteria
-            item.show();
-        } else if (filterType === "size" && itemData.size === selectedValue) {
-            // Show items that match the filter criteria
-            item.show();
-        } else {
-            // Hide items that don't match the filter criteria
-            item.hide();
-        }
-    });
-}
-// Handle the "Clear All Filters" button click event
-    $("#clearFilters").on("click", function() {
-        // Clear all active states and hide filter options
-        $(".expandable-button.filter-btn").removeClass("active");
-        $(".filter-options").hide();
-
-        // Clear any applied filters
-        clearAllFilters();
-    });
-
-    // Function to clear all applied filters and show all portfolio items
-    function clearAllFilters() {
-        // Show all portfolio items
-        $(".portfolio-item").show();
-    }
-
-});
-
-
-  </script>
     <!-- Include Materialize JavaScript (you can download it or link to a hosted version) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>

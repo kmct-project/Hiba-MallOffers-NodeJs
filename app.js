@@ -42,9 +42,15 @@ app.engine(
         // Return an empty string or other value if either mrp or price is not valid
         return '';
     },
-    replaceSpacesWithUnderscores: function(input) {
-      return input.replace(/ /g, '_');
+    replaceSpacesWithUnderscores:(input)=>{
+      console.log("UUUUUU",input)
+      if (typeof input === 'undefined') {
+        return 0; // or any other value or message to indicate that input is undefined
+      } else {
+        return input.replace(/ /g, '_');
+      }
     },
+    
     ifeq: function(a, b, options) {
       if (a === b) {
         return options.fn(this);

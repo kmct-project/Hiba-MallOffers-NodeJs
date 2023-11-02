@@ -1,7 +1,8 @@
 <div class="page-wrapper">
     <div class="page-breadcrumb">
               <div class="container-fluid">
-                <h3>Manage Offers</h3>
+                <h3>Manage Shops</h3>
+   {{!-- <a href="/admin/remove-all-users" onclick="return confirm('Are You Sure to Remove All Users ?')" class="btn btn-danger mb-4">Remove All Users</a> --}}
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -10,26 +11,23 @@
                             <tr>
                               <th scope="col">No.</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Offer Price</th>
-                        <th scope="col">MRP</th>
-                        <th scope="col">Remove</th>
+                        <th scope="col">Logo</th>
+                        <th scope="col">Floor</th>
+                        <th scope="col">Category</th>
 
                                
                             </tr>
                         </thead>
                         <tbody>
-              {{#each offerShops}}
-                     {{#each offers}}
+              {{#each shops}}
                     <tr class="align-middle">
                         <th scope="row">{{incremented @index}}</th>
                         <td>{{this.name}}</td>
-                         <td> <img src="/images/offer-images/{{this.img_id}}.png" height="50" width="50" /></td>
-                        <td>{{this.price}}</td>
-                        <td>{{this.mrp}}</td>
-                        <td><a href="/admin/remove-offer/{{this._id}}/{{this.img_id}}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete {{this.Name}} ?')">Remove</a></td>
+                        <td><img src="{{this.logo}}" height="50" width="50"/></td>
+                        <td>{{this.floor}}</td>
+                         <td>{{this.category}}</td>
+                        {{!-- <td><a href="/admin/remove-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete {{this.Name}} ?')">Remove</a></td> --}}
                     </tr>
-                    {{/each}}
                     {{/each}}
                         </tbody>
                     </table>

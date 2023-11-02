@@ -37,14 +37,18 @@ router.get("/add-feedback", verifySignedIn, function (req, res) {
 
 router.post("/add-feedback", function (req, res) {
   let user = req.session.user;
+  req.body.name=user.Name;
+  req.body.email=user.Email;
 
   // Assuming userHelper.addfeedback returns a Promise
-  const addFeedbackPromise = userHelper.addfeedback(req.body);
+  const addFeedbackPromise =  userHelper.addfeedback(req.body);
 
-  if (addFeedbackPromise && typeof addFeedbackPromise.then === 'function') {
+  if (addFeedbackPromise) {
     addFeedbackPromise
       .then(() => {
-        res.render("admin/add-feedback", { admin: false, user });
+        shopHelper.getAllShops().then((shops) => {
+        res.render("users/add-feedback", { admin: false,shops, user });
+        })
       })
       .catch((error) => {
         // Handle any errors that might occur during the promise execution
@@ -289,16 +293,17 @@ router.get("/search", verifySignedIn, async function (req, res) {
 
  // let cartCount = await userHelper.getCartCount(userId);
   userHelper.searchOffers(JSON.parse(req.query.results)).then((offers) => {
-    const uniqueIds = Array.from(new Set(result.map(obj => obj.byid)));
-    const byName=Array.from(new Set(result.map(obj => obj.by)));
-    const byCat=Array.from(new Set(result.map(obj => obj.by)));
+    const uniqueIds = Array.from(result.map(obj => obj.byid));
+    const byName=Array.from(result.map(obj => obj.by));
+    const byCat=Array.from(result.map(obj => obj.bycat));
  
     res.render("users/search-result", {
       admin: false,
       user,
       offers,
       uniqueIds,
-      byName
+      byName,
+      byCat
     });
   }).catch((err)=>console.log("errrr:",err))
 });
