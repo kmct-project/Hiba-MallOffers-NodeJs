@@ -13,10 +13,11 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
+                         <th scope="col">Product Name</th>
                         <th scope="col">Mobile</th>
                         <th scope="col">Advance Amount</th>
                         <th scope="col">Cancel</th>
-                        <th scope="col">View</th>
+                        {{!-- <th scope="col">View</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -26,7 +27,7 @@
                         <td>{{this.orderObject.user.Name}}</td>
                         <td>{{this.orderObject.user.Email}}</td>
                         <td>{{this.orderObject.deliveryDetails.address}}</td>
-                        {{!-- <td>{{this.orderObject.deliveryDetails.pincode}}</td> --}}
+                        <td>{{this.orderObject.products}}</td>
                         <td>{{this.orderObject.deliveryDetails.mobile}}</td>
                         <td>{{this.orderObject.totalAmount}}</td>
                         {{!-- <td>{{this.orderObject.paymentMethod}}</td> --}}
@@ -60,9 +61,9 @@
                                 onclick="return confirm('Are You Sure to Cancel This Order ?')"
                                 class="btn btn-danger">Cancel</a>
                         </td>
-                        <td>
+                        {{!-- <td>
                             <a href="/admin/view-ordered-products/{{this._id}}" class="btn btn-primary">Product</a>
-                        </td>
+                        </td> --}}
                     </tr>
                     {{/each}}
 

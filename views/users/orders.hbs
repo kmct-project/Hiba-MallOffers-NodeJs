@@ -23,10 +23,11 @@
                         <th scope="col">Date</th>
                         <th scope="col">Address</th>
                         <th scope="col">Mobile</th>
-                        <th scope="col">Advance Amount</th>
+                        <th scope="col">Product</th>
+                        <th scope="col"> </th>
+                        <th scope="col">Advance</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Cancel</th>
-                        <th scope="col">View</th>
+                         <th scope="col">Action</th>
                     </tr>
                 </thead>
 
@@ -44,9 +45,9 @@
                                 onclick="return confirm('Are You Sure to Cancel This Order ?')"
                                 class="btn btn-danger">Cancel</a>
                         </td>
-                        <td>
+                        {{!-- <td>
                             <a href="/view-ordered-products/{{this.orderObject.offerId}}" class="btn btn-primary">View Product</a>
-                        </td>
+                        </td> --}}
                     </tr>
                     {{/each}}
                 </tbody>

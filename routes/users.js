@@ -267,13 +267,12 @@ router.get(
   async function (req, res) {
     let user = req.session.user;
     let userId = req.session.user._id;
-    let cartCount = await userHelper.getCartCount(userId);
+    // let cartCount = await userHelper.getCartCount(userId);
     let orderId = req.params.id;
     let products = await userHelper.getOrderProducts(orderId);
     res.render("users/order-products", {
       admin: false,
       user,
-      cartCount,
       products,
     });
   }
