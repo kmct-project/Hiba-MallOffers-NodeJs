@@ -262,18 +262,20 @@ router.get("/orders", verifySignedIn, async function (req, res) {
 });
 
 router.get(
-  "/view-ordered-products/:id",
+  "/view-ordered-products/:id/:shopid",
   verifySignedIn,
   async function (req, res) {
     let user = req.session.user;
     let userId = req.session.user._id;
     // let cartCount = await userHelper.getCartCount(userId);
     let orderId = req.params.id;
-    let products = await userHelper.getOrderProducts(orderId);
+    let shopId=req.params.shopid;
+    let offers = await userHelper.getOrderProducts(orderId,shopId);
+    console.log(offers,"llllio")
     res.render("users/order-products", {
       admin: false,
       user,
-      products,
+      offers,
     });
   }
 );

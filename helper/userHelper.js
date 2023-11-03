@@ -453,45 +453,79 @@ module.exports = {
       resolve(orders);
     });
   },
-
-  getOrderProducts: (orderId) => {
+  getOrderProducts: (orderId, shopId) => {
     return new Promise(async (resolve, reject) => {
-      let products = await db
-        .get()
-        .collection(collections.ORDER_COLLECTION)
-        .aggregate([
-          {
-            $match: { _id: objectId(orderId) },
-          },
-          {
-            $unwind: "$orderObject.products",
-          },
-          {
-            $project: {
-              item: "$orderObject.products.item",
-              quantity: "$orderObject.products.quantity",
+      try {
+        const shopCollection = db.get().collection(collections.SHOP_COLLECTION);
+  
+        const products = await shopCollection
+          .aggregate([
+            { $match: { _id: objectId(shopId) } },
+            { $unwind: "$offers" }, // Unwind the offers array
+            {
+              $match: {
+                "offers.img_id": orderId,
+              },
             },
-          },
-          {
-            $lookup: {
-              from: collections.PRODUCTS_COLLECTION,
-              localField: "item",
-              foreignField: "_id",
-              as: "product",
+            {
+              $project: {
+                _id: 0, // Exclude _id field
+                offers: 1, // Include only the offers field
+              },
             },
-          },
-          {
-            $project: {
-              item: 1,
-              quantity: 1,
-              product: { $arrayElemAt: ["$product", 0] },
-            },
-          },
-        ])
-        .toArray();
-      resolve(products);
+          ])
+          .toArray();
+  
+        if (products && products.length > 0) {
+          resolve(products[0].offers); // Assuming there's only one match
+        } else {
+          resolve([]); // Return an empty array if no match is found
+        }
+      } catch (error) {
+        reject(error);
+      }
     });
-  },
+  },  
+
+  // getOrderProducts: (orderId,shopId) => {
+  //   return new Promise(async (resolve, reject) => {
+
+  //     let products = await db
+  //       .get()
+  //       .collection(collections.SHOP_COLLECTION)
+  //       .aggregate([
+  //         {
+  //           $match: { _id: objectId(shopId) },
+  //         },
+  //         {
+  //           $unwind: "$orderObject.products",
+  //         },
+  //         {
+  //           $project: {
+  //             item: "$orderObject.products.item",
+  //             quantity: "$orderObject.products.quantity",
+  //           },
+  //         },
+  //         {
+  //           $lookup: {
+  //             from: collections.PRODUCTS_COLLECTION,
+  //             localField: "item",
+  //             foreignField: "_id",
+  //             as: "product",
+  //           },
+  //         },
+  //         {
+  //           $project: {
+  //             item: 1,
+  //             quantity: 1,
+  //             product: { $arrayElemAt: ["$product", 0] },
+  //           },
+  //         },
+  //       ])
+  //       .toArray();
+  //     resolve(products);
+  //   });
+  // },
 
   generateRazorpay: (orderId, totalPrice) => {
     return new Promise((resolve, reject) => {
