@@ -117,6 +117,25 @@ router.get("/add-offers", verifySignedIn, function (req, res) {
   res.render("shop/add-offers", { shop: true, layout:"adminlayout",  shopkeeper });
 });
 
+router.get("/edit-offer/:index", verifySignedIn, function (req, res) {
+  let shopkeeper = req.session.shop;
+  let shopId= shopkeeper._id;
+  let index= req.params.index;
+  shopHelper.getOfferByIdAndIndex(shopId,index).then((offer)=>{
+    res.render("shop/edit-offers", { shop: true, layout:"adminlayout",offer,shopkeeper,index });
+  })
+
+});
+router.post("/edit-offer/:index", verifySignedIn, function (req, res) {
+  let shopkeeper = req.session.shop;
+  let shopId= shopkeeper._id;
+  let index= req.params.index;
+  shopHelper.editOffers(shopId,index ,req.body).then((offer)=>{
+    res.redirect("/shop")
+    //res.render("shop/hom", { shop: true, layout:"adminlayout",offer,shopkeeper });
+  })
+
+});
 router.post("/add-offer", function (req, res) {
   console.log("shoppp",req.session.shop)
   let shopId = req.session.shop._id;

@@ -38,7 +38,56 @@ module.exports = {
       resolve(shops);
     });
   },
-
+  getOfferByIdAndIndex: (shopId, index) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const shopCollection = db.get().collection(collections.SHOP_COLLECTION);
+  
+        // Find the shop by ID
+        const shop = await shopCollection.findOne({ _id: objectId(shopId) });
+  
+        if (shop && shop.offers && shop.offers[index]) {
+          // Retrieve the offer at the specified index
+          const offer = shop.offers[index];
+          resolve(offer);
+        } else {
+          // Shop or offer at the specified index not found
+          resolve(null); // You can choose to handle this case as needed
+        }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+  
+  editOffers: (shopId, index, updatedOffer) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await db
+          .get()
+          .collection(collections.SHOP_COLLECTION)
+          .updateOne(
+            { _id: objectId(shopId) },
+            {
+              $set: {
+                [`offers.${index}`]: updatedOffer
+              }
+            }
+          );
+  
+        if (result.modifiedCount === 1) {
+          // Successfully updated the offer
+          resolve({ success: true });
+        } else {
+          // Offer not found or not updated
+          resolve({ success: false, message: "Offer not updated" });
+        }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+,  
   doSignup: (shopData) => {
     return new Promise(async (resolve, reject) => {
       if (shopData.Code == "shop123") {

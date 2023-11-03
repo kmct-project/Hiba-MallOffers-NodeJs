@@ -1,0 +1,321 @@
+<div class="page-wrapper">
+
+<section>
+    <div class="container mt-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-10 p-3">
+                <h2 class="text-center">Edit Offer</h2>
+                <form action="/shop/edit-offer/{{index}}" enctype="multipart/form-data" method="POST">
+                    <label for="">Offer Name</label>
+                    <input type="text" placeholder="Weekend Offer / Festival offers" name="offername"
+                        class="form-control">
+
+                    <label for="">Name (Product/Service)</label>
+                    <input type="text" name="name" class="form-control" required>
+                    {{#ifeq shopkeeper.category "fashion and accessories"}}
+                    <fieldset class="form-group">
+                        <label>Target Audience :</label> <br>
+                        <label class="form-check-label" for="target_audience_Men">
+                            <input class="form-check-input" type="radio" id="target_audience_Men" name="target_audience"
+                                value="Men" required>
+                            Men
+                        </label>
+                        <label class="form-check-label" for="target_audience_Women">
+                            <input class="form-check-input" type="radio" id="target_audience_Women"
+                                name="target_audience" value="Women">
+                            Women
+                        </label>
+                        <label class="form-check-label" for="target_audience_Kids">
+                            <input class="form-check-input" type="radio" id="target_audience_Kids"
+                                name="target_audience" value="Kids">
+                            Kids
+                        </label>
+                        <label class="form-check-label" for="target_audience_Kids">
+                            <input class="form-check-input" type="radio" id="target_audience_Kids"
+                                name="target_audience" value="All">
+                            For All
+                        </label>
+                    </fieldset><br>
+
+                    <!-- Size -->
+                    <fieldset class="form-group">
+                        <label>Size :</label><br>
+                        <label class="form-check-label" for="size_Small">
+                            <input class="form-check-input" type="radio" id="size_Small" name="size" value="Small">
+                            Small
+                        </label>
+                        <label class="form-check-label" for="size_Medium">
+                            <input class="form-check-input" type="radio" id="size_Medium" name="size" value="Medium"
+                                required>
+                            Medium
+                        </label>
+                        <label class="form-check-label" for="size_Large">
+                            <input class="form-check-input" type="radio" id="size_Large" name="size" value="Large">
+                            Large
+                        </label>
+                        <label class="form-check-label" for="size_Large">
+                            <input class="form-check-input" type="radio" id="size_Large" name="size"
+                                value="Extra Large">
+                            Extra Large
+                        </label>
+                           <label class="form-check-label" for="size_Large">
+                            <input class="form-check-input" type="radio" id="size_Large" name="size"
+                                value="None">
+                            None
+                        </label>
+
+                    </fieldset><br>
+
+                    <!-- Color -->
+                    <fieldset class="form-group">
+                        <label>Color :</label> <br>
+                        <label class="form-check-label" for="color_Red">
+                            <input class="form-check-input" type="radio" id="color_Red" name="color" value="Red">
+                            Red
+                        </label>
+                        <label class="form-check-label" for="color_Blue">
+                            <input class="form-check-input" type="radio" id="color_Blue" name="color" value="Blue">
+                            Blue
+                        </label>
+                        <label class="form-check-label" for="color_Green">
+                            <input class="form-check-input" type="radio" id="color_Green" name="color" value="Green">
+                            Green
+                        </label>
+                        <label class="form-check-label" for="color_Yellow">
+                            <input class="form-check-input" type="radio" id="color_Yellow" name="color" value="Yellow">
+                            Yellow
+                        </label>
+                        <label class="form-check-label" for="color_Purple">
+                            <input class="form-check-input" type="radio" id="color_Purple" name="color" value="Purple">
+                            Purple
+                        </label>
+                        <label class="form-check-label" for="color_Orange">
+                            <input class="form-check-input" type="radio" id="color_Orange" name="color" value="Orange">
+                            Orange
+                        </label>
+                        <label class="form-check-label" for="color_Pink">
+                            <input class="form-check-input" type="radio" id="color_Pink" name="color" value="Pink">
+                            Pink
+                        </label>
+                        <label class="form-check-label" for="color_Grey">
+                            <input class="form-check-input" type="radio" id="color_Grey" name="color" value="Grey">
+                            Grey
+                        </label>
+                        <label class="form-check-label" for="color_Black">
+                            <input class="form-check-input" type="radio" id="color_Black" name="color" value="Black">
+                            Black
+                        </label>
+                        <label class="form-check-label" for="color_White">
+                            <input class="form-check-input" type="radio" id="color_White" name="color" value="White">
+                            White
+                        </label>
+                        <label class="form-check-label" for="color_Brown">
+                            <input class="form-check-input" type="radio" id="color_Brown" name="color" value="Brown">
+                            Brown
+                        </label>
+                        <label class="form-check-label" for="color_Teal">
+                            <input class="form-check-input" type="radio" id="color_Teal" name="color" value="Teal">
+                            Teal
+                        </label>
+                    </fieldset><br>
+                    <!-- Clothing Subcategory -->
+                    <fieldset class="form-group subcategory">
+                        <label>Type :</label>
+                        <label class="form-check-label" for="clothing_ShirtTop">
+                            <input class="form-check-input" type="radio" id="clothing_ShirtTop" name="type"
+                                value="ShirtTop">
+                            Shirt and Top
+                        </label>
+                        <label class="form-check-label" for="clothing_Jean">
+                            <input class="form-check-input" type="radio" id="clothing_Jean" name="type" value="Jean">
+                            Jean
+                        </label>
+                        <label class="form-check-label" for="accessory_Creams">
+                            <input class="form-check-input" type="radio" id="accessory_Creams" name="type"
+                                value="Creams">
+                            Creams
+                        </label>
+                        <label class="form-check-label" for="accessory_BeautyCare">
+                            <input class="form-check-input" type="radio" id="accessory_BeautyCare" name="type"
+                                value="BeautyCare">
+                            Beauty and Care
+                        </label>
+                    </fieldset> <br>
+                    {{else}}
+                    {{#ifeq shopkeeper.category "shoes bags"}}
+                    <fieldset class="form-group">
+                        <label>Target Audience :</label> <br>
+                        <label class="form-check-label" for="target_audience_Men">
+                            <input class="form-check-input" type="radio" id="target_audience_Men" name="target_audience"
+                                value="Men" required>
+                            Men
+                        </label>
+                        <label class="form-check-label" for="target_audience_Women">
+                            <input class="form-check-input" type="radio" id="target_audience_Women"
+                                name="target_audience" value="Women">
+                            Women
+                        </label>
+                        <label class="form-check-label" for="target_audience_Kids">
+                            <input class="form-check-input" type="radio" id="target_audience_Kids"
+                                name="target_audience" value="Kids">
+                            Kids
+                        </label>
+                    </fieldset><br>
+                    <label for="">Size</label>
+                    <input type="number" name="size" class="form-control" required>
+
+                    <label for="">Brand</label>
+                    <input type="text" name="brand" class="form-control" required>
+
+                    <!-- Color -->
+                    <fieldset class="form-group">
+                        <label>Color :</label> <br>
+                        <label class="form-check-label" for="color_Red">
+                            <input class="form-check-input" type="radio" id="color_Red" name="color" value="Red">
+                            Red
+                        </label>
+                        <label class="form-check-label" for="color_Blue">
+                            <input class="form-check-input" type="radio" id="color_Blue" name="color" value="Blue">
+                            Blue
+                        </label>
+                        <label class="form-check-label" for="color_Green">
+                            <input class="form-check-input" type="radio" id="color_Green" name="color" value="Green">
+                            Green
+                        </label>
+                        <label class="form-check-label" for="color_Yellow">
+                            <input class="form-check-input" type="radio" id="color_Yellow" name="color" value="Yellow">
+                            Yellow
+                        </label>
+                        <label class="form-check-label" for="color_Purple">
+                            <input class="form-check-input" type="radio" id="color_Purple" name="color" value="Purple">
+                            Purple
+                        </label>
+                        <label class="form-check-label" for="color_Orange">
+                            <input class="form-check-input" type="radio" id="color_Orange" name="color" value="Orange">
+                            Orange
+                        </label>
+                        <label class="form-check-label" for="color_Pink">
+                            <input class="form-check-input" type="radio" id="color_Pink" name="color" value="Pink">
+                            Pink
+                        </label>
+                        <label class="form-check-label" for="color_Grey">
+                            <input class="form-check-input" type="radio" id="color_Grey" name="color" value="Grey">
+                            Grey
+                        </label>
+                        <label class="form-check-label" for="color_Black">
+                            <input class="form-check-input" type="radio" id="color_Black" name="color" value="Black">
+                            Black
+                        </label>
+                        <label class="form-check-label" for="color_White">
+                            <input class="form-check-input" type="radio" id="color_White" name="color" value="White">
+                            White
+                        </label>
+                        <label class="form-check-label" for="color_Brown">
+                            <input class="form-check-input" type="radio" id="color_Brown" name="color" value="Brown">
+                            Brown
+                        </label>
+                        <label class="form-check-label" for="color_Teal">
+                            <input class="form-check-input" type="radio" id="color_Teal" name="color" value="Teal">
+                            Teal
+                        </label>
+                    </fieldset><br>
+                    <!-- Accessories Subcategory -->
+                    <fieldset class="form-group">
+                        <label>Type</label>
+                        <label class="form-check-label" for="accessory_Bag">
+                            <input class="form-check-input" type="radio" id="accessory_Bag" name="type" value="Bag">
+                            Bag
+                        </label>
+                        <label class="form-check-label" for="accessory_Shoes">
+                            <input class="form-check-input" type="radio" id="accessory_Shoes" name="type" value="Shoes">
+                            Shoes
+                        </label>
+                        <label class="form-check-label" for="accessory_Slippers">
+                            <input class="form-check-input" type="radio" id="accessory_Slippers" name="type"
+                                value="Slippers">
+                            Slippers
+                        </label>
+                    </fieldset> <br>
+                    {{else}}
+                    {{#ifeq shopkeeper.category "watches optics"}}
+                    <fieldset class="form-group">
+                        <label>Target Audience :</label> <br>
+                        <label class="form-check-label" for="target_audience_Men">
+                            <input class="form-check-input" type="radio" id="target_audience_Men" name="target_audience"
+                                value="Men" required>
+                            Men
+                        </label>
+                        <label class="form-check-label" for="target_audience_Women">
+                            <input class="form-check-input" type="radio" id="target_audience_Women"
+                                name="target_audience" value="Women">
+                            Women
+                        </label>
+                        <label class="form-check-label" for="target_audience_Kids">
+                            <input class="form-check-input" type="radio" id="target_audience_Kids"
+                                name="target_audience" value="Kids">
+                            Kids
+                        </label>
+                    </fieldset><br>
+                    <label for="">Size</label>
+                    <input type="number" name="size" class="form-control" required>
+
+                    <label for="">Brand</label>
+                    <input type="text" name="brand" class="form-control" required>
+
+                    <label for="">color</label>
+                    <input type="text" name="color" class="form-control" required>
+
+                    {{else}}
+                    {{#ifeq shopkeeper.category "hypermarket"}}
+                    <label for="">Quantity</label>
+                    <input type="number" name="quantity"  class="form-control" required>
+                    <label for="">Brand</label>
+                    <input type="text" name="brand" class="form-control" required>
+                    {{else}}
+                    {{#ifeq shopkeeper.category "dining"}}
+                    <label for="">Food Categories:</label>
+                    <input type="text" name="foodCategories" class="form-control" required>
+                    <label for="">Quantity</label>
+                    <input type="number" name="quantity" class="form-control" required>
+                    {{else}}
+                    
+                    {{#ifeq shopkeeper.category "electronics home appliances"}}
+                    <label for="">Size/ weight</label>
+                    <input type="number" name="size" class="form-control" required>
+                    <label for="">Brand</label>
+                    <input type="text" name="brand" class="form-control" required>
+
+                    {{else}}
+                    <br>
+                    {{/ifeq}}
+                    {{/ifeq}}
+                    {{/ifeq}}
+                    {{/ifeq}}
+                    {{/ifeq}}
+                    {{/ifeq}}
+
+
+                    <label for="">Category</label>
+                    <input type="text" name="category" value={{offer.category}} class="form-control" required>
+
+                    <label for="">MRP</label>
+                    <input type="text" name="mrp" value={{offer.mrp}} class="form-control" required>
+
+                    <label for="">Offer Price</label>
+                    <input type="text" name="price" value={{offer.price}} class="form-control" required>
+
+                    <label for="">Description</label>
+                    <textarea name="description"  value={{offer.description}} class="form-control" rows="4" required></textarea>
+
+                    <label for="">Image</label>
+                    <input type="file" name="Image" class="form-control" required>
+
+                    <button type="submit" class="btn btn-success mt-4 w-100 text-white">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</div>
