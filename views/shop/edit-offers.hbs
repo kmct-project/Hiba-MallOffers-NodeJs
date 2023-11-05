@@ -11,7 +11,7 @@
                         class="form-control">
 
                     <label for="">Name (Product/Service)</label>
-                    <input type="text" name="name" class="form-control" required>
+                    <input type="text" name="name" value={{offer.name}}  class="form-control" required>
                     {{#ifeq shopkeeper.category "fashion and accessories"}}
                     <fieldset class="form-group">
                         <label>Target Audience :</label> <br>
@@ -281,7 +281,7 @@
                     
                     {{#ifeq shopkeeper.category "electronics home appliances"}}
                     <label for="">Size/ weight</label>
-                    <input type="number" name="size" class="form-control" required>
+                    <input type="number" name="size" value="{{offer.size}}" class="form-control" required>
                     <label for="">Brand</label>
                     <input type="text" name="brand" class="form-control" required>
 

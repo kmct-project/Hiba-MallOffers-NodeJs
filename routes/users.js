@@ -88,13 +88,61 @@ router.get("/signup", function (req, res) {
   }
 });
 
-router.post("/signup", function (req, res) {
-  userHelper.doSignup(req.body).then((response) => {
-    req.session.signedIn = true;
-    req.session.user = response;
-    res.redirect("/");
-  });
+
+router.post("/signup", async function (req, res) {
+  const mobileRegex = /^[0-9\s-]{10}$/;
+  const phone = req.body.phone;
+  const password = req.body.Password;
+  const email = req.body.Email;
+  const name = req.body.Name; // Assuming the name field is named "Name"
+  const nameRegex = /^[A-Za-z]+$/; // Regular expression for name validation (letters only)
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; // Regular expression for email validation
+
+  const passwordCriteria = /^.{6,}$/;
+
+  let isValidMobile = mobileRegex.test(phone);
+  let isValidPassword = passwordCriteria.test(password);
+  let isValidEmail = emailRegex.test(email);
+  let isValidName = nameRegex.test(name);
+
+  if (isValidMobile && isValidPassword && isValidEmail && isValidName) {
+    try {
+      const response = await userHelper.doSignup(req.body);
+      if (response && response._id) {
+        req.session.signedIn = true;
+        req.session.user = response;
+        res.status(200).send("Success"); // Return success message
+      } else {
+        console.log("User signup response does not contain a valid ID.");
+        res.status(400).send("User signup response does not contain a valid ID.");
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(error.message); // Return the error message
+    }
+  } else {
+    let errorMessage = "";
+
+    if (!isValidMobile) {
+      errorMessage += "Please enter a valid mobile number. ";
+    }
+
+    if (!isValidEmail) {
+      errorMessage += "Please enter a valid email address. ";
+    }
+
+    if (!isValidName) {
+      errorMessage += "Please enter a valid name with letters only. ";
+    }
+
+    if (!isValidPassword) {
+      errorMessage += "Password must be at least 6 characters.";
+    }
+
+    res.status(400).send(errorMessage.trim());
+  }
 });
+
 
 router.get("/shopOffersDetalis/:id", verifySignedIn, function (req, res) {
   let shopId = req.params.id;
