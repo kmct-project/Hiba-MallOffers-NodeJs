@@ -12,6 +12,7 @@
                               <th scope="col">No.</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Mobile Number</th>
                         <th scope="col">Remove</th>
 
                                
@@ -23,6 +24,7 @@
                         <th scope="row">{{incremented @index}}</th>
                         <td>{{this.Name}}</td>
                         <td>{{this.Email}}</td>
+                        <td>{{this.phone}}</td>
                         <td><a href="/admin/remove-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete {{this.Name}} ?')">Remove</a></td>
                     </tr>
                     {{/each}}

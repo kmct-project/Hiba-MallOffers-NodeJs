@@ -151,6 +151,24 @@ module.exports = {
     });
   },
 
+
+  deleteOffer: (shopId,Id) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.SHOP_COLLECTION)
+        .updateOne( { _id: ObjectId(shopId) },
+        {
+  
+            $pull: { offers: { img_id: Id } }, // Delete the offer with the specified ID
+          
+        })
+        .then((response) => {
+          console.log(response);
+          resolve(response);
+        });
+    });
+  },
+
   deleteAllProducts: () => {
     return new Promise((resolve, reject) => {
       db.get()

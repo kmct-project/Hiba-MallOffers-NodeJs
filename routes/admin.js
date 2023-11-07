@@ -208,11 +208,13 @@ router.get("/all-offers", function (req, res) {
     res.render("admin/all-offers", { admin: true,layout:"adminlayout" ,offerShops,administator });
   });
 });
+
+
 router.get("/delete-offer/:id/:img_id", verifySignedIn, function (req, res) {
   let shopId = req.params.id;
   let offerId =req.params.img_id;
   console.log(offerId,"lklk")
-  shopHelper.deleteOffer(offerId, shopId).then((response) => {
+  adminHelper.deleteOffer(offerId, shopId).then((response) => {
     fs.unlinkSync("./public/images/offer-images/" + offerId + ".png");
     res.redirect("/shop");
   });
