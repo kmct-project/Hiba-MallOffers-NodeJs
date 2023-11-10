@@ -17,8 +17,9 @@ const verifySignedIn = (req, res, next) => {
 router.get("/", verifySignedIn, function (req, res, next) {
   let shopkeeper = req.session.shop;
   let shopName=req.session.shop.name;
-  console.log(shopkeeper._id)
+ 
   shopHelper.getShopDetails(shopName).then((shopDetails) => {
+    console.log(shopDetails)
     res.render("shop/home", { shop: true, layout:"adminlayout",  shopDetails, shopkeeper });
   });
 });
@@ -131,7 +132,34 @@ router.post("/edit-offer/:index", verifySignedIn, function (req, res) {
   let shopId= shopkeeper._id;
   let index= req.params.index;
   shopHelper.editOffers(shopId,index ,req.body).then((offer)=>{
-    res.redirect("/shop")
+    if (req.files) {
+      let image = req.files.Image;
+      const imagePath = "./public/images/offer-images/"+shopId+"_"+index+".png";
+      
+  
+      // Check if both image and Id are defined
+      if (image) {
+        // Move the uploaded image to the destination
+        image.mv(imagePath, (err) => {
+          if (!err) {
+            // Successfully moved the image, redirect to the profile page
+            res.redirect("/shop")
+          } else {
+            // Handle the error, e.g., by sending an error response
+            console.log("Error moving the image:", err);
+            // You might want to redirect to an error page or send an error response here
+          }
+        });
+      } else {
+        // Image or ID is undefined
+        console.log("Image or ID is undefined.");
+        // Handle the error or send an appropriate response
+      }
+    } else {
+      // No file uploaded, redirect to the profile page
+      res.redirect("/shop")
+    }
+    
     //res.render("shop/hom", { shop: true, layout:"adminlayout",offer,shopkeeper });
   })
 

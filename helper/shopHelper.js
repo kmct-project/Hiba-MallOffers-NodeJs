@@ -309,7 +309,7 @@ module.exports = {
       let orders = await db
         .get()
         .collection(collections.ORDER_COLLECTION)
-        .find()
+        .find({})
         .toArray();
       resolve(orders);
     });

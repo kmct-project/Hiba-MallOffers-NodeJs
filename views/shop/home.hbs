@@ -26,7 +26,7 @@
                         <h5 class="card-title">{{shopDetails.name}}</h5>
                         <h5 class="card-title" style="color: red;">{{shopDetails.floor}}</h5>
                         <hr>
-                        <h5 class="card-title">Category : {{shopDetails.category}}</h5>
+                        <h5 class="card-title">Category : {{...shopDetails.category}}</h5>
                         <h5 class="card-title">Phone : {{shopDetails.phone}}</h5>
                         <h5 class="card-title">Email Id : {{shopDetails.emailId}}</h5>
                     </div>
@@ -65,12 +65,43 @@
                                 <th>Name</th>
                                 <th>Image</th>
                                 <th>Price</th>
-                                <th>Discount Prince</th>
-                                <th>Category</th>
+                                <th>Discount Price</th>
+                                {{#ifeq shopDetails.category "fashion and accessories"}}
+                                  <th>Target</th>
+                                 <th>Size</th>
+                                 <th>Type</th>
+                                 <th>Color</th>
+                                 {{else}}
+                                {{#ifeq shopDetails.category "shoes bags"}}
+                                <th>Target</th>
+                                 <th>Size</th>
+                                 <th>brand</th>
+                                 {{else}}
+                                {{#ifeq shopDetails.category "watches optics"}}
+                                 <th>Target</th>
+                                 <th>Size</th>
+                                 <th>brand</th>
+                                 {{else}}
+                                 {{#ifeq shopDetails.category "hypermarket"}}
+                                  <th>Quantity</th>
+                                  <th>Brand</th>
+                                  {{else}}
+                                {{#ifeq shopDetails.category "dining"}}
+                                 <th>Quantity</th>
+                                <th>Food Categories</th>
+                                {{else}}
+                                {{#ifeq shopDetails.category "electronics home appliances"}}
+                                <th>Size/weight</th>
+                                <th>brand</th>
+                                {{else}}
+                                <th style="visibility: hidden;"> </th>
+                               {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
                                 <th>Offer name</th>
-                                <th>Size</th>
-                                <th>Type</th>
-                                <th>Description</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
@@ -85,11 +116,44 @@
                                 <td> <img src="/images/offer-images/{{this.img_id}}.png" class="card-img-top"></td>
                                  <td>₹{{this.mrp}}</td>
                                 <td>₹{{this.price}}</td>
-                                <td></td>
+
+                                {{#ifeq ...shopDetails.category "fashion and accessories"}}
+                                 <td>{{this.target_audience}}</td>
+                                 <td>{{this.size}}</td>
+                                 <td>{{this.type}}</td>
+                                <td>{{#if this.color}}{{this.color}}{{else}}none{{/if}}</td>
+                                 {{else}}
+                                {{#ifeq ...shopDetails.category "shoes bags"}}
+                                <td>{{this.target_audience}}</td>
+                                 <td>{{this.size}}</td>
+                                 <td>{{this.brand}}</td>
+                                 {{else}}
+                                {{#ifeq ...shopDetails.category "watches optics"}}
+                                 <td>{{this.target_audience}}</td>
+                                 <td>{{this.size}}</td>
+                                 <td>{{this.brand}}</td>
+                                 {{else}}
+                                 {{#ifeq ...shopDetails.category "hypermarket"}}
+                                  <td>{{this.quantity}}</td>
+                                  <td>{{this.brand}}</td>
+                                  {{else}}
+                                {{#ifeq ...shopDetails.category "dining"}}
+                                <td>{{this.quantity}}</td>
+                                <td>{{this.foodCategories}}</td>
+                                {{else}}
+                                {{#ifeq ...shopDetails.category "electronics home appliances"}}
+                                  <td>{{this.size}}</td>
+                                  <td>{{this.brand}}</td>
+                                {{else}}
+                                <td style="visibility: hidden;"> </td>
+                               {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
+                                {{/ifeq}}
+                                
                                 <td>{{this.offername}}</td>
-                                 <td></td>
-                                  <td></td>
-                                <td>{{this.description}}</td>
                                 <td><a href="/shop/edit-offer/{{@index}}" class="btn btn-primary mt-3">Edit</a></td>
 
                                 <td><a href="/shop/delete-offer/{{this.img_id}}" onclick="return confirm('Are You Sure to Delete  Offer ?')" class="btn btn-danger mt-3">Delete</a></td>

@@ -13,27 +13,27 @@
                     <label for="">Name (Product/Service)</label>
                     <input type="text" name="name" value={{offer.name}}  class="form-control" required>
                     {{#ifeq shopkeeper.category "fashion and accessories"}}
-                    <fieldset class="form-group">
+                     <fieldset class="form-group">
                         <label>Target Audience :</label> <br>
                         <label class="form-check-label" for="target_audience_Men">
                             <input class="form-check-input" type="radio" id="target_audience_Men" name="target_audience"
-                                value="Men" required>
+                                value="Men" {{#ifeq offer.target_audience "Men"}}checked{{/ifeq}} required>
                             Men
                         </label>
                         <label class="form-check-label" for="target_audience_Women">
                             <input class="form-check-input" type="radio" id="target_audience_Women"
-                                name="target_audience" value="Women">
+                                name="target_audience" value="Women" {{#ifeq offer.target_audience "Women"}}checked{{/ifeq}}>
                             Women
                         </label>
                         <label class="form-check-label" for="target_audience_Kids">
                             <input class="form-check-input" type="radio" id="target_audience_Kids"
-                                name="target_audience" value="Kids">
+                                name="target_audience" value="Kids" {{#ifeq offer.target_audience "Kids"}}checked{{/ifeq}}>
                             Kids
                         </label>
-                        <label class="form-check-label" for="target_audience_Kids">
-                            <input class="form-check-input" type="radio" id="target_audience_Kids"
-                                name="target_audience" value="All">
-                            For All
+                        <label class="form-check-label" for="all">
+                            <input class="form-check-input" type="radio" id="size_Large" name="target_audience"
+                                value="All" {{#ifeq offer.target_audience "All"}}checked{{/ifeq}}>
+                            All
                         </label>
                     </fieldset><br>
 
@@ -41,26 +41,26 @@
                     <fieldset class="form-group">
                         <label>Size :</label><br>
                         <label class="form-check-label" for="size_Small">
-                            <input class="form-check-input" type="radio" id="size_Small" name="size" value="Small">
+                            <input class="form-check-input" type="radio" id="size_Small" name="size" value="Small" {{#ifeq offer.size "Small"}}checked{{/ifeq}}>
                             Small
                         </label>
                         <label class="form-check-label" for="size_Medium">
-                            <input class="form-check-input" type="radio" id="size_Medium" name="size" value="Medium"
+                            <input class="form-check-input" type="radio" id="size_Medium" name="size" value="Medium" {{#ifeq offer.size "Medium"}}checked{{/ifeq}}
                                 required>
                             Medium
                         </label>
                         <label class="form-check-label" for="size_Large">
-                            <input class="form-check-input" type="radio" id="size_Large" name="size" value="Large">
+                            <input class="form-check-input" type="radio" id="size_Large" name="size" value="Large" {{#ifeq offer.size "Large"}}checked{{/ifeq}}>
                             Large
                         </label>
                         <label class="form-check-label" for="size_Large">
                             <input class="form-check-input" type="radio" id="size_Large" name="size"
-                                value="Extra Large">
+                                value="Extra Large" {{#ifeq offer.size "Extra Large"}}checked{{/ifeq}}>
                             Extra Large
                         </label>
                            <label class="form-check-label" for="size_Large">
                             <input class="form-check-input" type="radio" id="size_Large" name="size"
-                                value="None">
+                                value="None" {{#ifeq offer.size "None"}}checked{{/ifeq}}>
                             None
                         </label>
 
@@ -69,95 +69,101 @@
                     <!-- Color -->
                     <fieldset class="form-group">
                         <label>Color :</label> <br>
-                        <label class="form-check-label" for="color_Red">
-                            <input class="form-check-input" type="radio" id="color_Red" name="color" value="Red">
-                            Red
-                        </label>
-                        <label class="form-check-label" for="color_Blue">
-                            <input class="form-check-input" type="radio" id="color_Blue" name="color" value="Blue">
-                            Blue
-                        </label>
+                     <label class="form-check-label" for="color_Red">
+                        <input class="form-check-input" type="radio" id="color_Red" name="color" value="Red" {{#ifeq offer.color "Red"}}checked{{/ifeq}}>
+                        Red
+                    </label>
+                    <label class="form-check-label" for="color_Blue">
+                        <input class="form-check-input" type="radio" id="color_Blue" name="color" value="Blue" {{#ifeq offer.color "Blue"}}checked{{/ifeq}}>
+                        Blue
+                    </label>
                         <label class="form-check-label" for="color_Green">
-                            <input class="form-check-input" type="radio" id="color_Green" name="color" value="Green">
+                            <input class="form-check-input" type="radio" id="color_Green" name="color" value="Green" {{#ifeq offer.color "Green"}}checked{{/ifeq}}>
                             Green
                         </label>
                         <label class="form-check-label" for="color_Yellow">
-                            <input class="form-check-input" type="radio" id="color_Yellow" name="color" value="Yellow">
+                            <input class="form-check-input" type="radio" id="color_Yellow" name="color" value="Yellow" {{#ifeq offer.color "Yellow"}}checked{{/ifeq}}>
                             Yellow
                         </label>
                         <label class="form-check-label" for="color_Purple">
-                            <input class="form-check-input" type="radio" id="color_Purple" name="color" value="Purple">
+                            <input class="form-check-input" type="radio" id="color_Purple" name="color" value="Purple" {{#ifeq offer.color "Purple"}}checked{{/ifeq}}>
                             Purple
                         </label>
                         <label class="form-check-label" for="color_Orange">
-                            <input class="form-check-input" type="radio" id="color_Orange" name="color" value="Orange">
+                            <input class="form-check-input" type="radio" id="color_Orange" name="color" value="Orange" {{#ifeq offer.color "Orange"}}checked{{/ifeq}}>
                             Orange
                         </label>
                         <label class="form-check-label" for="color_Pink">
-                            <input class="form-check-input" type="radio" id="color_Pink" name="color" value="Pink">
+                            <input class="form-check-input" type="radio" id="color_Pink" name="color" value="Pink" {{#ifeq offer.color "Pink"}}checked{{/ifeq}}>
                             Pink
                         </label>
                         <label class="form-check-label" for="color_Grey">
-                            <input class="form-check-input" type="radio" id="color_Grey" name="color" value="Grey">
+                            <input class="form-check-input" type="radio" id="color_Grey" name="color" value="Grey" {{#ifeq offer.color "Grey"}}checked{{/ifeq}}>
                             Grey
                         </label>
                         <label class="form-check-label" for="color_Black">
-                            <input class="form-check-input" type="radio" id="color_Black" name="color" value="Black">
+                            <input class="form-check-input" type="radio" id="color_Black" name="color" value="Black" {{#ifeq offer.color "Black"}}checked{{/ifeq}}>
                             Black
                         </label>
                         <label class="form-check-label" for="color_White">
-                            <input class="form-check-input" type="radio" id="color_White" name="color" value="White">
+                            <input class="form-check-input" type="radio" id="color_White" name="color" value="White" {{#ifeq offer.color "White"}}checked{{/ifeq}}>
                             White
                         </label>
                         <label class="form-check-label" for="color_Brown">
-                            <input class="form-check-input" type="radio" id="color_Brown" name="color" value="Brown">
+                            <input class="form-check-input" type="radio" id="color_Brown" name="color" value="Brown" {{#ifeq offer.color "Brown"}}checked{{/ifeq}}>
                             Brown
                         </label>
                         <label class="form-check-label" for="color_Teal">
-                            <input class="form-check-input" type="radio" id="color_Teal" name="color" value="Teal">
+                            <input class="form-check-input" type="radio" id="color_Teal" name="color" value="Teal" {{#ifeq offer.color "Teal"}}checked{{/ifeq}}>
                             Teal
                         </label>
+                         <label class="form-check-label" for="color_Teal">
+                            <input class="form-check-input" type="radio" id="color_Teal" name="color" value="None" {{#ifeq offer.color "None"}}checked{{/ifeq}}>
+                            None
+                        </label>
+
+                          
                     </fieldset><br>
                     <!-- Clothing Subcategory -->
                     <fieldset class="form-group subcategory">
                         <label>Type :</label>
                         <label class="form-check-label" for="clothing_ShirtTop">
                             <input class="form-check-input" type="radio" id="clothing_ShirtTop" name="type"
-                                value="ShirtTop">
+                                value="ShirtTop" {{#ifeq offer.type "ShirtTop"}}checked{{/ifeq}}>
                             Shirt and Top
                         </label>
                         <label class="form-check-label" for="clothing_Jean">
-                            <input class="form-check-input" type="radio" id="clothing_Jean" name="type" value="Jean">
+                            <input class="form-check-input" type="radio" id="clothing_Jean" name="type" value="Jean" {{#ifeq offer.type "Jean"}}checked{{/ifeq}}>
                             Jean
                         </label>
                         <label class="form-check-label" for="accessory_Creams">
                             <input class="form-check-input" type="radio" id="accessory_Creams" name="type"
-                                value="Creams">
+                                value="Creams" {{#ifeq offer.type "Creams"}}checked{{/ifeq}}>
                             Creams
                         </label>
                         <label class="form-check-label" for="accessory_BeautyCare">
                             <input class="form-check-input" type="radio" id="accessory_BeautyCare" name="type"
-                                value="BeautyCare">
+                                value="BeautyCare" {{#ifeq offer.type "BeautyCare"}}checked{{/ifeq}}>
                             Beauty and Care
                         </label>
                     </fieldset> <br>
                     {{else}}
                     {{#ifeq shopkeeper.category "shoes bags"}}
-                    <fieldset class="form-group">
+                     <fieldset class="form-group">
                         <label>Target Audience :</label> <br>
                         <label class="form-check-label" for="target_audience_Men">
                             <input class="form-check-input" type="radio" id="target_audience_Men" name="target_audience"
-                                value="Men" required>
+                                value="Men" {{#ifeq offer.target_audience "Men"}}checked{{/ifeq}} required>
                             Men
                         </label>
                         <label class="form-check-label" for="target_audience_Women">
                             <input class="form-check-input" type="radio" id="target_audience_Women"
-                                name="target_audience" value="Women">
+                                name="target_audience" value="Women" {{#ifeq offer.target_audience "Women"}}checked{{/ifeq}}>
                             Women
                         </label>
                         <label class="form-check-label" for="target_audience_Kids">
                             <input class="form-check-input" type="radio" id="target_audience_Kids"
-                                name="target_audience" value="Kids">
+                                name="target_audience" value="Kids" {{#ifeq offer.target_audience "Kids"}}checked{{/ifeq}}>
                             Kids
                         </label>
                     </fieldset><br>
@@ -168,54 +174,54 @@
                     <input type="text" name="brand" class="form-control" required>
 
                     <!-- Color -->
-                    <fieldset class="form-group">
+                     <fieldset class="form-group">
                         <label>Color :</label> <br>
-                        <label class="form-check-label" for="color_Red">
-                            <input class="form-check-input" type="radio" id="color_Red" name="color" value="Red">
-                            Red
-                        </label>
-                        <label class="form-check-label" for="color_Blue">
-                            <input class="form-check-input" type="radio" id="color_Blue" name="color" value="Blue">
-                            Blue
-                        </label>
+                     <label class="form-check-label" for="color_Red">
+                        <input class="form-check-input" type="radio" id="color_Red" name="color" value="Red" {{#ifeq offer.color "Red"}}checked{{/ifeq}}>
+                        Red
+                    </label>
+                    <label class="form-check-label" for="color_Blue">
+                        <input class="form-check-input" type="radio" id="color_Blue" name="color" value="Blue" {{#ifeq offer.color "Blue"}}checked{{/ifeq}}>
+                        Blue
+                    </label>
                         <label class="form-check-label" for="color_Green">
-                            <input class="form-check-input" type="radio" id="color_Green" name="color" value="Green">
+                            <input class="form-check-input" type="radio" id="color_Green" name="color" value="Green" {{#ifeq offer.color "Green"}}checked{{/ifeq}}>
                             Green
                         </label>
                         <label class="form-check-label" for="color_Yellow">
-                            <input class="form-check-input" type="radio" id="color_Yellow" name="color" value="Yellow">
+                            <input class="form-check-input" type="radio" id="color_Yellow" name="color" value="Yellow" {{#ifeq offer.color "Yellow"}}checked{{/ifeq}}>
                             Yellow
                         </label>
                         <label class="form-check-label" for="color_Purple">
-                            <input class="form-check-input" type="radio" id="color_Purple" name="color" value="Purple">
+                            <input class="form-check-input" type="radio" id="color_Purple" name="color" value="Purple" {{#ifeq offer.color "Purple"}}checked{{/ifeq}}>
                             Purple
                         </label>
                         <label class="form-check-label" for="color_Orange">
-                            <input class="form-check-input" type="radio" id="color_Orange" name="color" value="Orange">
+                            <input class="form-check-input" type="radio" id="color_Orange" name="color" value="Orange" {{#ifeq offer.color "Orange"}}checked{{/ifeq}}>
                             Orange
                         </label>
                         <label class="form-check-label" for="color_Pink">
-                            <input class="form-check-input" type="radio" id="color_Pink" name="color" value="Pink">
+                            <input class="form-check-input" type="radio" id="color_Pink" name="color" value="Pink" {{#ifeq offer.color "Pink"}}checked{{/ifeq}}>
                             Pink
                         </label>
                         <label class="form-check-label" for="color_Grey">
-                            <input class="form-check-input" type="radio" id="color_Grey" name="color" value="Grey">
+                            <input class="form-check-input" type="radio" id="color_Grey" name="color" value="Grey" {{#ifeq offer.color "Grey"}}checked{{/ifeq}}>
                             Grey
                         </label>
                         <label class="form-check-label" for="color_Black">
-                            <input class="form-check-input" type="radio" id="color_Black" name="color" value="Black">
+                            <input class="form-check-input" type="radio" id="color_Black" name="color" value="Black" {{#ifeq offer.color "Black"}}checked{{/ifeq}}>
                             Black
                         </label>
                         <label class="form-check-label" for="color_White">
-                            <input class="form-check-input" type="radio" id="color_White" name="color" value="White">
+                            <input class="form-check-input" type="radio" id="color_White" name="color" value="White" {{#ifeq offer.color "White"}}checked{{/ifeq}}>
                             White
                         </label>
                         <label class="form-check-label" for="color_Brown">
-                            <input class="form-check-input" type="radio" id="color_Brown" name="color" value="Brown">
+                            <input class="form-check-input" type="radio" id="color_Brown" name="color" value="Brown" {{#ifeq offer.color "Brown"}}checked{{/ifeq}}>
                             Brown
                         </label>
                         <label class="form-check-label" for="color_Teal">
-                            <input class="form-check-input" type="radio" id="color_Teal" name="color" value="Teal">
+                            <input class="form-check-input" type="radio" id="color_Teal" name="color" value="Teal" {{#ifeq offer.color "Teal"}}checked{{/ifeq}}>
                             Teal
                         </label>
                     </fieldset><br>
@@ -242,25 +248,25 @@
                         <label>Target Audience :</label> <br>
                         <label class="form-check-label" for="target_audience_Men">
                             <input class="form-check-input" type="radio" id="target_audience_Men" name="target_audience"
-                                value="Men" required>
+                                value="Men" {{#ifeq offer.target_audience "Men"}}checked{{/ifeq}} required>
                             Men
                         </label>
                         <label class="form-check-label" for="target_audience_Women">
                             <input class="form-check-input" type="radio" id="target_audience_Women"
-                                name="target_audience" value="Women">
+                                name="target_audience" value="Women" {{#ifeq offer.target_audience "Women"}}checked{{/ifeq}}>
                             Women
                         </label>
                         <label class="form-check-label" for="target_audience_Kids">
                             <input class="form-check-input" type="radio" id="target_audience_Kids"
-                                name="target_audience" value="Kids">
+                                name="target_audience" value="Kids" {{#ifeq offer.target_audience "Kids"}}checked{{/ifeq}}>
                             Kids
                         </label>
                     </fieldset><br>
                     <label for="">Size</label>
-                    <input type="number" name="size" class="form-control" required>
+                    <input type="number" name="size" value="{{offer.size}}" class="form-control" required>
 
                     <label for="">Brand</label>
-                    <input type="text" name="brand" class="form-control" required>
+                    <input type="text" name="brand" value="{{offer.brand}}" class="form-control" required>
 
                     <label for="">color</label>
                     <input type="text" name="color" class="form-control" required>
@@ -268,22 +274,22 @@
                     {{else}}
                     {{#ifeq shopkeeper.category "hypermarket"}}
                     <label for="">Quantity</label>
-                    <input type="number" name="quantity"  class="form-control" required>
+                    <input type="number" name="quantity" value="{{offer.quantity}}" class="form-control" required>
                     <label for="">Brand</label>
-                    <input type="text" name="brand" class="form-control" required>
+                    <input type="text" name="brand"  value="{{offer.brand}}"class="form-control" required>
                     {{else}}
                     {{#ifeq shopkeeper.category "dining"}}
                     <label for="">Food Categories:</label>
                     <input type="text" name="foodCategories" class="form-control" required>
                     <label for="">Quantity</label>
-                    <input type="number" name="quantity" class="form-control" required>
+                    <input type="number" name="quantity" value="{{offer.quantity}}" class="form-control" required>
                     {{else}}
                     
                     {{#ifeq shopkeeper.category "electronics home appliances"}}
                     <label for="">Size/ weight</label>
                     <input type="number" name="size" value="{{offer.size}}" class="form-control" required>
                     <label for="">Brand</label>
-                    <input type="text" name="brand" class="form-control" required>
+                    <input type="text" name="brand"  value="{{offer.brand}}" class="form-control" required>
 
                     {{else}}
                     <br>
@@ -305,10 +311,11 @@
                     <input type="text" name="price" value={{offer.price}} class="form-control" required>
 
                     <label for="">Description</label>
-                    <textarea name="description"  value={{offer.description}} class="form-control" rows="4" required></textarea>
+                    <textarea name="description" class="form-control" rows="4" required>{{offer.description}}</textarea>
 
                     <label for="">Image</label>
-                    <input type="file" name="Image" class="form-control" required>
+                    <input type="file" name="Image" class="form-control" >
+                    <input type="hidden" name="img_id" value="{{offer.img_id}}"/>
 
                     <button type="submit" class="btn btn-success mt-4 w-100 text-white">Submit</button>
                 </form>
