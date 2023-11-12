@@ -20,44 +20,50 @@
 </head>
 <style>
     // SIDE BAR COLOR
-    #main-wrapper .left-sidebar[data-sidebarbg=skin5], #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul {
-    background: rgb(7, 112, 216);;
-}
-    #main-wrapper .left-sidebar[data-sidebarbg=skin5], #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul {
-    background: rgb(7, 112, 216);
-}
+    #main-wrapper .left-sidebar[data-sidebarbg=skin5],
+    #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul {
+        background: rgb(7, 112, 216);
+        ;
+    }
 
-// TOP NAV BAR COLOR
-#navbarSupportedContent {
-    background: rgb(7, 112, 216);
-}
-#navbarSupportedContent {
-    background: rgb(7, 112, 216);
-}
+    #main-wrapper .left-sidebar[data-sidebarbg=skin5],
+    #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul {
+        background: rgb(7, 112, 216);
+    }
 
-//body color
-.page-wrapper {
-    background: #fffffc;
-    position: relative;
-}
+    // TOP NAV BAR COLOR
+    #navbarSupportedContent {
+        background: rgb(7, 112, 216);
+    }
+
+    #navbarSupportedContent {
+        background: rgb(7, 112, 216);
+    }
+
+    //body color
+    .page-wrapper {
+        background: #fffffc;
+        position: relative;
+    }
 </style>
+
 <body>
 
 
 
-    
-  {{#if admin}}
-  {{> admin-header}}
-  {{else if shop}}
-  {{> shop-header}}
-  {{else}}
-  {{> user-header}}
-  {{/if}}
 
-  {{{body}}}
+    {{#if admin}}
+    {{> admin-header}}
+    {{else if shop}}
+    {{> shop-header}}
+    {{else}}
+    {{> user-header}}
+    {{/if}}
+
+    {{{body}}}
 
 
-  
+
     <script src="/assets2/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="/assets2/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

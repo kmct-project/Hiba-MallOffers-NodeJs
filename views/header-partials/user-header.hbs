@@ -1,42 +1,42 @@
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container">
-      <div class="header-container d-flex align-items-center justify-content-between">
-        <div class="logo">
-          <h1 class="text-light"><a href="/"><span>HILITE<br> Mall Offers</span></a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-        </div>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container">
+    <div class="header-container d-flex align-items-center justify-content-between shadow">
+      <div class="">
 
-        <nav id="navbar" class="navbar">
-             <ul>
-                    <li><a class="nav-link scrollto active" href="/">Home</a></li>
-                    <li><a class="nav-link scrollto" href="/#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="/shop/all-shops">All Shops</a></li>
-                    <li><a class="nav-link scrollto " href="/offers">Offers</a></li>
-                    {{!-- <li><a class="nav-link scrollto " href="/add-feedback">Feedback</a></li> --}}
-                    <li><a class="nav-link scrollto " href="#!">Feedbacks & Complaints</a></li>
-                    <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
+        <a href="index.html"><img src="/images/hlogo.png" style="    margin-left: 34px;
+" width="35%" alt="" class=""></a>
+      </div>
 
-                    {{#if user}}
-                    <li class="dropdown getstarted1 scrollto"><a href="#"><span
-                                style="color: white;      margin-right: 18px;text-transform: capitalize;">{{user.Name}}</span>
-                            <i class="bi bi-chevron-down text-white"></i></a>
-                        <ul>
-                            {{!-- <li><a href="#">My Account</a></li> --}}
-                            {{!-- <li><a href="#">My Cart</a></li> --}}
-                            <li><a href="/orders">My Bookings</a></li>
-                            <li><a href="/signout">Logout</a></li>
-                        </ul>
-                    </li>
-                    {{else}}
-                    <li><a class="getstarted scrollto" href="/signin">Login Now</a></li>
-                    {{/if}}
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="/#about">About</a></li>
+          <li><a class="nav-link scrollto" href="/shop/all-shops">All Shops</a></li>
+          <li><a class="nav-link scrollto " href="/offers">Offers</a></li>
+          {{!-- <li><a class="nav-link scrollto " href="/add-feedback">Feedback</a></li> --}}
+          <li><a class="nav-link scrollto " href="#!">Feedbacks & Complaints</a></li>
+          <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
 
-                </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
+          {{#if user}}
+          <li class="dropdown getstarted1 scrollto"><a href="#"><span
+                style="color: white;      margin-right: 18px;text-transform: capitalize;">{{user.Name}}</span>
+              <i class="bi bi-chevron-down text-white"></i></a>
+            <ul>
+              {{!-- <li><a href="#">My Account</a></li> --}}
+              {{!-- <li><a href="#">My Cart</a></li> --}}
+              {{!-- <li><a href="/orders">My Bookings</a></li> --}}
+              <li><a href="/signout">Logout</a></li>
+            </ul>
+          </li>
+          {{else}}
+          <li><a class="getstarted scrollto" href="/signin">Login Now</a></li>
+          {{/if}}
 
-      </div><!-- End Header Container -->
-    </div>
-  </header><!-- End Header -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div><!-- End Header Container -->
+  </div>
+</header><!-- End Header -->

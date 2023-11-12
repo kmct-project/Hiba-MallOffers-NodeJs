@@ -1,11 +1,11 @@
 <section>
     <div class="container mt-5">
-        
-             <h1>All Offers</h1>
-      
+
+        <h1>All Offers</h1>
+
         <div class="row">
-             {{#each shops}}
-             <div class="col-md-2">
+            {{#each shops}}
+            <div class="col-md-2">
                 <div class="card">
                     <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
                     <div class="card-body">
@@ -19,7 +19,13 @@
                 <a href="/admin/delete-all-products" onclick="return confirm('Are You Sure to Delete All Products ?')"
                     class="btn btn-danger">Delete All Products</a>
             </div> --}}
-            
+
         </div>
     </div>
 </section>
+
+<style>
+    section {
+        background-color: #f5e9dc;
+    }
+</style>

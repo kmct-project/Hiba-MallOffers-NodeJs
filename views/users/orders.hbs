@@ -1,20 +1,21 @@
 <style>
-        #header .logo {
-    overflow: hidden;
-    padding: 16px 30px 12px 30px;
-    background: #009970;
-    border-radius: 50px;
-}
+    #header .logo {
+        overflow: hidden;
+        padding: 16px 30px 12px 30px;
+        background: #009970;
+        border-radius: 50px;
+    }
+
     #header .header-container {
-    background: #ebebeb;
-    border-radius: 50px;
-}
+        background: #ffffff;
+        border-radius: 21px;
+    }
 </style>
 
 <section>
     {{#if orders}}
     <div class="container my-5">
-            <h3 class="mb-3">My Bookings</h3>
+        <h3 class="mb-3">My Bookings</h3>
 
         <div class="table-responsive">
             <table class="table" id="table">
@@ -27,7 +28,7 @@
                         <th scope="col"> </th>
                         <th scope="col">Advance</th>
                         <th scope="col">Status</th>
-                         <th scope="col">Action</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
 
@@ -37,7 +38,8 @@
                         <td>{{this.orderObject.date}}</td>
                         <td>{{this.orderObject.deliveryDetails.address}}</td>
                         <td>{{this.orderObject.deliveryDetails.mobile}}</td>
-                        <td>{{this.orderObject.products}}<td>
+                        <td>{{this.orderObject.products}}
+                        <td>
                         <td>{{this.orderObject.totalAmount}}</td>
                         <td>{{this.orderObject.status}}</td>
                         <td>
@@ -46,7 +48,8 @@
                                 class="btn btn-danger">Cancel</a>
                         </td>
                         <td>
-                            <a href="/view-ordered-products/{{this.orderObject.offerId}}/{{this.orderObject.shopId}}" class="btn btn-primary">View Product</a>
+                            <a href="/view-ordered-products/{{this.orderObject.offerId}}/{{this.orderObject.shopId}}"
+                                class="btn btn-primary">View Product</a>
                         </td>
                     </tr>
                     {{/each}}

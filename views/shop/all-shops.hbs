@@ -8,10 +8,11 @@
             {{#each shops}}
             <div class="col-md-3 mb-4">
                 <a href="/shop/details/{{this.name}}" class="no-underline">
-                    <div class="card">
+                    <div class="card shadow rounded">
                         <img src="{{this.logo}}" class="card-img-top" alt="Image 1">
                         <div class="card-body" style="background-color: #eaeaea;">
                             <h5 class="card-title">{{this.name}}</h5>
+                            <a href="/offers" class="btn btn-dark btn-sm rounded w-100 mt-3">View Offers</a>
 
                         </div>
                 </a>
@@ -25,15 +26,17 @@
 
 <style>
     #header .logo {
-    overflow: hidden;
-    padding: 16px 30px 12px 30px;
-    background: #009970;
-    border-radius: 50px;
-}
+        overflow: hidden;
+        padding: 16px 30px 12px 30px;
+        background: #009970;
+        border-radius: 50px;
+    }
+
     #header .header-container {
-    background: #ebebeb;
-    border-radius: 50px;
-}
+        background: #ffffff;
+        border-radius: 21px;
+    }
+
     .no-underline {
         text-decoration: none;
         /* Remove underline */
