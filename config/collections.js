@@ -7,5 +7,6 @@ module.exports = {
   SHOP_COLLECTION: "shop",
   CATEGORY_COLLECTION: "categories",
   FEEDBACK_COLLECTION: "feedback",
+  COMPLAINT_COLLECTION: "complaint",
 
 };

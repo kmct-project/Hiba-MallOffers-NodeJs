@@ -1,7 +1,7 @@
 <div class="page-wrapper">
     <div class="page-breadcrumb">
         <div class="container-fluid">
-            <h3>Manage Feedbacks</h3>
+            <h3>Manage Complaints</h3>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -12,22 +12,23 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Shop Name</th>
-                                    <th scope="col">Shop Rating</th>
-                                    <th scope="col">Feedback</th>
+                                    <th scope="col">Complaint</th>
+                                    <th scope="col">Reply</th>
                                     <th scope="col">Remove</th>
 
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each feedbacks}}
+                                {{#each complaints}}
                                 <tr class="align-middle">
                                     <th scope="row">{{incremented @index}}</th>
                                     <td>{{this.name}}</td>
                                     <td>{{this.email}}</td>
-                                    <td>{{this.rating}} Stars</td>
                                     <td>{{this.shopname}}</td>
-                                    <td>{{this.feedback}}</td>
+                                    <td>{{this.complaint}}</td>
+                                    <td><a href="#!" class="btn btn-primary">Give Reply</a>
+                                    </td>
                                     <td><a href="/admin/remove-feedback/{{this._id}}" class="btn btn-danger"
                                             onclick="return confirm('Are You Sure to Delete {{this.name}} ?')">Remove</a>
                                     </td>

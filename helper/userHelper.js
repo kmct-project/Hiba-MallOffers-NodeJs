@@ -16,96 +16,190 @@ module.exports = {
   ///////ADD FeedBack/////////////////////                                         
   addfeedback: (feedback) => {
     return new Promise(async (resolve, reject) => {
-    console.log(feedback);
-   await db.get()
-    .collection(collections.FEEDBACK_COLLECTION)
-    .insertOne(feedback)
-    .then((data) => {
-      //console.log(data);
-      resolve()
-    });
-  })
+      console.log(feedback);
+      await db.get()
+        .collection(collections.FEEDBACK_COLLECTION)
+        .insertOne(feedback)
+        .then((data) => {
+          //console.log(data);
+          resolve()
+        });
+    })
   },
 
-///////GET ALL FeedBack/////////////////////                                            
-   getAllfeedbacks: () => {
+  ///////GET ALL FeedBack/////////////////////                                            
+  getAllfeedbacks: () => {
     return new Promise(async (resolve, reject) => {
       let feedbacks = await db
-      .get()
-      .collection(collections.FEEDBACK_COLLECTION)
-      .find()
-      .toArray();
-  resolve(feedbacks);
+        .get()
+        .collection(collections.FEEDBACK_COLLECTION)
+        .find()
+        .toArray();
+      resolve(feedbacks);
     });
   },
 
-///////ADD FeedBack DETAILS/////////////////////                                            
+  ///////ADD FeedBack DETAILS/////////////////////                                            
   getfeedbackDetails: (feedbackId) => {
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collections.FEEDBACK_COLLECTION)
-      .findOne({ _id: objectId(feedbackId)
-  })
-      .then((response) => {
-    resolve(response);
-  });
-  });
+        .findOne({
+          _id: objectId(feedbackId)
+        })
+        .then((response) => {
+          resolve(response);
+        });
+    });
   },
 
-///////DELETE FeedBack/////////////////////                                            
+  ///////DELETE FeedBack/////////////////////                                            
   deletefeedback: (feedbackId) => {
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collections.FEEDBACK_COLLECTION)
-      .removeOne({ _id: objectId(feedbackId)
-  })
+        .removeOne({
+          _id: objectId(feedbackId)
+        })
         .then((response) => {
-    console.log(response);
-    resolve(response);
-  });
+          console.log(response);
+          resolve(response);
+        });
     });
   },
 
-///////UPDATE FeedBack/////////////////////                                            
-   updatefeedback: (feedbackId, feedbackDetails) => {
+  ///////UPDATE FeedBack/////////////////////                                            
+  updatefeedback: (feedbackId, feedbackDetails) => {
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collections.FEEDBACK_COLLECTION)
-      .updateOne(
-        { _id: objectId(feedbackId)
-  },
-  {
-    $set: {
-      Name: feedbackDetails.Name,
-        Category: feedbackDetails.Category,
-          Price: feedbackDetails.Price,
-            Description: feedbackDetails.Description,
+        .updateOne(
+          {
+            _id: objectId(feedbackId)
+          },
+          {
+            $set: {
+              Name: feedbackDetails.Name,
+              Category: feedbackDetails.Category,
+              Price: feedbackDetails.Price,
+              Description: feedbackDetails.Description,
             },
           }
         )
         .then((response) => {
-              resolve();
-            });
+          resolve();
+        });
     });
   },
 
 
-///////DELETE ALL FeedBack/////////////////////                                            
+  ///////DELETE ALL FeedBack/////////////////////                                            
   deleteAllfeedbacks: () => {
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collections.FEEDBACK_COLLECTION)
-      .remove({})
-      .then(() => {
-        resolve();
-      });
-  });
+        .remove({})
+        .then(() => {
+          resolve();
+        });
+    });
   },
 
 
 
 
 
+  ///////ADD complaint/////////////////////                                         
+  addcomplaint: (complaint) => {
+    return new Promise(async (resolve, reject) => {
+      console.log(complaint);
+      await db.get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .insertOne(complaint)
+        .then((data) => {
+          //console.log(data);
+          resolve()
+        });
+    })
+  },
+
+  ///////GET ALL complaint/////////////////////                                            
+  getAllcomplaints: () => {
+    return new Promise(async (resolve, reject) => {
+      let complaints = await db
+        .get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .find()
+        .toArray();
+      resolve(complaints);
+    });
+  },
+
+  ///////ADD complaint DETAILS/////////////////////                                            
+  getcomplaintDetails: (complaintId) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .findOne({
+          _id: objectId(complaintId)
+        })
+        .then((response) => {
+          resolve(response);
+        });
+    });
+  },
+
+  ///////DELETE complaint/////////////////////                                            
+  deletecomplaint: (complaintId) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .removeOne({
+          _id: objectId(complaintId)
+        })
+        .then((response) => {
+          console.log(response);
+          resolve(response);
+        });
+    });
+  },
+
+  ///////UPDATE complaint/////////////////////                                            
+  updatecomplaint: (complaintId, complaintDetails) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .updateOne(
+          {
+            _id: objectId(complaintId)
+          },
+          {
+            $set: {
+              Name: complaintDetails.Name,
+              Category: complaintDetails.Category,
+              Price: complaintDetails.Price,
+              Description: complaintDetails.Description,
+            },
+          }
+        )
+        .then((response) => {
+          resolve();
+        });
+    });
+  },
+
+
+  ///////DELETE ALL complaint/////////////////////                                            
+  deleteAllcomplaints: () => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .remove({})
+        .then(() => {
+          resolve();
+        });
+    });
+  },
 
 
 
@@ -380,7 +474,7 @@ module.exports = {
     });
   },
 
-  placeBooking: (order,total, user) => {
+  placeBooking: (order, total, user) => {
     //req.body, price, user
     return new Promise(async (resolve, reject) => {
       // console.log(order, product,"from bokkinggggg");
@@ -395,8 +489,8 @@ module.exports = {
         user: user,
         paymentMethod: order["payment-method"],
         products: order.product,
-        offerId:order.productId,
-        shopId:order.productId.split('_')[0],
+        offerId: order.productId,
+        shopId: order.productId.split('_')[0],
         totalAmount: total,
         status: status,
         date: new Date(),
@@ -457,7 +551,7 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       try {
         const shopCollection = db.get().collection(collections.SHOP_COLLECTION);
-  
+
         const products = await shopCollection
           .aggregate([
             { $match: { _id: objectId(shopId) } },
@@ -475,7 +569,7 @@ module.exports = {
             },
           ])
           .toArray();
-  
+
         if (products && products.length > 0) {
           resolve(products[0].offers); // Assuming there's only one match
         } else {
@@ -485,7 +579,7 @@ module.exports = {
         reject(error);
       }
     });
-  },  
+  },
 
   // getOrderProducts: (orderId,shopId) => {
   //   return new Promise(async (resolve, reject) => {
@@ -548,8 +642,8 @@ module.exports = {
 
       hmac.update(
         details["payment[razorpay_order_id]"] +
-          "|" +
-          details["payment[razorpay_payment_id]"]
+        "|" +
+        details["payment[razorpay_payment_id]"]
       );
       hmac = hmac.digest("hex");
 
@@ -593,73 +687,73 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       // Check if queryResults is empty
       if (results.length === 0) {
-          resolve([]); // Resolve with an empty array
+        resolve([]); // Resolve with an empty array
       } else {
-          // Extract an array of unique byid values from the queryResults
-          const uniqueByids = Array.from(new Set(results.map(obj => obj.byid)));
+        // Extract an array of unique byid values from the queryResults
+        const uniqueByids = Array.from(new Set(results.map(obj => obj.byid)));
 
-          // Extract an array of unique id values from the results
-          const uniqueIds = Array.from(new Set(results.map(obj => obj.id)));
+        // Extract an array of unique id values from the results
+        const uniqueIds = Array.from(new Set(results.map(obj => obj.id)));
 
-          // Use aggregation to match and retrieve the desired offers
-          db.get().collection(collections.SHOP_COLLECTION).aggregate([
-              {
-                  $match: {
-                      _id: { $in: uniqueByids.map(byid => ObjectId(byid)) } // Match based on _id and byid
-                  },
-              },
-              {
-                  $unwind: "$offers" // Unwind the offers array
-              },
-              {
-                  $match: {
-                      "offers.img_id": { $in: uniqueIds } // Match based on img_id and id
-                  },
-              },
-              {
-                  $project: {
-                      _id: 0, // Exclude _id field
-                      offers: 1, // Include offers field
-                  },
-              },
-              {
-                $replaceRoot: {
-                    newRoot: "$offers"
-                }
+        // Use aggregation to match and retrieve the desired offers
+        db.get().collection(collections.SHOP_COLLECTION).aggregate([
+          {
+            $match: {
+              _id: { $in: uniqueByids.map(byid => ObjectId(byid)) } // Match based on _id and byid
+            },
+          },
+          {
+            $unwind: "$offers" // Unwind the offers array
+          },
+          {
+            $match: {
+              "offers.img_id": { $in: uniqueIds } // Match based on img_id and id
+            },
+          },
+          {
+            $project: {
+              _id: 0, // Exclude _id field
+              offers: 1, // Include offers field
+            },
+          },
+          {
+            $replaceRoot: {
+              newRoot: "$offers"
             }
-          ]).toArray((err, result) => {
-              if (err) {
-                  reject(err); // Reject the promise in case of an error
-              } else {
-                  resolve(result); // Resolve the promise with the matching offers
-              }
-          });
+          }
+        ]).toArray((err, result) => {
+          if (err) {
+            reject(err); // Reject the promise in case of an error
+          } else {
+            resolve(result); // Resolve the promise with the matching offers
+          }
+        });
       }
-  });
-}
-,
+    });
+  }
+  ,
 
-   searchProduct : (details) => {
+  searchProduct: (details) => {
     console.log(details);
     return new Promise(async (resolve, reject) => {
       const collection = db.get().collection(collections.SHOP_COLLECTION);
       const indexName = "offers.name_text"; // You can specify the desired index name
-  
+
       // Check if the index already exists
       // const indexExists = await collection.indexExists(indexName);
-  
+
       // if (!indexExists) {
       //   // Create the index if it doesn't exist
       //   await collection.createIndex({ "offers.name": "text" }, { name: indexName });
       // }
-  
+
       let result = await collection
         .find({
           "isOffer": true,
           "offers.name": details.search,
         })
         .toArray();
-  
+
       if (result.length > 0) {
         resolve(result[0].offers.find(offer => offer.name === details.search));
       } else {
@@ -667,7 +761,7 @@ module.exports = {
       }
     });
   }
-  
-  
-  
+
+
+
 };

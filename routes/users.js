@@ -20,10 +20,46 @@ router.get("/", async function (req, res, next) {
     cartCount = await userHelper.getCartCount(userId);
   }
   shopHelper.getAllShopOffers().then((offerShops) => {
-   console.log("okk",offerShops,"lll")
+    console.log("okk", offerShops, "lll")
 
     res.render("users/home", { admin: false, offerShops, user, cartCount });
   });
+});
+
+
+
+router.get("/add-complaints", verifySignedIn, function (req, res) {
+  let user = req.session.user;
+  shopHelper.getAllShops().then((shops) => {
+    res.render("users/add-complaints", { shop: false, shops, user });
+  });
+});
+
+router.post("/add-complaints", function (req, res) {
+  let user = req.session.user;
+  req.body.name = user.Name;
+  req.body.email = user.Email;
+
+  // Assuming userHelper.addfeedback returns a Promise
+  const addComplaintPromise = userHelper.addcomplaint(req.body);
+
+  if (addComplaintPromise) {
+    addComplaintPromise
+      .then(() => {
+        shopHelper.getAllShops().then((shops) => {
+          res.render("users/add-complaints", { admin: false, shops, user });
+        })
+      })
+      .catch((error) => {
+        // Handle any errors that might occur during the promise execution
+        console.error(error);
+        res.status(500).send("An error occurred");
+      });
+  } else {
+    // Handle the case where addFeedbackPromise is not a Promise
+    console.error("addfeedback does not return a Promise.");
+    res.status(500).send("An error occurred");
+  }
 });
 
 
@@ -37,17 +73,17 @@ router.get("/add-feedback", verifySignedIn, function (req, res) {
 
 router.post("/add-feedback", function (req, res) {
   let user = req.session.user;
-  req.body.name=user.Name;
-  req.body.email=user.Email;
+  req.body.name = user.Name;
+  req.body.email = user.Email;
 
   // Assuming userHelper.addfeedback returns a Promise
-  const addFeedbackPromise =  userHelper.addfeedback(req.body);
+  const addFeedbackPromise = userHelper.addfeedback(req.body);
 
   if (addFeedbackPromise) {
     addFeedbackPromise
       .then(() => {
         shopHelper.getAllShops().then((shops) => {
-        res.render("users/add-feedback", { admin: false,shops, user });
+          res.render("users/add-feedback", { admin: false, shops, user });
         })
       })
       .catch((error) => {
@@ -74,9 +110,10 @@ router.get("/offers", verifySignedIn, async (req, res) => {
     cartCount = await userHelper.getCartCount(userId);
   }
   shopHelper.getAllShopOffers().then((offerShops) => {
-    console.log("okk",offerShops,"lll")
-     res.render("users/offers", { admin: false, offerShops, user, cartCount });
-   });});
+    console.log("okk", offerShops, "lll")
+    res.render("users/offers", { admin: false, offerShops, user, cartCount });
+  });
+});
 
 
 
@@ -164,23 +201,23 @@ router.get("/booknow/:id", verifySignedIn, async (req, res) => {
   console.log(user, offerId);
   // let cartCount = await userHelper.getCartCount(userId);
   // let total = await userHelper.getTotalAmount(userId);
-  res.render("users/booknow", { admin: false, user,price, mobile,product,offerId});
+  res.render("users/booknow", { admin: false, user, price, mobile, product, offerId });
 });
 
 router.post("/booknow", async (req, res) => {
   let user = req.session.user;
-  let price =100;
+  let price = 100;
   userHelper
-  .placeBooking(req.body, price, user)
-  .then((orderId) => {
-    if (req.body["payment-method"] === "COD") {
-      res.json({ codSuccess: true });
-    } else {
-      userHelper.generateRazorpay(orderId, price).then((response) => {
-        res.json(response);
-      });
-    }
-  });
+    .placeBooking(req.body, price, user)
+    .then((orderId) => {
+      if (req.body["payment-method"] === "COD") {
+        res.json({ codSuccess: true });
+      } else {
+        userHelper.generateRazorpay(orderId, price).then((response) => {
+          res.json(response);
+        });
+      }
+    });
 });
 
 router.get("/signin", function (req, res) {
@@ -317,9 +354,9 @@ router.get(
     let userId = req.session.user._id;
     // let cartCount = await userHelper.getCartCount(userId);
     let orderId = req.params.id;
-    let shopId=req.params.shopid;
-    let offers = await userHelper.getOrderProducts(orderId,shopId);
-    console.log(offers,"llllio")
+    let shopId = req.params.shopid;
+    let offers = await userHelper.getOrderProducts(orderId, shopId);
+    console.log(offers, "llllio")
     res.render("users/order-products", {
       admin: false,
       user,
@@ -338,14 +375,14 @@ router.get("/cancel-order/:id", verifySignedIn, function (req, res) {
 router.get("/search", verifySignedIn, async function (req, res) {
   let user = req.session.user;
   let userId = req.session.user._id;
-  const result=JSON.parse(req.query.results);
+  const result = JSON.parse(req.query.results);
 
- // let cartCount = await userHelper.getCartCount(userId);
+  // let cartCount = await userHelper.getCartCount(userId);
   userHelper.searchOffers(JSON.parse(req.query.results)).then((offers) => {
     const uniqueIds = Array.from(result.map(obj => obj.byid));
-    const byName=Array.from(result.map(obj => obj.by));
-    const byCat=Array.from(result.map(obj => obj.bycat));
- 
+    const byName = Array.from(result.map(obj => obj.by));
+    const byCat = Array.from(result.map(obj => obj.bycat));
+
     res.render("users/search-result", {
       admin: false,
       user,
@@ -354,7 +391,7 @@ router.get("/search", verifySignedIn, async function (req, res) {
       byName,
       byCat
     });
-  }).catch((err)=>console.log("errrr:",err))
+  }).catch((err) => console.log("errrr:", err))
 });
 // router.post("/search", verifySignedIn, async function (req, res) {
 //   let user = req.session.user;

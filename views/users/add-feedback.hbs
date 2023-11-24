@@ -1,43 +1,91 @@
 <style>
-    body{
-    background-image: url('/images/bg2.jpg');
+    body {
+        background-image: url('/images/bg2.jpg');
     }
 </style>
-<br><br><br><br>
+<br><br><br><br><br><br>
 <div class="row mx-auto ">
     <div class="col-md-6 mx-auto">
         <div class="container mt-5">
-                <div class="card p-5">
-            <h2 class="text-center">Your Feedback</h2>
-            <form action="/add-feedback" method="POST">
-            {{#if user}}
-                <div class="form-group mt-4">
-                    <label>Your Name</label>
-                    <input type="text" class="form-control" name="Name" value="{{user.Name}}" placeholder="Enter Name" disabled>
-                </div>
+            <div class="card p-5">
+                <h2 class="text-center">Your Feedback</h2>
+                <form action="/add-feedback" method="POST">
+                    {{#if user}}
+                    <div class="form-group mt-4">
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" name="Name" value="{{user.Name}}"
+                            placeholder="Enter Name" disabled>
+                    </div>
 
-                  <div class="form-group mt-4">
-                    <label>Your Email</label>
-                    <input type="text" class="form-control" name="Email" value="{{user.Email}}" placeholder="Enter Name" disabled>
-                </div>
-            {{/if}}
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="Email" value="{{user.Email}}"
+                            placeholder="Enter Name" disabled>
+                    </div>
+                    {{/if}}
                     <label class="mt-4">Shop</label>
-                <select class="form-select" name="shopname" aria-label="Default select example">
-                <option selected disabled>Select Shop</option>
-                {{#each shops}}
-                <option value="{{this.name}}">{{this.name}}</option>
-                {{/each}}
-                </select>
-                <div class="form-group mt-4">
-                    <label> Your Feedback</label>
-                    <input type="text" class="form-control" name="feedback" placeholder="Your Feedback">
-                </div>
-                <div class="row">
-                    <button type="submit" class="btn btn-primary mt-4">Submit Your Feedback</button>
-                </div>
-            </form>
+                    <select class="form-select" name="shopname" aria-label="Default select example">
+                        <option selected disabled>Select Shop</option>
+                        {{#each shops}}
+                        <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                    <label class="mt-4">Choose Your Rating</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" value="1" id="rating1">
+                        <label class="form-check-label" for="rating1">
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" value="2" id="rating2">
+                        <label class="form-check-label" for="rating2">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" value="3" id="rating3">
+                        <label class="form-check-label" for="rating3">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" value="4" id="rating4">
+                        <label class="form-check-label" for="rating4">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" value="5" id="rating5">
+                        <label class="form-check-label" for="rating5">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+
+                        </label>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label> Your Feedback</label>
+                        <textarea type="text" class="form-control" name="feedback"
+                            placeholder="Your Feedback"></textarea>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary mt-4">Submit Your Feedback</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 <br><br><br><br>
