@@ -8,7 +8,17 @@
     <div class="col-md-6 mx-auto">
         <div class="container mt-5">
             <div class="card p-5">
-                <h2 class="text-center">Post a Complaint</h2>
+                <div class="row">
+                    <div class="col-md-8"> <!-- Adjust the column width as needed -->
+                        <h4 class="text-center">Post a Complaint</h4>
+                        <!-- Your complaint form goes here -->
+                    </div>
+                    <div class="col-md-4"> <!-- Adjust the column width as needed -->
+                        {{#if user}}
+                            <a href="/view-reply?id={{user._id}}" class="btn btn-success float-left" style="">View Reply</a>
+                        {{/if}}
+                    </div>
+                </div>
                 <form action="/add-complaints" method="POST">
                     {{#if user}}
                     <div class="form-group mt-4">
@@ -24,8 +34,8 @@
                     </div>
                     {{/if}}
                     <label class="mt-4">Shop</label>
-                    <select class="form-select" name="shopname" aria-label="Default select example">
-                        <option selected disabled>Select Shop</option>
+                    <select class="form-select" name="shopname" aria-label="Default select example" required >
+                        <option selected >Select Shop</option>
                         {{#each shops}}
                         <option value="{{this.name}}">{{this.name}}</option>
                         {{/each}}
@@ -33,7 +43,7 @@
                     <div class="form-group mt-4">
                         <label> Your Complaint</label>
                         <textarea type="text" class="form-control" name="complaint"
-                            placeholder="Your Complaint"></textarea>
+                            placeholder="Your Complaint" required></textarea>
                     </div>
                     <div class="row">
                         <button type="submit" class="btn btn-primary mt-4">Submit Your Complaint</button>

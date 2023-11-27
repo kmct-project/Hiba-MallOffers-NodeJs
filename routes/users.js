@@ -39,6 +39,8 @@ router.post("/add-complaints", function (req, res) {
   let user = req.session.user;
   req.body.name = user.Name;
   req.body.email = user.Email;
+  req.body.status="false";
+  req.body.userId=user._id;
 
   // Assuming userHelper.addfeedback returns a Promise
   const addComplaintPromise = userHelper.addcomplaint(req.body);
@@ -61,6 +63,25 @@ router.post("/add-complaints", function (req, res) {
     res.status(500).send("An error occurred");
   }
 });
+
+router.get("/view-reply",async (req,res)=>{
+  let id =req.query.id;
+  await userHelper.getReply(id).then((complaints)=>{
+    res.render("users/view-reply",{ admin: false, complaints})
+  })
+}) 
+
+router.get("/read-reply",async (req,res)=>{
+  console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+  let id =req.query.id;
+  let userId= req.session.user._id;
+  await userHelper.readReply(id).then((complaints)=>{
+    res.redirect(`/view-reply?id=${userId}`)
+  })
+
+});
+
+
 
 
 

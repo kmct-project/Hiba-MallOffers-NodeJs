@@ -1,0 +1,43 @@
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                   <h2 class="text-center">Post a Reply</h2>
+                <form action="/admin/add-reply?id={{complaint._id}}" method="POST">
+                    <div class="form-group mt-4">
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" name="name" value="{{complaint.name}}"
+                            placeholder="Enter Name" disabled>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label>Your Email</label>
+                        <input type="text" class="form-control" name="email" value="{{complaint.email}}"
+                            placeholder="Enter Name" disabled>
+                    </div>
+                    <label class="mt-4">Shop</label>
+                     <div class="form-group mt-4">
+                        <input type="text" class="form-control" name="shopname" value="{{complaint.shopname}}"
+                            placeholder="Enter Name" disabled>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label> Complaint</label>
+                        <textarea type="text" class="form-control" name="complaint"
+                            placeholder="Your Complaint" disabled>{{complaint.complaint}}</textarea>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label> Reply</label>
+                        <textarea type="text" class="form-control" name="reply"
+                            placeholder="Your reply" ></textarea>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary mt-4">Submit Your Complaint</button>
+                    </div>
+                </form>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

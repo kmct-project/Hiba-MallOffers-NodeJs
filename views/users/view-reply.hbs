@@ -1,38 +1,29 @@
-<div class="page-wrapper">
-    <div class="page-breadcrumb">
-        <div class="container-fluid">
-            <h3>Manage Complaints</h3>
-            <div class="card">
+<section>
+    <br><br>
+    <div class="container mt-5">
+
+        <div class="card">
                 <div class="card-body">
+                     <h3 class="mt-5">View Reply</h3>
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
                                     <th scope="col">Shop Name</th>
                                     <th scope="col">Complaint</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Reply</th>
-                                    <th scope="col">Remove</th>
-
-
+                                    <th scope="col">Read</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each complaints}}
                                 <tr class="align-middle">
                                     <th scope="row">{{incremented @index}}</th>
-                                    <td>{{this.name}}</td>
-                                    <td>{{this.email}}</td>
                                     <td>{{this.shopname}}</td>
                                     <td>{{this.complaint}}</td>
-                                    <td>{{this.status}}</td>
-                                    <td><a href="/admin/complaints-reply?id={{this._id}}" class="btn btn-primary">Give Reply</a>
-                                    </td>
-                                    <td><a href="/admin/remove-feedback/{{this._id}}" class="btn btn-danger"
-                                            onclick="return confirm('Are You Sure to Delete {{this.name}} ?')">Remove</a>
+                                    <td>{{this.reply}} </td>
+                                    <td><a href="/read-reply?id={{this._id}}" class="btn btn-danger">Read</a>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -41,6 +32,28 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
-</div>
+    </div>
+</section>
+
+<style>
+    #header .logo {
+        overflow: hidden;
+        padding: 16px 30px 12px 30px;
+        background: #009970;
+        border-radius: 50px;
+    }
+
+    #header .header-container {
+        background: #ffffff;
+        border-radius: 21px;
+    }
+
+    .no-underline {
+        text-decoration: none;
+        /* Remove underline */
+        color: #333;
+        /* Set the desired text color */
+    }
+</style>

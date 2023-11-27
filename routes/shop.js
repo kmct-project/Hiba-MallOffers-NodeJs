@@ -186,8 +186,15 @@ router.get("/delete-offer/:id", verifySignedIn, function (req, res) {
   let imgId =req.params.id;
   console.log(offerId,"lklk")
   shopHelper.deleteOffer(offerId, imgId).then((response) => {
-    fs.unlinkSync("./public/images/offer-images/" + imgId + ".png");
-    res.redirect("/shop");
+    try {
+      fs.unlinkSync("./public/images/offer-images/" + offerId + ".png");
+      res.redirect("/admin/all-offers");
+      res.redirect("/shop");
+    } catch (error) {
+      console.error("Error deleting file:", error.message);
+      res.redirect("/shop");
+    }
+    
   });
 });
 

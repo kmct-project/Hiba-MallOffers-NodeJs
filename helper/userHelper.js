@@ -135,6 +135,36 @@ module.exports = {
     });
   },
 
+  getReply:(id)=>{
+    return new Promise(async (resolve, reject) => {
+      let complaints = await db
+        .get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .find({userId:id,status:"true"})
+        .toArray();
+      resolve(complaints);
+    });
+
+  },
+
+  readReply:(id)=>{
+    return new Promise(async (resolve, reject) => {
+      let complaints = await db
+        .get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .updateOne(
+          {_id:objectId(id)},
+          {
+            $set: {
+              status:"read"
+            },
+          }
+        )
+      resolve(complaints);
+    });
+
+  },
+
   ///////ADD complaint DETAILS/////////////////////                                            
   getcomplaintDetails: (complaintId) => {
     return new Promise((resolve, reject) => {

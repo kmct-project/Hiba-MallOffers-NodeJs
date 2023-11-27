@@ -151,12 +151,38 @@ module.exports = {
     });
   },
 
+  getcomplaintReply:(id)=>{
+    return new Promise(async (resolve, reject) => {
+      let complaints = await db
+        .get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .findOne({_id:objectId(id)})
+      resolve(complaints);
+    });
+  },
+  complaintReply:(id,reply)=>{
+    return new Promise(async (resolve, reject) => {
+      let complaints = await db
+        .get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .updateOne(
+          {_id:objectId(id)},
+          {
+            $set: {
+              reply: reply,
+              status:"true"
+            },
+          }
+        )
+      resolve(complaints);
+    });
+  },
 
   deleteOffer: (shopId,Id) => {
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collections.SHOP_COLLECTION)
-        .updateOne( { _id: ObjectId(shopId) },
+        .updateOne( { _id: objectId(shopId) },
         {
   
             $pull: { offers: { img_id: Id } }, // Delete the offer with the specified ID

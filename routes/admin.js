@@ -74,6 +74,21 @@ router.get("/all-complaints", verifySignedIn, function (req, res) {
   });
 });
 
+router.get("/complaints-reply", verifySignedIn, function (req, res) {
+  let administator = req.session.admin;
+  let cmpId=req.query.id;
+  adminHelper.getcomplaintReply(cmpId).then((complaint) => {
+    res.render("admin/cmp-reply", { admin: true, layout: "adminlayout", complaint, administator });
+  });
+}); 
+router.post("/add-reply",(req,res)=>{
+  let cmpId=req.query.id;
+  console.log("ree",cmpId,req.body.reply)
+  adminHelper.complaintReply(cmpId,req.body.reply).then((complaint) => {
+    res.redirect("/admin/all-complaints")
+  });
+
+})
 ///////DELETE complaint/////////////////////                                         
 router.get("/delete-complaint/:id", verifySignedIn, function (req, res) {
   let complaintId = req.params.id;
@@ -241,9 +256,16 @@ router.get("/delete-offer/:id/:img_id", verifySignedIn, function (req, res) {
   let shopId = req.params.id;
   let offerId = req.params.img_id;
   console.log(offerId, "lklk")
-  adminHelper.deleteOffer(offerId, shopId).then((response) => {
-    fs.unlinkSync("./public/images/offer-images/" + offerId + ".png");
-    res.redirect("/shop");
+  adminHelper.deleteOffer( shopId,offerId).then((response) => {
+    try {
+      fs.unlinkSync("./public/images/offer-images/" + offerId + ".png");
+      res.redirect("/admin/all-offers");
+      console.log("File deleted successfully");
+    } catch (error) {
+      console.error("Error deleting file:", error.message);
+      res.redirect("/admin/all-offers");
+    }
+   
   });
 });
 
