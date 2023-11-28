@@ -283,6 +283,8 @@ router.get("/remove-feedback/:id", verifySignedIn, function (req, res) {
   });
 });
 
+
+
 router.get("/remove-all-users", verifySignedIn, function (req, res) {
   adminHelper.removeAllUsers().then(() => {
     res.redirect("/admin/all-users");

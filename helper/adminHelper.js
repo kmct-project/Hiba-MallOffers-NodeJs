@@ -237,6 +237,16 @@ module.exports = {
         });
     });
   },
+  removeComplaint:(Id) => {
+    return new Promise((resolve, reject) => {
+      db.get()
+        .collection(collections.COMPLAINT_COLLECTION)
+        .removeOne({ _id: objectId(Id) })
+        .then(() => {
+          resolve();
+    });
+  })
+  },
 
   removeAllUsers: () => {
     return new Promise((resolve, reject) => {
