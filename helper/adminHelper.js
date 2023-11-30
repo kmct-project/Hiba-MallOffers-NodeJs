@@ -170,7 +170,7 @@ module.exports = {
           {
             $set: {
               reply: reply,
-              status:"true"
+              status:"Replied"
             },
           }
         )

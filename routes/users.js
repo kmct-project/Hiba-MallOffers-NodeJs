@@ -39,7 +39,7 @@ router.post("/add-complaints", function (req, res) {
   let user = req.session.user;
   req.body.name = user.Name;
   req.body.email = user.Email;
-  req.body.status="false";
+  req.body.status="Not Replied";
   req.body.userId=user._id;
 
   // Assuming userHelper.addfeedback returns a Promise

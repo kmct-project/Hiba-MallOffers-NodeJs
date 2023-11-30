@@ -140,7 +140,7 @@ module.exports = {
       let complaints = await db
         .get()
         .collection(collections.COMPLAINT_COLLECTION)
-        .find({userId:id,status:"true"})
+        .find({userId:id})
         .toArray();
       resolve(complaints);
     });
@@ -156,7 +156,7 @@ module.exports = {
           {_id:objectId(id)},
           {
             $set: {
-              status:"read"
+              status:"closed"
             },
           }
         )

@@ -13,7 +13,7 @@
                                     <th scope="col">Shop Name</th>
                                     <th scope="col">Complaint</th>
                                     <th scope="col">Reply</th>
-                                    <th scope="col">Read</th>
+                                    <th scope="col">status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -23,7 +23,11 @@
                                     <td>{{this.shopname}}</td>
                                     <td>{{this.complaint}}</td>
                                     <td>{{this.reply}} </td>
+                                    {{#ifeq this.status "Replied"}}
                                     <td><a href="/read-reply?id={{this._id}}" class="btn btn-danger">Read</a>
+                                    {{else}}
+                                    <td>{{this.status}}</td>
+                                    {{/ifeq}}
                                     </td>
                                 </tr>
                                 {{/each}}

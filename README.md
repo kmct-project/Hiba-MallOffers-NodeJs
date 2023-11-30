@@ -17,8 +17,8 @@ shop@12D
 //////
 
 ////user//
-hiba@gmail.com
-hiba@123
+vector@gmail.com
+Vector@123
 
 offersssss {
   _id: 6512b8432b7d60b8ac768ebe,
